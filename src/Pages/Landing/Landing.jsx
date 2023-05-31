@@ -14,7 +14,7 @@ const jsonResponse = await response.json()
 
 dispatch({type:'UPDATE_CATEGORIES' , payload:jsonResponse.categories})
 }catch(error){
-    console.log(error)
+    console.error(error)
 }
 
 
