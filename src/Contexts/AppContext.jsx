@@ -1,8 +1,8 @@
 import { useReducer } from "react";
-import { LanderContext } from "..";
+import { AppContext } from "..";
 
 
-export function LanderContextProvider({children}){
+export function AppContextProvider({children}){
  
     
 const landingReducerFunction = (state , action)=>{
@@ -31,9 +31,9 @@ const initialValue = {
 
 const [state , dispatch] = useReducer(landingReducerFunction , initialValue)
 
-return <LanderContext.Provider value={{state , dispatch}}>
+return <AppContext.Provider value={{state , dispatch}}>
     {children}
-</LanderContext.Provider>
+</AppContext.Provider>
 
 
 }

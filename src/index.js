@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import {BrowserRouter as Router} from 'react-router-dom'
-import { LanderContextProvider } from "./Contexts/LanderContext";
+import { AppContextProvider } from "./Contexts/AppContext";
 
-export const LanderContext = createContext()
+export const AppContext = createContext()
 
 
 // Call make Server
@@ -14,11 +14,11 @@ makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <LanderContextProvider>
+    <AppContextProvider>
     <Router>
     <App />
     </Router>
-    </LanderContextProvider>
+    </AppContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

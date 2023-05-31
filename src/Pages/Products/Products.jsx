@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react"
-import { LanderContext } from "../.."
+import { AppContext } from "../.."
 
 export const Products = () => {
 
-const {state , dispatch} = useContext(LanderContext)
+const {state , dispatch} = useContext(AppContext)
 
 
 const getBooksList = async()=>{

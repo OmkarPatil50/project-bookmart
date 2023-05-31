@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react"
-import { LanderContext } from "../.."
+import { AppContext } from "../.."
 
 export function Landing(){
 
-const {state , dispatch} = useContext(LanderContext)
+const {state , dispatch} = useContext(AppContext)
 
     const getLandingData = async()=>{
 
