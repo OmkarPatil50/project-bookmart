@@ -59,3 +59,8 @@ border-bottom-right-radius: 50px;}
     color: var(---secondary-color);
     font-size: 22.5px;
 }
+
+.nav-items:hover{
+    opacity: 0.5;
+    transition-duration: 0.5s;
+}
