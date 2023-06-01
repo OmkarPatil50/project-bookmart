@@ -14,6 +14,23 @@ case 'UPDATE_CATEGORIES' :
     return ({...state , categoriesList:action.payload})
 }
 
+
+case 'UPDATE_CART' :
+{
+    return ({...state , cartList:action.payload})
+}
+
+case 'UPDATE_BOOKSLIST' :
+{
+    return ({...state , booksList:action.payload})
+}
+
+case 'OPEN_BOOK' :
+    {
+        return ({...state , bookDetails:action.payload})
+    }
+
+
 default:
 return state
 
@@ -23,8 +40,10 @@ return state
 
 
 const initialValue = {
-
-    categoriesList:[]
+booksList:[],
+    categoriesList:[],
+    cartList:[],
+    bookDetails:{}
 
 
 }

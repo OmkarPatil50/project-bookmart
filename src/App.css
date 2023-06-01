@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url("https://boostmat-ui.netlify.app/components/component.css");
+
+body{
+    margin: 0;
+    position: relative;
+ 
+}
+
+:root{
+ ---primary-color:#007bb5;
+ ---secondary-color:white;
+}
+
+/* --------------------------------Navigation------------------------------------------------ */
+
+nav{
+   
+    padding: 20px 40px;
+    background-color: var(---primary-color);
+border-bottom-right-radius: 50px;}
+
+.nav-sub-sections{
+ margin:5px 200px ;
+ display: flex;
+ justify-content: space-between;
+}
+
+.main-heading{
+    color: var(---secondary-color);
+    font-family: 'Ubuntu';
+    font-size: 30px;
+}
+
+.search-input{
+   background-color: var(---secondary-color);
+   width: 350px;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   padding: 10px;   
+   border-radius: 50px;
+}
+
+.search-input input{
+    flex-basis: 99%;
+    outline: none;
+   height: 20px;
+    border: none;
+    padding-left: 10px;
+}
+
+.nav-items{
+    padding-left: 25px;
+    color: var(---secondary-color);
+    font-size: 22.5px;
+}
