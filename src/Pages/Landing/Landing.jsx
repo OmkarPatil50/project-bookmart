@@ -1,5 +1,7 @@
 import { useContext, useEffect } from "react"
 import { AppContext } from "../.."
+import './Landing.css'
+import { Link } from "react-router-dom"
 
 export function Landing(){
 
@@ -11,7 +13,6 @@ try{
 
 const response = await fetch('/api/categories')
 const jsonResponse = await response.json()
-
 dispatch({type:'UPDATE_CATEGORIES' , payload:jsonResponse.categories})
 }catch(error){
     console.error(error)
@@ -24,19 +25,16 @@ dispatch({type:'UPDATE_CATEGORIES' , payload:jsonResponse.categories})
     useEffect(()=>{getLandingData()},[])
 
     return <div className="landing-page">
-        <nav>
-            <h2>BookMart</h2>
-            <label htmlFor="search-book"><input type="text" placeholder="Search for Product" /></label>
-            <button>
-                Wishlist</button><button>
-                    Cart</button><button>
-                        Login
-                    </button>
-        </nav>
+ 
+ <div className="shop-now-section">
+<h3>Welcome to Bookmart,</h3>
+<h1>For All Your <span>Reading </span>Needs</h1>
+<Link to='/books' className="shop-now-btn">Shop Now</Link>
+ </div>
 
 <div className="categories-section">
-    <h2>Featured Book Categories</h2>
-    <p>There are many categories of books available at Pustaka. Choose your favorite one now.</p>
+    <h2 className="categories-section-header">Featured Book Categories</h2>
+    <p className="categories-section-subheader">There are many categories of books available at Bookmart. Choose your favorite one now.</p>
     <ul>
         {state.categoriesList.map(({categoryName , description , _id})=>{
             return <li className="category-block" key={_id}>
