@@ -23,7 +23,11 @@ nav{
    height: 85px;
     padding: 20px 40px;
     background-color: var(---primary-color);
-border-bottom-right-radius: 50px;}
+border-bottom-right-radius: 50px;
+position: fixed;
+top: 0;
+width: 100%;
+}
 
 .nav-sub-sections{
  margin:5px 200px ;
