@@ -1,0 +1,175 @@
+
+:root{
+    ---primary-color:#007bb5;
+    ---secondary-color:white;
+ 
+   }
+
+.product-details-page{
+  display: flex;
+ height: 88vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-details-card{
+    box-sizing: border-box;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 550px;
+height: 450px;
+border-radius: 5px;
+box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+.product-thumbnail{
+    margin: 1   0px;
+    display: flex;
+    flex-basis: 50%;
+   justify-content: center;
+    position: relative;
+}
+
+.book-image{
+    width: 200px;
+}
+
+.best-seller-tag{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00a098;
+    padding:5px 10px;
+    color: white;
+    font-weight: 500;
+    margin:10px 20px;
+}
+
+.book-details{
+    flex-basis: 50%;
+    height: 450px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-right: 20px;
+}
+
+.book-name{
+font-weight: 600;
+}
+.book-rating{
+    color:#E67A00;
+    line-height: 0.7;
+}
+
+.price-info-section{
+    border-bottom: 1px solid lightgray;
+
+}
+
+.price-section{
+    display: flex;
+    align-items: center;
+    margin: 20px 50px 0px 0;
+    font-size: 20px;
+    font-weight:700;
+}
+
+.book-price{
+    margin-right: 10px;
+   
+  
+}
+
+.book-original-price{
+    margin-right: 10px;
+    color: lightgray;
+    text-decoration: line-through;
+}
+
+.book-discount{
+    color: green;
+    font-size: 16px;
+
+}
+
+.few-left-tag{
+    color: red;
+    font-size: 12px;
+    margin: 10px 0 15px ;
+}
+
+.book-features-section{
+margin: 20px 0 ;
+}
+
+.features{
+    font-size: 13px;
+    font-family: "Rubik",sans-serif;
+    margin: 5px 0;
+
+}
+
+.features i {
+    margin-right: 5px;
+    color:var(---primary-color) ;
+}
+
+.book-attributes-section{
+margin-bottom: 10px;
+}
+
+.book-attributes{
+    font-size: 13px;
+    color: var(---primary-color);
+    margin-bottom: 5px;
+    font-family: "Rubik",sans-serif;
+
+}
+
+.book-attribute-heading{
+    color: gray;
+    margin-right: 20px;
+}
+
+.btn-section{
+display: flex;
+flex-direction: column;
+width: 170px;
+}
+
+.btn-cart , .btn-wishlist{
+padding: 8px;
+margin-bottom: 7px;
+border-radius: 10px;
+font-size: 16px;
+font-weight: 600;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.btn-cart{
+    color: var(---secondary-color);
+    background-color: var(---primary-color);
+    border: 1px solid var(---primary-color);
+}
+
+.btn-cart:hover{
+color: var(---primary-color);
+background-color: var(---secondary-color);
+transition-duration: 0.2s;
+}
+
+.btn-wishlist{
+    color: #414752;
+    background-color: var(---secondary-color);
+    border: 1px solid #414752;;
+transition-duration: 0.2s;
+
+}
+
+.btn-wishlist:hover{
+    color: var(---secondary-color);
+    background-color: #414752;;
+}
+

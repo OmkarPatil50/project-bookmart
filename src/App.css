@@ -14,12 +14,13 @@ body{
 :root{
  ---primary-color:#007bb5;
  ---secondary-color:white;
+ 
 }
 
 /* --------------------------------Navigation------------------------------------------------ */
 
 nav{
-   
+   height: 85px;
     padding: 20px 40px;
     background-color: var(---primary-color);
 border-bottom-right-radius: 50px;}
