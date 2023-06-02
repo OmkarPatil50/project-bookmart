@@ -96,7 +96,7 @@ Price - High to Low</label>
 
 <img src={img} alt="books-image" />
 {isBestSeller?<p className="best-seller-tag-products">Best Seller</p> : ''} 
-<div className="wishlist-tag"><i className="fa-regular fa-heart"></i></div>
+<div className="wishlist-tag"><i className="fa-solid fa-heart"></i></div>
     </div>
 <div className="name-rating-section">
     <div className="name-author-section">

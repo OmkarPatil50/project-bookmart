@@ -61,7 +61,7 @@ font-weight: bold;
 }
 
 .categories-section-header{
-    margin: 40px;
+    margin: 20px;
 }
 
 .categories-section-subheader{
@@ -84,8 +84,8 @@ box-sizing: border-box;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     box-shadow:  1px 2px 20px rgba(0, 0, 0, 0.4);
 margin:0px 30px 20px;
 padding: 20px;
@@ -104,7 +104,60 @@ font-size: 14px;
 }
 
 .categories-section ul li:hover{
-    width: 210px;
-    height: 210px;
+  transform: scale(1.1);
     transition-duration: 0.5s;
+}
+
+/* -----------------------------------------------Footing------------------------------------------ */
+
+.footing-section{
+    width: 100%;
+    height: 220px;
+    font-family: "Rubik",sans-serif;
+    background-color: #1f1d1d;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  
+}
+
+.app-info{
+    flex-basis: 50%;
+    margin:20px 100px ;
+line-height: 2;
+
+}
+
+.app-info h1{
+    font-size: 22px;
+}
+.app-info h3{
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.app-info p i{
+    text-decoration: line-through;
+}
+
+.resources-sub-section , .contact-sub-section{
+    margin: 20px 100px;
+    line-height: 2;
+    
+}
+.resources-sub-section h3 , .contact-sub-section h3{
+    font-weight: 200;
+    font-size: 18px;
+}
+
+
+.resources-links , .contact-links{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.resources-links a, .contact-links a{
+    color: white;
+font-weight: 200;
 }

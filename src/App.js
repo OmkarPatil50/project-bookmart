@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import {Routes , Route} from 'react-router-dom'
+import {Routes , Route ,Link} from 'react-router-dom'
 
 import Mockman from 'mockman-js'
 import { NavLink } from "react-router-dom";
@@ -27,7 +27,7 @@ function App() {
 
 
 
-            <h2 className="main-heading">BookMart</h2>
+            <Link to='/' className="main-heading">Bookmart</Link>
             <label htmlFor="search-book"  className="search-input"><i className="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for Product" /></label>
             <div className="link-items">
 

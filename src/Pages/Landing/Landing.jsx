@@ -46,5 +46,29 @@ dispatch({type:'UPDATE_CATEGORIES' , payload:jsonResponse.categories})
     </ul>
 </div>
 
+<div className="footing-section">
+    <div className="app-info">
+
+    <h1>Bookmart</h1>
+    <h3>Fill your house with stacks of books, in all the crannies and all the nooks.</h3>
+    <h3>Privacy Policy</h3>
+    <h3>Terms of Use</h3>
+    <p><i className="fa-regular fa-copyright"></i>No copyright</p>
+    </div>
+    <div className="contact-sub-section">
+        <h3>Connect</h3>
+    <div className="contact-links">
+        <a href="/">GitHub</a><a href="/">Twitter</a><a href="/">LinkedIn</a>
+    </div>
+    </div>
+    <div className="resources-sub-section">
+        <h3>Resources</h3>
+        <div className="resources-links">
+        <a href="/">Sign Up</a><a href="/">Sign In</a>
+        </div>
+        
+    </div>
+</div>
+
     </div>
 }
