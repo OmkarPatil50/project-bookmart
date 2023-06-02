@@ -21,9 +21,7 @@ const signUpFunction = async()=>{
         )
 
         const jsonResponse  =  await response.json()
-       console.log(JSON.stringify({
-        userEmail ,userPassword ,userFirstName ,userLastName
-      }))
+    
 
     }catch(err){
         console.error(err)
