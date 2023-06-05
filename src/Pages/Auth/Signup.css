@@ -1,0 +1,106 @@
+:root{
+    ---primary-color:#007bb5;
+    ---secondary-color:white;
+    
+   }
+
+
+.signup-page{
+
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 375px;
+    height: fit-content;
+    box-sizing: border-box;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.4);
+    font-family: "Rubik",sans-serif;
+border-radius: 10px;
+background-color: #f8f8f8;
+}
+
+ 
+.signup-container h2{
+    font-size: 22px;
+    margin: 20px 0 0px 0;
+    text-align: center;
+    }
+.name-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 0  ;
+}
+
+.first-name-box, .last-name-box{
+    display: flex;
+    flex-direction: column;
+}
+
+
+    .name-container label{
+        font-size: 14px;
+      margin: 10px 10px 10px 20px ;
+    }
+
+
+    .name-container input{
+padding: 8px;
+width: 125px;
+border: 1px solid lightgray;
+margin:0 20px 0 20px;
+    }
+
+    .email-password-container{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+.email-password-container label{
+    font-size: 14px;
+    text-align: left;
+        margin: 20px 40px 10px;
+}
+
+    .email-password-box{
+        width: 300px;
+        padding: 8px;
+    font-size: 14px;
+    border: 1px solid lightgray;
+    align-self: center;
+    }
+  
+    
+    .signup-container button{
+        align-self: center;
+        width: 200px;
+        background-color:var(---primary-color) ;
+        margin: 20px;
+        font-size: 16px;
+        color: var(---secondary-color);
+        font-weight: 600;
+        border-radius: 10px;
+     border: none;
+        padding: 10px 20px;
+    }
+    
+    .signup-container button:hover{
+        opacity: 0.7;
+    }
+    
+    .already-have-account-btn{
+        align-self: center;
+        margin: 20px;
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+    } 

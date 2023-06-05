@@ -13,9 +13,31 @@ const getBookDetails = async()=>{
     dispatch({type:'OPEN_BOOK' ,  payload:jsonResponse.product})
 }
 
+
+const addToCart = async (book) =>{
+    try{
+    
+    const response = await fetch('/api/user/cart' , {
+        method: 'POST',
+        headers:{
+            authorization: localStorage.getItem('encodedToken')
+        },
+        body : JSON.stringify({
+          product: book
+        }) 
+    
+    })
+    const jsonResponse = await response.json()
+    dispatch({type:'UPDATE_CART' , payload:jsonResponse.cart})
+    
+    
+    }catch(err){
+        console.error(err)
+    }
+    
+    }
     useEffect(()=>{getBookDetails()},[])
-
-
+console.log(state.cartList)
     const bookDetails = state.bookDetails
 const {author,
     category,
@@ -57,7 +79,7 @@ return <div className = "product-details-page">
 
 <div className="btn-section">
 
-            <button className="btn-cart"><i className="fa-solid fa-cart-shopping"></i>Add to Cart</button>
+            <button className="btn-cart" onClick={()=>addToCart(bookDetails)}><i className="fa-solid fa-cart-shopping"></i>Add to Cart</button>
             <button className="btn-wishlist"><i className="fa-regular fa-heart"></i>Add to Wishlist</button>
 </div>
 </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link, Navigate, json, redirect } from 'react-router-dom'
+import './Signup.css'
 const Signup = () => {
   
     const[userFirstName , setUserFirstName] = useState('')
@@ -20,8 +20,8 @@ const signUpFunction = async()=>{
         }
         )
 
-        const jsonResponse  =  await response.json()
-    
+        const jsonResponse =  await response.json()
+        localStorage.setItem('encodedToken' , jsonResponse.encodedToken);
 
     }catch(err){
         console.error(err)
@@ -30,15 +30,33 @@ const signUpFunction = async()=>{
 
   
     return (
-    <div>
-  <h1>Sign Up</h1>
-  <label htmlFor="first-name">First Name<input onChange={(event)=>setUserFirstName(event.target.value)} type="text" /></label>    
-  <label htmlFor="last-name">Last Name<input onChange={(event)=>setUserLastName(event.target.value)} type="text" /></label> 
-  <label htmlFor="Email">Email<input onChange={(event)=>setUserEmail(event.target.value)} type="email" /></label>    
-  <label htmlFor="password">Password<input onChange={(event)=>setUserPassword(event.target.value)} type="password" /></label>    
+    <div className='signup-page'>
+
+      <div className="signup-container">
+  <h2>Sign Up</h2>
+  <div className="name-container">
+<div className="first-name-box">
+<label htmlFor="first-name">First Name</label>
+  <input onChange={(event)=>setUserFirstName(event.target.value)} type="text" placeholder='John'/> 
+</div>
+     <div className="last-name-box">
+     <label htmlFor="last-name">Last Name</label>
+  <input onChange={(event)=>setUserLastName(event.target.value)} type="text" placeholder='Doe'/>
+     </div>
+   
+  </div>
+  <div className="email-password-container">
+
+  <label htmlFor="Email">Email</label>
+  <input onChange={(event)=>setUserEmail(event.target.value)} type="email" className='email-password-box' placeholder="johndoe@gmail.com" />    
+  <label htmlFor="password">Password</label>
+  <input onChange={(event)=>setUserPassword(event.target.value)} type="password" className='email-password-box' placeholder="**********"/> 
+  </div>   
   <button onClick={signUpFunction}>Create New Account </button>
-<Link to='/login'>Already have an account? <i className="fa-solid fa-angle-right"></i></Link>
+<Link to='/login' className='already-have-account-btn'>Already have an account? <i className="fa-solid fa-angle-right"></i></Link>
     
+
+      </div>
     </div>
   )
 }

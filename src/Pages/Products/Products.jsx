@@ -20,11 +20,32 @@ try{
     console.error(err)
 }
 
+}
 
+const addToCart = async (book) =>{
+try{
+
+const response = await fetch('/api/user/cart' , {
+    method: 'POST',
+    headers:{
+        authorization: localStorage.getItem('encodedToken')
+    ,
+} ,
+body : JSON.stringify({
+    product: book
+ })
+
+})
+const jsonResponse = await response.json()
+
+dispatch({type:'UPDATE_CART' , payload:jsonResponse.cart})
+
+}catch(err){
+    console.error(err)
+}
 
 }
 
-  
 useEffect(()=>{getBooksList()},[])
 
     return <div className="books-page">
@@ -84,12 +105,15 @@ Price - High to Low</label>
      <ul>
 
     {
-        state.renderList.map(({author,
-            category,
-            img,            isBestSeller,
-            name,
-            originalPrice,
-            price,rating ,_id}) => {
+        state.renderList.map((book) => {
+
+            const {author,
+                category,
+                img,            isBestSeller,
+                name,
+                originalPrice,
+                price,rating ,_id} = book
+
                                return <div className="book-card">
 <Link to={`/books/${_id}`} key={_id}>
     <div className="book-thumbnail">
@@ -113,7 +137,7 @@ Price - High to Low</label>
 <p className="book-discount">({(((originalPrice - price)/originalPrice)*100).toFixed(0)} % OFF)</p>
 
     </div>
-<button className="btn-cart-products"><i className="fa-solid fa-cart-shopping"></i>Add to Cart</button>
+<button className="btn-cart-products" onClick={()=>addToCart(book)}><i className="fa-solid fa-cart-shopping"></i>Add to Cart</button>
 
                </Link>
                                </div> 

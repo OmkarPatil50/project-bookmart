@@ -48,7 +48,7 @@ case 'FILTER_BY_RATING':
         return ({...state , renderList:filteredList})
 
         }
-   
+
 
 
 default:
