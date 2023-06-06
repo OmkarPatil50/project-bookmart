@@ -1,42 +1,40 @@
-:root{
-    ---primary-color:#007bb5;
-    ---secondary-color:white;
-    
-   }
+:root {
+    ---primary-color: #007bb5;
+    ---secondary-color: white;
+}
 
-.books-page{
+.books-page {
     display: flex;
     justify-content: space-between;
     margin-top: 85px;
 }
 
-.section-filters{
+.section-filters {
     margin-top: 85px;
-width: 250px;
+    width: 250px;
     display: flex;
     flex-direction: column;
-position: fixed;
-bottom: 1;
+    position: fixed;
+    bottom: 1;
 }
 
-
-.section-books{
+.section-books {
     flex-basis: 80%;
-margin: 20px 0 20px 350px;
-font-family: "Rubik",sans-serif;
+    margin: 20px 0 20px 350px;
+    font-family: 'Rubik', sans-serif;
 }
 
-.section-books-heading{
+.section-books-heading {
     font-size: 20px;
     margin: 20px 0 40px 0;
 }
 
-.section-books ul{
-   display: flex;
-   flex-wrap: wrap;
+.section-books ul {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.book-card{
+.book-card {
     width: 240px;
     height: 375px;
     margin: 10px;
@@ -46,166 +44,169 @@ font-family: "Rubik",sans-serif;
     box-shadow: 0.5px 0.5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.book-thumbnail{
+.book-thumbnail {
     width: 240px;
     display: flex;
     justify-content: center;
-   height: 15rem;
-   position: relative;
+    height: 15rem;
+    position: relative;
 }
 
-.book-thumbnail img{
-width: 160px;
-height: 15rem;
-z-index: -1;
+.book-thumbnail img {
+    width: 160px;
+    height: 15rem;
+    z-index: -1;
 }
 
-.wishlist-tag{
-    position:absolute;
+.wishlist-tag {
+    position: absolute;
     top: 0;
     right: 0;
     color: gray;
     font-size: 18px;
     margin: 10px;
-
 }
-.wishlist-tag:hover{
-color: red;
+.wishlist-tag:hover {
+    color: red;
 }
 
-.book-count{
+.book-count {
     font-size: 12px;
     font-weight: 300;
 }
-.best-seller-tag-products{
+.best-seller-tag-products {
     position: absolute;
     top: 0;
     left: 0;
-    margin: 10px 0 ;
+    margin: 10px 0;
     background-color: #00a098;
-    padding:5px 10px;
+    padding: 5px 10px;
     color: white;
     font-weight: 500;
     z-index: -1;
 }
 
-
-.name-rating-section{
+.name-rating-section {
     display: flex;
     justify-content: space-between;
-    margin:10px 10px;
+    margin: 10px 10px;
     color: black;
     font-size: 10px;
     font-weight: 100;
-    font-family: "Montserrat",sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.book-name-products{
+.book-name-products {
     font-weight: 600;
-  font-size: 12px;
-    }
+    font-size: 12px;
+}
 
-    .rating-tag{
-        display: flex;
-        align-items: center;
-        padding: 5px 5px;
-        height: 20px;
-        color: white;
-border-radius: 10px;
-        background-color: #20aa20;
-    }
+.rating-tag {
+    display: flex;
+    align-items: center;
+    padding: 5px 5px;
+    height: 20px;
+    color: white;
+    border-radius: 10px;
+    background-color: #20aa20;
+}
 
-    .author-tag{
-        color: gray;
-    }
+.author-tag {
+    color: gray;
+}
 
-    
-.price-section-products{
+.price-section-products {
     display: flex;
     align-items: center;
     font-size: 16px;
     margin-left: 10px;
-    font-weight:700;
-}
-    
-.book-price{
-    margin-right: 10px;
-   color: black;
-  font-weight: 700;
+    font-weight: 700;
 }
 
-.btn-cart-products{
+.book-price {
+    margin-right: 10px;
+    color: black;
+    font-weight: 700;
+}
+
+.btn-cart-products {
     box-sizing: border-box;
     width: 220px;
     padding: 8px;
-    margin:10px;
+    margin: 10px;
     border-radius: 10px;
     font-size: 16px;
     font-weight: 600;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
     color: var(---secondary-color);
     background-color: var(---primary-color);
-    border: 1px solid var(---primary-color);  
+    border: 1px solid var(---primary-color);
 }
-    
-    
-.btn-cart-products:hover{
+
+.btn-cart-products:hover {
     color: var(---primary-color);
     background-color: var(---secondary-color);
     transition-duration: 0.2s;
-    }
-    
-
-    /* ----------------------------------filters-------------------------------------------- */
-
-    .section-filters{
-        border-right: 1px solid gray;
-        margin:20px 20px 0 40px;
-        padding-right: 20px;
-        font-family: "Rubik",sans-serif;
-       
-    }
-
-
-    .filter-keys{
-        display: flex;
-        justify-content: space-between;
-        font-size: 14px;
-    }
-
-    .filter-keys h3:nth-child(2){
-        font-weight: 400;
-        text-decoration: underline;
-    }
-
-    .filter-by-price , .filter-by-category, .filter-by-rating , .sort{
-        display: flex;
-        flex-direction: column;
-        margin: 22px 0 0px;
-        font-size: 14px;
-    }
-
-    .filter-by-price label, .filter-by-category h3, .sort h3 , .filter-by-rating h3{
-        font-weight: 700;
-        margin: 20px 0;
-    }
-
-    .filter-by-price label span{
-        font-weight: 400;
-        font-size: 14px;
-    }
-
-.filter-by-price input{
-    color:var(---primary-color) ;
 }
 
-  .range{
+/* ----------------------------------filters-------------------------------------------- */
+
+.section-filters {
+    border-right: 1px solid gray;
+    margin: 20px 20px 0 40px;
+    padding-right: 20px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.filter-keys {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.filter-keys h3:nth-child(2) {
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filter-by-price,
+.filter-by-category,
+.filter-by-rating,
+.sort {
+    display: flex;
+    flex-direction: column;
+    margin: 22px 0 0px;
+    font-size: 14px;
+}
+
+.filter-by-price label,
+.filter-by-category h3,
+.sort h3,
+.filter-by-rating h3 {
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.filter-by-price label span {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.filter-by-price input {
+    color: var(---primary-color);
+}
+
+.range {
     display: flex;
     font-size: 14px;
     justify-content: space-between;
     margin-bottom: 5px;
-  }
+}
 
-  .filter-by-category label, .filter-by-rating label, .sort label{
+.filter-by-category label,
+.filter-by-rating label,
+.sort label {
     margin-bottom: 10px;
-  }
+}

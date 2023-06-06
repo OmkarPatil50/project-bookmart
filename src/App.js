@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import {Routes , Route ,Link} from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 
 import Mockman from 'mockman-js'
 import { NavLink } from "react-router-dom";
@@ -21,38 +21,36 @@ function App() {
   return (
     <div className="App">
 
-<nav>
+      <nav>
 
-  <div className="nav-sub-sections">
+        <div className="nav-sub-sections">
 
 
 
-            <Link to='/' className="main-heading">Bookmart</Link>
-            <label htmlFor="search-book"  className="search-input"><i className="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for Product" /></label>
-            <div className="link-items">
+          <Link to='/' className="main-heading">Bookmart</Link>
+          <label htmlFor="search-book" className="search-input"><i className="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for Product" /></label>
+          <div className="link-items">
 
-            <NavLink className='nav-items'>
-            <i className="fa-solid fa-heart"></i></NavLink><NavLink className='nav-items'>
-            <i className="fa-solid fa-cart-shopping"></i></NavLink><NavLink className='nav-items'>
-            <i className="fa-solid fa-user"></i>
-                    </NavLink>
-            </div>
-  </div>
-        </nav>
+            <NavLink className='nav-items' to='/wishlist'><i className="fa-solid fa-heart"></i></NavLink>
+            <NavLink className='nav-items' to='/cart'><i className="fa-solid fa-cart-shopping"></i></NavLink>
+            <NavLink className='nav-items' to='/login'><i className="fa-solid fa-user"></i></NavLink>
+          </div>
+        </div>
+      </nav>
 
-    <Routes>
-      <Route path='/mockman' element={<Mockman/>}/>
-      <Route path= '/' element={<Landing/>}/>
-      <Route path= '/login' element={<Login/>}/>
-      <Route path= '/books' element={<Products/>}/>
-      <Route path= '/books/:bookID' element={<ProductDetails/>}/>
-      <Route path= '/cart' element={<Cart/>}/>
-      <Route path= '/signup' element={<Signup/>}/>
+      <Routes>
+        <Route path='/mockman' element={<Mockman />} />
+        <Route path='/' element={<Landing />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/books' element={<Products />} />
+        <Route path='/books/:bookID' element={<ProductDetails />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/signup' element={<Signup />} />
 
 
 
 
-    </Routes>
+      </Routes>
     </div>
   );
 }

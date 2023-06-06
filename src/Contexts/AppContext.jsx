@@ -1,81 +1,144 @@
-import { useReducer } from "react";
-import { AppContext } from "..";
+import { useEffect, useReducer } from 'react'
+import { AppContext } from '..'
 
+export function AppContextProvider({ children }) {
+    const landingReducerFunction = (state, action) => {
+        switch (action.type) {
+            case 'UPDATE_CATEGORIES': {
+                return {
+                    ...state,
+                    categoriesList: action.payload,
+                    filterCategories: [],
+                }
+            }
 
-export function AppContextProvider({children}){
- 
-    
-const landingReducerFunction = (state , action)=>{
+            case 'UPDATE_CART': {
+                return { ...state, cartList: action.payload }
+            }
 
-switch(action.type){
+            case 'UPDATE_BOOKSLIST': {
+                return {
+                    ...state,
+                    booksList: action.payload,
+                    bookDetails: {},
+                    filteredList: action.payload,
+                }
+            }
 
-case 'UPDATE_CATEGORIES' :
-{
-    return ({...state , categoriesList:action.payload})
-}
+            case 'OPEN_BOOK': {
+                return { ...state, bookDetails: action.payload }
+            }
 
+            case 'UPDATE_FILTER_PRICE': {
+                return {
+                    ...state,
+                    filterMaxPrice: action.payload,
+                }
+            }
 
-case 'UPDATE_CART' :
-{
-    return ({...state , cartList:action.payload})
-}
+            case 'UPDATE_FILTER_CATEGORIES': {
+                const updatedCategories = state.filterCategories.includes(
+                    action.payload
+                )
+                    ? state.filterCategories.filter(
+                          (item) => item !== action.payload
+                      )
+                    : [...state.filterCategories, action.payload]
+                return {
+                    ...state,
+                    filterCategories: updatedCategories,
+                }
+            }
 
-case 'UPDATE_BOOKSLIST' :
-{
-    return ({...state , booksList:action.payload , renderList:action.payload , bookDetails:{}})
-}
+            case 'UPDATE_FILTER_RATINGS': {
+                return {
+                    ...state,
+                    filterMinRating: action.payload,
+                }
+            }
 
-case 'OPEN_BOOK' :
-    {
-        return ({...state , bookDetails:action.payload})
+            case 'SORT_ITEMS': {
+                return {
+                    ...state,
+                    filterSortType: action.payload,
+                }
+            }
+
+            case 'UPDATE_FILTERED_LIST': {
+                return { ...state, filteredList: action.payload }
+            }
+
+            case 'RESET_FILTERS': {
+                return {
+                    ...state,
+                    filterCategories: [],
+                    filterMaxPrice: -1,
+                    filterMinRating: 0,
+                    filterSortType: 'none',
+                }
+            }
+            default:
+                return state
+        }
     }
 
-case 'FILTER_BY_PRICE':
-    {
-const filteredList = state.booksList.filter(({price})=>price<(action.payload*10))
-return ({...state , renderList:filteredList})
-}    
+    const initialValue = {
+        booksList: [],
+        categoriesList: [],
+        cartList: [],
+        bookDetails: {},
+        filteredList: [],
+        filterCategories: [],
+        filterMaxPrice: -1,
+        filterMinRating: 0,
+        filterSortType: 'none',
+    }
 
-case 'FILTER_BY_CATEGORY':
-    {
-    const filteredList = state.booksList.filter(({category})=>category===action.payload.value)
-return ({...state , renderList:filteredList})
-}
+    const [state, dispatch] = useReducer(landingReducerFunction, initialValue)
+    const {
+        booksList,
+        filterCategories,
+        filterMaxPrice,
+        filterMinRating,
+        filterSortType,
+    } = state
 
-case 'FILTER_BY_RATING':
-    {
-        const filteredList = state.booksList.filter(({rating})=>rating>action.payload)
-        return ({...state , renderList:filteredList})
-
+    useEffect(() => {
+        let data = booksList
+        if (filterCategories.length) {
+            data = data.filter((book) => {
+                return filterCategories.includes(book.category)
+            })
+        }
+        if (filterMaxPrice > 0) {
+            data = data.filter((book) => {
+                return book.price <= filterMaxPrice * 10
+            })
+        }
+        if (filterMinRating > 0) {
+            data = data.filter((book) => {
+                return book.rating >= filterMinRating
+            })
+        }
+        if (filterSortType !== 'none') {
+            data = data.sort((a, b) => {
+                return filterSortType === 'low-to-high'
+                    ? a.price - b.price
+                    : b.price - a.price
+            })
         }
 
-
-
-default:
-return state
-
-}
-
-}
-
-
-const initialValue = {
-booksList:[],
-renderList:[],
-    categoriesList:[],
-    cartList:[],
-    bookDetails:{},
-    category:'',
-    rating:''
-
-
-}
-
-const [state , dispatch] = useReducer(landingReducerFunction , initialValue)
-
-return <AppContext.Provider value={{state , dispatch}}>
-    {children}
-</AppContext.Provider>
-
-
+        dispatch({ type: 'UPDATE_FILTERED_LIST', payload: data })
+    }, [
+        booksList,
+        filterCategories,
+        filterMaxPrice,
+        filterMinRating,
+        filterSortType,
+    ])
+    return (
+        <AppContext.Provider value={{ state, dispatch }}>
+            {children}
+        </AppContext.Provider>
+    )
 }

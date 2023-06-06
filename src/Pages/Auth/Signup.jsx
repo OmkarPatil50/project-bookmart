@@ -37,11 +37,11 @@ const signUpFunction = async()=>{
   <div className="name-container">
 <div className="first-name-box">
 <label htmlFor="first-name">First Name</label>
-  <input onChange={(event)=>setUserFirstName(event.target.value)} type="text" placeholder='John'/> 
+  <input onChange={(event)=>setUserFirstName(event.target.value)} type="text"  placeholder='John'/> 
 </div>
      <div className="last-name-box">
      <label htmlFor="last-name">Last Name</label>
-  <input onChange={(event)=>setUserLastName(event.target.value)} type="text" placeholder='Doe'/>
+  <input onChange={(event)=>setUserLastName(event.target.value)} type="text"   placeholder='Doe'/>
      </div>
    
   </div>
