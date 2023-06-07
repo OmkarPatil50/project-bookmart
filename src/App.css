@@ -3,69 +3,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-@import url("https://boostmat-ui.netlify.app/components/component.css");
+@import url('https://boostmat-ui.netlify.app/components/component.css');
 
-body{
+body {
     margin: 0;
     position: relative;
- 
 }
 
-:root{
- ---primary-color:#007bb5;
- ---secondary-color:white;
- 
+:root {
+    ---primary-color: #007bb5;
+    ---secondary-color: white;
 }
 
 /* --------------------------------Navigation------------------------------------------------ */
 
-nav{
-   height: 85px;
-    padding: 20px 40px;
+nav {
+    height: 70px;
+    padding: 15px 40px;
     background-color: var(---primary-color);
-border-bottom-right-radius: 50px;
-position: fixed;
-top: 0;
-width: 100%;
+    border-bottom-right-radius: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
-.nav-sub-sections{
- margin:5px 200px ;
- display: flex;
- justify-content: space-between;
+.nav-sub-sections {
+    margin: 5px 200px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.main-heading{
+.main-heading {
     color: var(---secondary-color);
     font-family: 'Ubuntu';
     font-size: 30px;
 }
 
-.search-input{
-   background-color: var(---secondary-color);
-   width: 350px;
-   height: 30px;
-   display: flex;
-   align-items: center;
-   padding: 10px;   
-   border-radius: 50px;
+.search-input {
+    background-color: var(---secondary-color);
+    width: 350px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50px;
 }
 
-.search-input input{
+.search-input input {
     flex-basis: 99%;
     outline: none;
-   height: 20px;
+    height: 20px;
     border: none;
     padding-left: 10px;
 }
 
-.nav-items{
+.nav-items {
     padding-left: 25px;
     color: var(---secondary-color);
     font-size: 22.5px;
 }
 
-.nav-items:hover{
+.nav-items:hover {
     opacity: 0.5;
     transition-duration: 0.5s;
 }
