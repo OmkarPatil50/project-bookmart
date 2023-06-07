@@ -241,21 +241,26 @@ export const Products = () => {
 
                         return (
                             <div className="book-card">
-                                <Link to={`/books/${_id}`} key={_id}>
+                                <div key={_id}>
                                     <div className="book-thumbnail">
-                                        <img src={img} alt="books-image" />
-                                        {isBestSeller ? (
-                                            <p className="best-seller-tag-products">
-                                                Best Seller
-                                            </p>
-                                        ) : (
-                                            ''
-                                        )}
+                                        <Link to={`/books/${_id}`}>
+                                            <img src={img} alt="books-image" />
+                                            {isBestSeller ? (
+                                                <p className="best-seller-tag-products">
+                                                    Best Seller
+                                                </p>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </Link>
                                         <div className="wishlist-tag">
                                             <i className="fa-solid fa-heart"></i>
                                         </div>
                                     </div>
-                                    <div className="name-rating-section">
+                                    <Link
+                                        to={`/books/${_id}`}
+                                        className="name-rating-section"
+                                    >
                                         <div className="name-author-section">
                                             <h2 className="book-name-products">
                                                 {name}{' '}
@@ -268,9 +273,12 @@ export const Products = () => {
                                             {rating}
                                             <i className="fa-solid fa-star"></i>{' '}
                                         </p>
-                                    </div>
+                                    </Link>
 
-                                    <div className="price-section-products">
+                                    <Link
+                                        to={`/books/${_id}`}
+                                        className="price-section-products"
+                                    >
                                         <p className="book-price">
                                             <i className="fa-solid fa-indian-rupee-sign"></i>
                                             {price}
@@ -288,7 +296,18 @@ export const Products = () => {
                                             ).toFixed(0)}{' '}
                                             % OFF)
                                         </p>
-                                    </div>
+                                    </Link>
+                                </div>
+                                {state.cartList.some(
+                                    (cartItem) => cartItem._id === book._id
+                                ) ? (
+                                    <Link to={'/cart'}>
+                                        <button className="btn-cart-products">
+                                            <i className="fa-solid fa-cart-shopping"></i>
+                                            Go to Cart
+                                        </button>
+                                    </Link>
+                                ) : (
                                     <button
                                         className="btn-cart-products"
                                         onClick={() => addToCart(book)}
@@ -296,7 +315,7 @@ export const Products = () => {
                                         <i className="fa-solid fa-cart-shopping"></i>
                                         Add to Cart
                                     </button>
-                                </Link>
+                                )}
                             </div>
                         )
                     })}

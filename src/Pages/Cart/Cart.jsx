@@ -21,6 +21,21 @@ export const Cart = () => {
         }
     }
 
+    const removeFromCart = async (bookId) => {
+        try {
+            const response = await fetch(`/api/user/cart/${bookId}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: localStorage.getItem('encodedToken'),
+                },
+            })
+            const jsonResponse = await response.json()
+            dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     useEffect(() => {
         getCartData()
     }, [])
@@ -95,7 +110,12 @@ export const Cart = () => {
                                             </div>
                                         </section>
                                         <section className="btn-section-cart">
-                                            <button className="btn-remove-cart">
+                                            <button
+                                                className="btn-remove-cart"
+                                                onClick={() =>
+                                                    removeFromCart(_id)
+                                                }
+                                            >
                                                 REMOVE
                                             </button>
                                             <button className="btn-wishlist-cart">
