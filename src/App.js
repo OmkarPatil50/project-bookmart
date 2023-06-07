@@ -10,6 +10,7 @@ import { Products } from "./Pages/Products/Products";
 import { ProductDetails } from "./Pages/Products/ProductDetails";
 import { Cart } from "./Pages/Cart/Cart";
 import Signup from "./Pages/Auth/Signup";
+import { Wishlist } from "./Pages/Wishlist/Wishlist";
 
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
         <Route path='/books/:bookID' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/wishlist' element={<Wishlist />} />
+
 
 
 

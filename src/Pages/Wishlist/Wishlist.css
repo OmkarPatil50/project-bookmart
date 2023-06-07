@@ -1,0 +1,110 @@
+:root {
+    ---primary-color: #007bb5;
+    ---secondary-color: white;
+}
+.wishlist-page {
+    margin-top: 70px;
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.wishlist-page-heading {
+    text-align: center;
+    margin: 30px 0 40px 0;
+    font-size: 22px;
+}
+
+.wishlist-items-list {
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+}
+
+.wishlist-card {
+    box-sizing: border-box;
+    margin: 20px 0;
+    width: 475px;
+    height: 250px;
+    display: flex;
+    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    background-color: #f8f8f8;
+}
+
+.book-details-wishlist {
+    height: 200px;
+    margin-top: 20px;
+    flex-basis: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.book-subdetails-wishlist {
+    margin: 20px 0 0 0;
+}
+
+.book-thumbnail-wishlist {
+    display: flex;
+    align-self: center;
+    margin-left: 20px;
+    height: 200px;
+    flex-basis: 30%;
+}
+
+.book-thumbnail-wishlist img {
+    width: 120px;
+    height: 175px;
+    align-self: center;
+}
+
+.book-name-wishlist {
+    font-size: 18px;
+}
+
+.author-tag-wishlist {
+    font-size: 12px;
+    color: gray;
+}
+
+.price-section-wishlist {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.btn-cart-in-wishlist {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
+    background-color: var(---primary-color);
+    color: var(---secondary-color);
+}
+
+.btn-delete-from-wishlist {
+    margin: 40px 20px 0 0;
+    cursor: pointer;
+}
+
+.btn-delete-from-wishlist:hover {
+    color: red;
+}
+
+.empty-wishlist {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-wishlist h1 {
+    margin: 20px;
+}

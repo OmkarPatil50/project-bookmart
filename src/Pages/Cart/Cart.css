@@ -101,11 +101,13 @@
 
 .btn-remove-cart,
 .btn-wishlist-cart {
-    flex-basis: 50%;
     font-size: 15px;
     background: none;
     height: 50px;
     font-weight: 600;
+    width: 250px;
+    text-align: center;
+    flex-wrap: wrap;
 }
 
 .btn-wishlist-cart {
@@ -121,6 +123,10 @@
     padding: 30px;
     width: 350px;
     height: 450px;
+    position: fixed;
+    top: 10;
+    right: 0;
+    margin-right: 200px;
 }
 
 .coupon-section {
@@ -171,6 +177,14 @@
     padding: 5px 0;
 }
 
+.price-details-values p:nth-child(2) {
+    margin-left: -11.5px;
+}
+
+.price-details-values p:nth-child(2)::before {
+    content: '- ';
+}
+
 .total-amount {
     display: flex;
     justify-content: space-between;
@@ -195,4 +209,16 @@
     text-align: center;
     color: var(---secondary-color);
     font-weight: 500;
+}
+
+.empty-cart {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-cart h1 {
+    margin: 20px;
 }

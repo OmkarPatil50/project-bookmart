@@ -65,9 +65,7 @@
     color: gray;
     font-size: 18px;
     margin: 10px;
-}
-.wishlist-tag:hover {
-    color: red;
+    cursor: pointer;
 }
 
 .book-count {

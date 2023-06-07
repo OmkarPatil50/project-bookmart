@@ -39,10 +39,54 @@ export const Products = () => {
         }
     }
 
+    const handleWishlistTag = (book) => {
+        state.wishList?.some((wishListItem) => wishListItem._id === book._id)
+            ? deleteFromWishlist(book._id)
+            : addToWishlist(book)
+    }
+
+    const deleteFromWishlist = async (bookId) => {
+        try {
+            const response = await fetch(`/api/user/wishlist/${bookId}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: localStorage.getItem('encodedToken'),
+                },
+            })
+            const jsonResponse = await response.json()
+            dispatch({
+                type: 'UPDATE_WISHLIST',
+                payload: jsonResponse.wishlist,
+            })
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const addToWishlist = async (book) => {
+        try {
+            const response = await fetch('/api/user/wishlist', {
+                method: 'POST',
+                headers: {
+                    authorization: localStorage.getItem('encodedToken'),
+                },
+                body: JSON.stringify({
+                    product: book,
+                }),
+            })
+            const jsonResponse = await response.json()
+            dispatch({
+                type: 'UPDATE_WISHLIST',
+                payload: jsonResponse.wishlist,
+            })
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     useEffect(() => {
         getBooksList()
     }, [])
-    console.log(state.cartList)
 
     return (
         <div className="books-page">
@@ -240,8 +284,8 @@ export const Products = () => {
                         } = book
 
                         return (
-                            <div className="book-card">
-                                <div key={_id}>
+                            <div className="book-card" key={_id}>
+                                <div>
                                     <div className="book-thumbnail">
                                         <Link to={`/books/${_id}`}>
                                             <img src={img} alt="books-image" />
@@ -253,7 +297,21 @@ export const Products = () => {
                                                 ''
                                             )}
                                         </Link>
-                                        <div className="wishlist-tag">
+                                        <div
+                                            className="wishlist-tag"
+                                            onClick={() =>
+                                                handleWishlistTag(book)
+                                            }
+                                            style={{
+                                                color: state.wishList?.some(
+                                                    (wishListItem) =>
+                                                        wishListItem._id ===
+                                                        book._id
+                                                )
+                                                    ? 'red'
+                                                    : 'gray',
+                                            }}
+                                        >
                                             <i className="fa-solid fa-heart"></i>
                                         </div>
                                     </div>

@@ -16,6 +16,10 @@ export function AppContextProvider({ children }) {
                 return { ...state, cartList: action.payload }
             }
 
+            case 'UPDATE_WISHLIST': {
+                return { ...state, wishList: action.payload }
+            }
+
             case 'UPDATE_BOOKSLIST': {
                 return {
                     ...state,
@@ -71,7 +75,6 @@ export function AppContextProvider({ children }) {
             case 'RESET_FILTERS': {
                 return {
                     ...state,
-                    // filteredList: state.booksList,
                     filterCategories: [],
                     filterMaxPrice: -1,
                     filterMinRating: 0,
@@ -87,6 +90,7 @@ export function AppContextProvider({ children }) {
         booksList: [],
         categoriesList: [],
         cartList: [],
+        wishList: [],
         bookDetails: {},
         filteredList: [],
         filterCategories: [],

@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { AppContext } from '../..'
 import './ProductDetails.css'
+import { Link } from 'react-router-dom'
 export const ProductDetails = () => {
     const { bookID } = useParams()
     const { state, dispatch } = useContext(AppContext)
@@ -25,6 +26,27 @@ export const ProductDetails = () => {
             })
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const addToWishlist = async (book) => {
+        try {
+            const response = await fetch('/api/user/wishlist', {
+                method: 'POST',
+                headers: {
+                    authorization: localStorage.getItem('encodedToken'),
+                },
+                body: JSON.stringify({
+                    product: book,
+                }),
+            })
+            const jsonResponse = await response.json()
+            dispatch({
+                type: 'UPDATE_WISHLIST',
+                payload: jsonResponse.wishlist,
+            })
         } catch (err) {
             console.error(err)
         }
@@ -126,17 +148,43 @@ export const ProductDetails = () => {
                     </div>
 
                     <div className="btn-section">
-                        <button
-                            className="btn-cart"
-                            onClick={() => addToCart(bookDetails)}
-                        >
-                            <i className="fa-solid fa-cart-shopping"></i>Add to
-                            Cart
-                        </button>
-                        <button className="btn-wishlist">
-                            <i className="fa-regular fa-heart"></i>Add to
-                            Wishlist
-                        </button>
+                        {state.cartList?.some(
+                            (cartItem) => cartItem._id === bookDetails._id
+                        ) ? (
+                            <Link to={'/cart'}>
+                                <button className="btn-cart">
+                                    <i className="fa-solid fa-cart-shopping"></i>
+                                    Go to Cart
+                                </button>
+                            </Link>
+                        ) : (
+                            <button
+                                className="btn-cart"
+                                onClick={() => addToCart(bookDetails)}
+                            >
+                                <i className="fa-solid fa-cart-shopping"></i>
+                                Add to Cart
+                            </button>
+                        )}
+                        {state.wishList?.some(
+                            (wishListItem) =>
+                                wishListItem._id === bookDetails._id
+                        ) ? (
+                            <Link to={'/wishlist'}>
+                                <button className="btn-wishlist">
+                                    <i className="fa-regular fa-heart"></i>
+                                    Go to Wishlist
+                                </button>
+                            </Link>
+                        ) : (
+                            <button
+                                className="btn-wishlist"
+                                onClick={() => addToWishlist(bookDetails)}
+                            >
+                                <i className="fa-regular fa-heart"></i>Add to
+                                Wishlist
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
