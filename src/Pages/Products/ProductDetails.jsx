@@ -32,7 +32,7 @@ export const ProductDetails = () => {
     useEffect(() => {
         getBookDetails()
     }, [])
-    console.log(state.cartList)
+
     const bookDetails = state.bookDetails
     const {
         author,

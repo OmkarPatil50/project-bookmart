@@ -42,6 +42,7 @@ export const Products = () => {
     useEffect(() => {
         getBooksList()
     }, [])
+    console.log(state.cartList)
 
     return (
         <div className="books-page">
