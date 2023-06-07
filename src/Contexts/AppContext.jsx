@@ -71,6 +71,7 @@ export function AppContextProvider({ children }) {
             case 'RESET_FILTERS': {
                 return {
                     ...state,
+                    // filteredList: state.booksList,
                     filterCategories: [],
                     filterMaxPrice: -1,
                     filterMinRating: 0,
@@ -104,7 +105,7 @@ export function AppContextProvider({ children }) {
     } = state
 
     useEffect(() => {
-        let data = booksList
+        let data = [...booksList]
         if (filterCategories.length) {
             data = data.filter((book) => {
                 return filterCategories.includes(book.category)
