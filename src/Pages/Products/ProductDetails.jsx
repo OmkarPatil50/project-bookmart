@@ -97,11 +97,12 @@ export const ProductDetails = () => {
                                 {originalPrice}
                             </p>
                             <p className="book-discount">
+                                (
                                 {(
                                     ((originalPrice - price) / originalPrice) *
                                     100
                                 ).toFixed(0)}{' '}
-                                % OFF
+                                % OFF)
                             </p>
                         </div>
                         <p className="few-left-tag">

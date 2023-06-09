@@ -169,3 +169,60 @@
     color: var(---secondary-color);
     background-color: #414752;
 }
+
+/* ----------------------------mobileView------------------------------- */
+
+@media screen and (max-width: 768px) {
+    .product-details-card {
+        margin-top: 100px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+        height: fit-content;
+        border-radius: 5px;
+    }
+    .book-image {
+        width: 100px;
+        margin: 10px 0;
+    }
+    .best-seller-tag {
+        position: absolute;
+        top: 10px;
+        left: -20px;
+        padding: 5px 10px;
+        color: white;
+        font-size: 10px;
+        font-weight: 500;
+        margin: 10px 20px;
+    }
+    .price-section {
+        margin: 20px 50px 0px 0;
+        font-size: 14px;
+        font-weight: 700;
+    }
+    .book-discount {
+        color: green;
+        font-size: 12px;
+    }
+    .book-features-section {
+        margin: 10px 0;
+    }
+    .btn-section {
+        width: 150px;
+    }
+    .btn-cart,
+    .btn-wishlist {
+        text-align: center;
+        width: 200px;
+        padding: 8px;
+        margin-bottom: 7px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+            sans-serif;
+    }
+}

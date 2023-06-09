@@ -70,11 +70,21 @@ nav {
     transition-duration: 0.5s;
 }
 
+.mobile-nav {
+    display: none;
+}
+
 /* ----------------------------mobileview----------------------- */
 
 @media screen and (max-width: 768px) {
     body {
         position: relative;
+    }
+
+    .mobile-nav {
+        display: flex;
+        color: var(---secondary-color);
+        margin-right: 10px;
     }
 
     nav {
@@ -97,7 +107,7 @@ nav {
     }
 
     .search-input {
-        width: 250px;
+        width: 200px;
         height: 20px;
         display: flex;
         justify-self: center;

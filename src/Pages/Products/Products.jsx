@@ -92,7 +92,12 @@ export const Products = () => {
 
     return (
         <div className="books-page">
-            <div className="section-filters">
+            <div
+                className="section-filters"
+                style={{
+                    transform: state.isFiltersOpen ? 'translateX(0px)' : '',
+                }}
+            >
                 <div className="filter-keys">
                     <h3>Filters</h3>
                     <h3
@@ -142,7 +147,10 @@ export const Products = () => {
                     <h3>Category</h3>
                     {state.categoriesList.map((category) => {
                         return (
-                            <label htmlFor={category.categoryName} key={category.categoryName}>
+                            <label
+                                htmlFor={category.categoryName}
+                                key={category.categoryName}
+                            >
                                 {' '}
                                 <input
                                     type="checkbox"
@@ -347,7 +355,7 @@ export const Products = () => {
                                             <i className="fa-solid fa-indian-rupee-sign"></i>
                                             {originalPrice}
                                         </p>
-                                        <p className="book-discount">
+                                        <p className="book-discount-products">
                                             (
                                             {(
                                                 ((originalPrice - price) /

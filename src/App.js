@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route, Link } from 'react-router-dom'
 
 import Mockman from 'mockman-js'
@@ -12,12 +12,13 @@ import { Cart } from "./Pages/Cart/Cart";
 import Signup from "./Pages/Auth/Signup";
 import { Wishlist } from "./Pages/Wishlist/Wishlist";
 import RequireAuth from "./Pages/Auth/RequireAuth";
+import { AppContext } from ".";
 
 
 function App() {
 
 
-
+  const { state, dispatch } = useContext(AppContext)
 
 
   return (
@@ -26,7 +27,9 @@ function App() {
       <nav>
 
         <div className="nav-sub-sections">
-
+          <div className="mobile-nav" onClick={() => dispatch({ type: 'UPDATE_MOBILE_FILTER' })}>
+            <i id="bar" className={state.isFiltersOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'} ></i>
+          </div>
 
 
           <Link to='/' className="main-heading">Bookmart</Link>
@@ -38,6 +41,7 @@ function App() {
             <NavLink className='nav-items' to='/login'><i className="fa-solid fa-user"></i></NavLink>
           </div>
         </div>
+
       </nav>
 
       <Routes>

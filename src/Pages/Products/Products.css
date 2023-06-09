@@ -126,6 +126,11 @@
     font-weight: 700;
 }
 
+.book-discount-products {
+    font-size: 16px;
+    color: green;
+}
+
 .btn-cart-products {
     box-sizing: border-box;
     width: 220px;
@@ -206,4 +211,104 @@
 .filter-by-rating label,
 .sort label {
     margin-bottom: 10px;
+}
+
+/* ---------------------------mobileview-------------------------- */
+@media screen and (max-width: 768px) {
+    .books-page {
+        position: relative;
+    }
+
+    .section-filters {
+        padding: 20px;
+        margin: 10px 0 0 0;
+        width: 200px;
+        transform: translateX(-240px);
+        transition: 0.5s ease-out;
+        z-index: 1;
+        background-color: #f8f8f8;
+    }
+
+    .section-books {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px 10px 0 10px;
+        font-family: 'Rubik', sans-serif;
+        z-index: -1;
+    }
+    .section-books-heading {
+        font-size: 16px;
+        margin: 20px 0 10px 0;
+    }
+
+    .section-books ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .book-card {
+        width: 150px;
+        height: 250px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .book-thumbnail {
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        height: 8rem;
+        position: relative;
+    }
+
+    .book-thumbnail img {
+        width: 80px;
+        height: 8rem;
+    }
+
+    .wishlist-tag {
+        font-size: 16px;
+    }
+
+    .best-seller-tag-products {
+        padding: 5px 7.5px;
+        font-size: 12px;
+    }
+
+    .name-rating-section {
+        padding: 10px 5px;
+    }
+    .book-name-products {
+        font-size: 10px;
+    }
+
+    .rating-tag {
+        padding: 2.5px;
+        height: 15px;
+    }
+
+    .price-section-products {
+        font-size: 14px;
+        margin-left: 5px;
+    }
+
+    .book-price {
+        margin-right: 5px;
+    }
+    .book-discount-products {
+        font-size: 10px;
+    }
+
+    .btn-cart-products {
+        width: 80%;
+        padding: 5px;
+        margin: 5px auto;
+        border-radius: 5px;
+        font-size: 12px;
+    }
 }

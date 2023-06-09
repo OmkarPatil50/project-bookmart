@@ -84,6 +84,10 @@ export function AppContextProvider({ children }) {
                 return { ...state, filteredList: action.payload }
             }
 
+            case 'UPDATE_MOBILE_FILTER': {
+                return { ...state, isFiltersOpen: !state.isFiltersOpen }
+            }
+
             case 'RESET_FILTERS': {
                 return {
                     ...state,
@@ -116,6 +120,7 @@ export function AppContextProvider({ children }) {
         filterMaxPrice: -1,
         filterMinRating: 0,
         filterSortType: 'none',
+        isFiltersOpen: false,
     }
 
     const [state, dispatch] = useReducer(landingReducerFunction, initialValue)
