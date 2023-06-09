@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { AppContext } from '../..'
 import './ProductDetails.css'
 import { Link } from 'react-router-dom'
@@ -67,6 +67,8 @@ export const ProductDetails = () => {
         rating,
         _id,
     } = bookDetails
+
+    const navigate = useNavigate()
 
     return (
         <div className="product-details-page">
@@ -160,7 +162,11 @@ export const ProductDetails = () => {
                         ) : (
                             <button
                                 className="btn-cart"
-                                onClick={() => addToCart(bookDetails)}
+                                onClick={() => {
+                                    state.userLoggedIn
+                                        ? addToCart(bookDetails)
+                                        : navigate('/login')
+                                }}
                             >
                                 <i className="fa-solid fa-cart-shopping"></i>
                                 Add to Cart
@@ -179,7 +185,11 @@ export const ProductDetails = () => {
                         ) : (
                             <button
                                 className="btn-wishlist"
-                                onClick={() => addToWishlist(bookDetails)}
+                                onClick={() => {
+                                    state.userLoggedIn
+                                        ? addToWishlist(bookDetails)
+                                        : navigate('/login')
+                                }}
                             >
                                 <i className="fa-regular fa-heart"></i>Add to
                                 Wishlist

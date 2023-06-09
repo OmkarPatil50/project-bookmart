@@ -106,7 +106,7 @@ export const Cart = () => {
 
     return (
         <div className="cart-page">
-            {state.cartList.length ? (
+            {state.cartList?.length ? (
                 <div>
                     <h1 className="cart-page-heading">
                         My Cart ({state.cartList.length})

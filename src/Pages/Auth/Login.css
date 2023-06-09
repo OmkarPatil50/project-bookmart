@@ -26,7 +26,7 @@
     background-color: #f8f8f8;
 }
 
-.login-container h2 {
+.login-container-heading {
     font-size: 22px;
     margin: 20px 0 10px 0;
     text-align: center;
@@ -46,20 +46,19 @@
     border: 1px solid lightgray;
 }
 
-.login-container button {
+.btn-log-out {
     align-self: center;
-    width: 200px;
-    background-color: var(---primary-color);
-    margin: 20px;
+    background-color: red;
+    margin: 20px 0px;
     font-size: 18px;
     color: var(---secondary-color);
     font-weight: 600;
     border-radius: 10px;
     border: none;
-    padding: 10px 20px;
+    padding: 7.5px 15px;
 }
 
-.login-container button:hover {
+.btn-log-out:hover {
     opacity: 0.7;
 }
 
@@ -69,4 +68,61 @@
     text-decoration: none;
     color: black;
     font-size: 14px;
+}
+
+.btn-log-in {
+    width: 250px;
+    align-self: center;
+    background-color: var(---primary-color);
+    margin: 10px 0px;
+    font-size: 16px;
+    color: var(---secondary-color);
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    padding: 7.5px 15px;
+}
+
+/* -----------------------------------------accounts----------------------------------------- */
+
+.account-container {
+    width: 400px;
+}
+
+.account-header-section {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 3px solid var(---primary-color);
+    margin: 10px 0;
+}
+
+.account-header-nav {
+    width: 50%;
+    text-align: center;
+    padding: 8px 10px;
+}
+
+.profile-container {
+    margin: 20px;
+}
+
+.login-profile-container-heading {
+    font-size: 18px;
+    text-decoration: underline;
+    margin: 20px 0;
+}
+
+.profile-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-keys p {
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.profile-value p {
+    margin: 10px 0;
 }

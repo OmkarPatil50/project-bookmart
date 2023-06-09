@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../..'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import './Products.css'
 
 export const Products = () => {
@@ -83,6 +83,8 @@ export const Products = () => {
             console.error(err)
         }
     }
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         getBooksList()
@@ -356,7 +358,7 @@ export const Products = () => {
                                         </p>
                                     </Link>
                                 </div>
-                                {state.cartList.some(
+                                {state.cartList?.some(
                                     (cartItem) => cartItem._id === book._id
                                 ) ? (
                                     <Link to={'/cart'}>
@@ -368,7 +370,11 @@ export const Products = () => {
                                 ) : (
                                     <button
                                         className="btn-cart-products"
-                                        onClick={() => addToCart(book)}
+                                        onClick={() => {
+                                            state.userLoggedIn
+                                                ? addToCart(book)
+                                                : navigate('/login')
+                                        }}
                                     >
                                         <i className="fa-solid fa-cart-shopping"></i>
                                         Add to Cart

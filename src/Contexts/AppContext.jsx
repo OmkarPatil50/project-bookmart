@@ -4,12 +4,20 @@ import { AppContext } from '..'
 export function AppContextProvider({ children }) {
     const landingReducerFunction = (state, action) => {
         switch (action.type) {
+            case 'UPDATE_USER_LOGIN': {
+                return { ...state, userLoggedIn: action.payload }
+            }
+
             case 'UPDATE_CATEGORIES': {
                 return {
                     ...state,
                     categoriesList: action.payload,
                     filterCategories: [],
                 }
+            }
+
+            case 'UPDATE_USERDATA': {
+                return { ...state, userData: action.payload }
             }
 
             case 'UPDATE_CART': {
@@ -81,6 +89,10 @@ export function AppContextProvider({ children }) {
                     filterSortType: 'none',
                 }
             }
+
+            case 'LOG_OUT': {
+                return { ...state, userLoggedIn: false }
+            }
             default:
                 return state
         }
@@ -94,6 +106,8 @@ export function AppContextProvider({ children }) {
         bookDetails: {},
         filteredList: [],
         filterCategories: [],
+        userData: {},
+        userLoggedIn: false,
         filterMaxPrice: -1,
         filterMinRating: 0,
         filterSortType: 'none',
