@@ -157,3 +157,81 @@
     color: white;
     font-weight: 200;
 }
+
+/* ---------------------------------------------mobileview-------------------------------------- */
+
+@media screen and (max-width: 768px) {
+    .shop-now-section {
+        margin: 20px;
+        height: 300px;
+        padding: 150px 10px;
+    }
+    .shop-now-section h3 {
+        font-size: 12px;
+        line-height: 2.5;
+    }
+    .shop-now-section h1 {
+        width: 250px;
+        font-size: 26px;
+        line-height: 0.8;
+    }
+    .shop-now-section h1 span {
+        font-size: 35px;
+        color: var(---primary-color);
+    }
+
+    .shop-now-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 15px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .categories-section-header {
+        margin: 20px 0;
+        font-size: 16px;
+    }
+
+    .categories-section-subheader {
+        text-align: center;
+        margin: 0px 15px 40px;
+    }
+    .categories-section ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .footing-section {
+        width: 100%;
+        height: fit-content;
+    }
+    .app-info {
+        flex-basis: 50%;
+        line-height: 2;
+        margin: 10px;
+    }
+    .app-info h1 {
+        font-size: 16px;
+    }
+    .app-info h3 {
+        font-size: 14px;
+        font-weight: 200;
+    }
+    .resources-sub-section,
+    .contact-sub-section {
+        margin: 10px;
+        line-height: 2;
+    }
+    .resources-sub-section h3,
+    .contact-sub-section h3 {
+        font-weight: 200;
+        font-size: 14px;
+    }
+
+    .resources-links a,
+    .contact-links a {
+        font-size: 12px;
+    }
+}
