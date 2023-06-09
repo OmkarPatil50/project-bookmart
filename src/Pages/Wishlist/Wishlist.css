@@ -3,7 +3,6 @@
     ---secondary-color: white;
 }
 .wishlist-page {
-    margin-top: 70px;
     width: 100%;
     font-family: 'Rubik', sans-serif;
     display: flex;
@@ -12,7 +11,7 @@
 
 .wishlist-page-heading {
     text-align: center;
-    margin: 30px 0 40px 0;
+    padding: 100px 0 20px 0;
     font-size: 22px;
 }
 

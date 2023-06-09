@@ -86,9 +86,11 @@ export function Landing() {
                 <div className="contact-sub-section">
                     <h3>Connect</h3>
                     <div className="contact-links">
-                        <a href="/">GitHub</a>
-                        <a href="/">Twitter</a>
-                        <a href="/">LinkedIn</a>
+                        <a href="https://github.com/OmkarPatil50">GitHub</a>
+                        <a href="https://twitter.com/Omee50">Twitter</a>
+                        <a href="https://www.linkedin.com/in/omkardpatil/">
+                            LinkedIn
+                        </a>
                     </div>
                 </div>
                 <div className="resources-sub-section">

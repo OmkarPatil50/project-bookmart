@@ -26,7 +26,7 @@ export function Login() {
             const jsonResponse = await response.json()
             localStorage.setItem('encodedToken', jsonResponse.encodedToken)
 
-            if (jsonResponse.foundUser?.email === email) {
+            if (jsonResponse.encodedToken) {
                 dispatch({ type: 'UPDATE_USER_LOGIN', payload: true })
                 dispatch({
                     type: 'UPDATE_USERDATA',
@@ -43,7 +43,6 @@ export function Login() {
         setEmail('omkarp5429@gmail.com')
         setPassword('Omkar@123')
     }
-    getLoginDetails()
 
     return (
         <div className="login-page">
@@ -95,10 +94,19 @@ export function Login() {
                                     </div>
                                     <div className="profile-value">
                                         <p>
-                                            {state.userData.firstName}{' '}
-                                            {state.userData.lastName}
+                                            {state.userData.firstName
+                                                ? state.userData.firstName
+                                                : state.userData
+                                                      .userFirstName}{' '}
+                                            {state.userData.lastName
+                                                ? state.userData.lastName
+                                                : state.userData.userLastName}
                                         </p>
-                                        <p>{state.userData.email}</p>
+                                        <p>
+                                            {state.userData.email
+                                                ? state.userData.email
+                                                : state.userData.userEmail}
+                                        </p>
                                     </div>
                                 </div>
                                 <h2 className="login-profile-container-heading">
@@ -141,7 +149,7 @@ export function Login() {
                         Log In
                     </button>
                     <button onClick={loginWithTestCred} className="btn-log-in">
-                        Log In With Test Credentials
+                        Fill Test Credentials
                     </button>
                     <Link to="/signup" className="create-account-btn">
                         Create New Account{' '}

@@ -142,7 +142,7 @@ export const Products = () => {
                     <h3>Category</h3>
                     {state.categoriesList.map((category) => {
                         return (
-                            <label htmlFor={category.categoryName}>
+                            <label htmlFor={category.categoryName} key={category.categoryName}>
                                 {' '}
                                 <input
                                     type="checkbox"

@@ -20,6 +20,10 @@ export function AppContextProvider({ children }) {
                 return { ...state, userData: action.payload }
             }
 
+            case 'UPDATE_SIGN_UP_DATA': {
+                return { ...state, userSignUpData: action.payload }
+            }
+
             case 'UPDATE_CART': {
                 return { ...state, cartList: action.payload }
             }
@@ -107,6 +111,7 @@ export function AppContextProvider({ children }) {
         filteredList: [],
         filterCategories: [],
         userData: {},
+        userSignUpData: {},
         userLoggedIn: false,
         filterMaxPrice: -1,
         filterMinRating: 0,
