@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import './Login.css'
 import { AppContext } from '../..'
 
@@ -12,7 +12,7 @@ export function Login() {
     const { state, dispatch } = useContext(AppContext)
 
     const navigate = useNavigate()
-
+    const location = useLocation()
     const getLoginDetails = async () => {
         try {
             const response = await fetch('/api/auth/login', {
@@ -32,7 +32,7 @@ export function Login() {
                     type: 'UPDATE_USERDATA',
                     payload: jsonResponse.foundUser,
                 })
-                navigate('/')
+                navigate(location?.state?.from?.pathname)
             }
         } catch (err) {
             console.error(err)
@@ -71,7 +71,7 @@ export function Login() {
                                 style={{
                                     backgroundColor: showAddress
                                         ? '#007bb5'
-                                        : 'white',
+                                        : '#f8f8f8',
                                     color: showAddress ? 'white' : 'black',
                                 }}
                                 onClick={() => {

@@ -293,3 +293,129 @@
     color: red;
     cursor: pointer;
 }
+
+/* ----------------------mobileView----------------------------- */
+
+@media screen and (max-width: 768px) {
+    .cart-page {
+        width: 100vw;
+        font-family: 'Rubik', sans-serif;
+    }
+    .cart-sub-page {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .cart-page-heading {
+        font-size: 18px;
+    }
+    .cart-container {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 20px;
+    }
+
+    .cart-card {
+        width: 325px;
+        height: 150px;
+        margin: 0 5px;
+    }
+    .book-thumbnail-cart {
+        height: 70px;
+        flex-basis: 30%;
+    }
+
+    .book-thumbnail-cart img {
+        width: 60px;
+        height: 90px;
+        align-self: center;
+    }
+
+    .book-name-cart {
+        font-size: 14px;
+    }
+    .author-tag-cart {
+        font-size: 10px;
+    }
+    .price-section-cart {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    .quantity-section-cart {
+        display: flex;
+        margin-top: 10px;
+    }
+
+    .decrease-quantity,
+    .increase-quantity {
+        padding: 3px 7px;
+    }
+
+    .book-details-cart {
+        height: 90px;
+        margin-top: 20px;
+    }
+
+    .btn-remove-cart,
+    .btn-wishlist-cart {
+        font-size: 12px;
+        height: 40px;
+        font-weight: 600;
+    }
+
+    .cart-pricing {
+        position: relative;
+        bottom: 0;
+        padding: 20px;
+        width: 300px;
+        height: 450px;
+        margin: 20px;
+    }
+
+    .coupon-tag-cart {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+    .apply-coupon {
+        padding: 2.5px 10px;
+    }
+    .price-details-heading {
+        text-align: center;
+        font-size: 14px;
+    }
+    .price-details-data {
+        padding: 5px 0;
+    }
+    .price-details-keys p:nth-child(5) {
+        font-size: 16px;
+        font-weight: 600;
+        color: green;
+    }
+    .price-details-keys p,
+    .price-details-values p {
+        font-size: 12px;
+        padding: 5px 0;
+    }
+
+    .save-tag-cart {
+        font-size: 12px;
+        color: #12ad12;
+        padding: 10px 0;
+    }
+    .btn-checkout {
+        padding: 7.5px;
+    }
+    .empty-cart h1 {
+        font-size: 16px;
+        margin: 20px;
+    }
+    .coupon-container {
+        width: 300px;
+        height: fit-content;
+    }
+    .coupon-container-header {
+        font-size: 12px;
+    }
+}

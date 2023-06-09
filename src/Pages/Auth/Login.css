@@ -130,3 +130,45 @@
 .profile-value p {
     margin: 10px 0;
 }
+
+/* -----------------mobileView----------------------------- */
+
+.login-container {
+    margin: 20px;
+}
+
+.login-container-heading {
+    font-size: 18px;
+    margin: 15px 0 5px 0;
+}
+
+.btn-log-out {
+    font-size: 14px;
+}
+
+.account-container {
+    width: 300px;
+}
+
+.account-header-nav {
+    font-size: 14px;
+    padding: 5px 8px;
+}
+.profile-container {
+    margin: 10px;
+}
+
+.login-profile-container-heading {
+    font-size: 16px;
+}
+
+.profile-keys p {
+    margin: 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-value p {
+    margin: 10px 0;
+    font-size: 14px;
+}

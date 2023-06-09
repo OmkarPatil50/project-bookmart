@@ -59,6 +59,8 @@
 
 .book-name-wishlist {
     font-size: 18px;
+    font-weight: 600;
+    color: black;
 }
 
 .author-tag-wishlist {
@@ -106,4 +108,59 @@
 
 .empty-wishlist h1 {
     margin: 20px;
+}
+
+/* ---------------------------mobileView-------------------------- */
+
+@media screen and (max-width: 768px) {
+    .wishlist-page-heading {
+        font-size: 16px;
+    }
+    .wishlist-card {
+        width: 300px;
+        height: 150px;
+    }
+    .book-details-wishlist {
+        height: 100px;
+        margin-top: 0px;
+        flex-basis: 60%;
+    }
+    .book-subdetails-wishlist {
+        margin: 10px 0 0 0;
+    }
+    .book-thumbnail-wishlist {
+        margin-left: 10px;
+        height: 100px;
+    }
+    .book-thumbnail-wishlist img {
+        width: 80px;
+        height: 120px;
+    }
+
+    .book-name-wishlist {
+        font-size: 14px;
+    }
+    .author-tag-wishlist {
+        font-size: 10px;
+    }
+    .price-section-wishlist {
+        font-size: 16px;
+        margin: 10px 0;
+        font-weight: 600;
+    }
+    .btn-cart-in-wishlist {
+        width: 70%;
+        padding: 5px 8px;
+        margin: 10px 0;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+    .btn-delete-from-wishlist {
+        margin: 10px 20px 0 0;
+        cursor: pointer;
+    }
+    .empty-wishlist h1 {
+        margin: 20px;
+        font-size: 16px;
+    }
 }
