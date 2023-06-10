@@ -3,6 +3,8 @@ import { AppContext } from '../..'
 import { v4 as uuid } from 'uuid'
 import './Wishlist.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const Wishlist = () => {
     const { state, dispatch } = useContext(AppContext)
@@ -42,6 +44,16 @@ export const Wishlist = () => {
 
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.success('Added to Cart!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -61,6 +73,16 @@ export const Wishlist = () => {
                 payload: jsonResponse.wishlist,
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.warn('Deleted From Wishlist!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -224,6 +246,8 @@ export const Wishlist = () => {
                     </Link>
                 </div>
             )}
+
+            <ToastContainer />
         </div>
     )
 }

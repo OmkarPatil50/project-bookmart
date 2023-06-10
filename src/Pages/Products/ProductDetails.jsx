@@ -3,6 +3,9 @@ import { useNavigate, useParams } from 'react-router'
 import { AppContext } from '../..'
 import './ProductDetails.css'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 export const ProductDetails = () => {
     const { bookID } = useParams()
     const { state, dispatch } = useContext(AppContext)
@@ -28,6 +31,16 @@ export const ProductDetails = () => {
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.success('Added to Cart!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -50,6 +63,16 @@ export const ProductDetails = () => {
                 payload: jsonResponse.wishlist,
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.success('Added to Wishlist!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -227,6 +250,7 @@ export const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 }

@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../..'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import './Products.css'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const Products = () => {
     const { state, dispatch } = useContext(AppContext)
@@ -36,6 +38,16 @@ export const Products = () => {
 
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.success('Added to Cart!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -61,6 +73,16 @@ export const Products = () => {
                 payload: jsonResponse.wishlist,
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.warn('Deleted From Wishlist', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -83,6 +105,16 @@ export const Products = () => {
                 payload: jsonResponse.wishlist,
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.success('Added to Wishlist!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -108,6 +140,16 @@ export const Products = () => {
                         onClick={() => {
                             setPriceRangeDefaultValue(50)
                             dispatch({ type: 'RESET_FILTERS' })
+                            toast.success('Cleared Filters!', {
+                                position: 'top-right',
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: 'light',
+                            })
                         }}
                     >
                         Clear
@@ -433,6 +475,7 @@ export const Products = () => {
                     })}
                 </ul>
             </div>
+            <ToastContainer />
         </div>
     )
 }

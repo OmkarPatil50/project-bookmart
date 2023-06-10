@@ -3,6 +3,8 @@ import { AppContext } from '../..'
 import { v4 as uuid } from 'uuid'
 import './Cart.css'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const Cart = () => {
     const { state, dispatch } = useContext(AppContext)
@@ -37,6 +39,16 @@ export const Cart = () => {
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.warn('Deleted From Cart!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -102,6 +114,16 @@ export const Cart = () => {
                 payload: jsonResponse.wishlist,
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
+            toast.success('Moved to Wishlist!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
         } catch (err) {
             console.error(err)
         }
@@ -499,6 +521,7 @@ export const Cart = () => {
             ) : (
                 ''
             )}
+            <ToastContainer />
         </div>
     )
 }

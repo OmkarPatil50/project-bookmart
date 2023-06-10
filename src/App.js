@@ -16,10 +16,17 @@ import { AppContext } from ".";
 import Loader from "./Pages/Loaders/Loader";
 
 
+
+
+
+
+
+
 function App() {
 
 
   const { state, dispatch } = useContext(AppContext)
+
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -80,6 +87,7 @@ function App() {
 
 
       </Routes>
+
     </div>
   );
 }

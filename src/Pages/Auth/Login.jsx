@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import './Login.css'
 import { AppContext } from '../..'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export function Login() {
     const [email, setEmail] = useState('')
@@ -35,6 +37,16 @@ export function Login() {
                 })
                 navigate(location?.state?.from?.pathname)
                 dispatch({ type: 'UPDATE_LOADER', payload: false })
+                toast.success('Logged in Successfully!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
             }
         } catch (err) {
             console.error(err)
@@ -129,6 +141,16 @@ export function Login() {
                                         dispatch({ type: 'LOG_OUT' })
 
                                         navigate('/')
+                                        toast.warn('Logged Out Successfully!', {
+                                            position: 'top-right',
+                                            autoClose: 5000,
+                                            hideProgressBar: false,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                            theme: 'light',
+                                        })
                                     }}
                                 >
                                     Log Out
@@ -138,6 +160,7 @@ export function Login() {
                             ''
                         )}
                     </div>
+                    <ToastContainer />
                 </div>
             ) : (
                 <div className="login-container">
@@ -168,6 +191,7 @@ export function Login() {
                     </Link>
                 </div>
             )}
+            <ToastContainer />
         </div>
     )
 }
