@@ -73,6 +73,14 @@ export function AppContextProvider({ children }) {
                 }
             }
 
+            case 'UPDATE_FILTER_BY_NAME': {
+                console.log(action.payload)
+                return {
+                    ...state,
+                    filterByName: action.payload,
+                }
+            }
+
             case 'SORT_ITEMS': {
                 return {
                     ...state,
@@ -101,6 +109,7 @@ export function AppContextProvider({ children }) {
             case 'LOG_OUT': {
                 return { ...state, userLoggedIn: false }
             }
+
             default:
                 return state
         }
@@ -120,6 +129,7 @@ export function AppContextProvider({ children }) {
         filterMaxPrice: -1,
         filterMinRating: 0,
         filterSortType: 'none',
+        filterByName: '',
         isFiltersOpen: false,
     }
 
@@ -130,6 +140,7 @@ export function AppContextProvider({ children }) {
         filterMaxPrice,
         filterMinRating,
         filterSortType,
+        filterByName,
     } = state
 
     useEffect(() => {
@@ -156,6 +167,13 @@ export function AppContextProvider({ children }) {
                     : b.price - a.price
             })
         }
+        if (filterByName.length > 0) {
+            data = data.filter((book) => {
+                return book.name
+                    .toUpperCase()
+                    .includes(filterByName.toUpperCase())
+            })
+        }
 
         dispatch({ type: 'UPDATE_FILTERED_LIST', payload: data })
     }, [
@@ -164,6 +182,7 @@ export function AppContextProvider({ children }) {
         filterMaxPrice,
         filterMinRating,
         filterSortType,
+        filterByName,
     ])
     return (
         <AppContext.Provider value={{ state, dispatch }}>

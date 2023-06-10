@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 
 import Mockman from 'mockman-js'
 import { NavLink } from "react-router-dom";
@@ -20,10 +20,13 @@ function App() {
 
   const { state, dispatch } = useContext(AppContext)
 
-
+  const navigate = useNavigate()
+  const location = useLocation()
 
   return (
     <div className="App">
+
+
 
       <nav>
 
@@ -34,7 +37,10 @@ function App() {
 
 
           <Link to='/' className="main-heading">Bookmart</Link>
-          <label htmlFor="search-book" className="search-input"><i className="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for Product" /></label>
+          <label htmlFor="search-book" className="search-input"><i className="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for Book" onChange={(event) => {
+            event.target.length < 1 ? navigate(location?.state?.from?.pathname) : navigate('/books')
+            dispatch({ type: 'UPDATE_FILTER_BY_NAME', payload: event.target.value })
+          }} /></label>
           <div className="link-items">
 
             <NavLink className='nav-items' to='/wishlist'><i className="fa-solid fa-heart"></i></NavLink>
