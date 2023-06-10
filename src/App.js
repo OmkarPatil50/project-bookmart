@@ -31,9 +31,12 @@ function App() {
       <nav>
 
         <div className="nav-sub-sections">
-          <div className="mobile-nav" onClick={() => dispatch({ type: 'UPDATE_MOBILE_FILTER' })}>
-            <i id="bar" className={state.isFiltersOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'} ></i>
-          </div>
+          {
+            location?.pathname == '/books' ? <div className="mobile-nav" onClick={() => dispatch({ type: 'UPDATE_MOBILE_FILTER' })}>
+              <i id="bar" className={state.isFiltersOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'} ></i>
+            </div> : ''
+
+          }
 
 
           <Link to='/' className="main-heading">Bookmart</Link>
