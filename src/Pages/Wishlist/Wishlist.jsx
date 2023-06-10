@@ -2,10 +2,11 @@ import { useContext, useEffect } from 'react'
 import { AppContext } from '../..'
 import { v4 as uuid } from 'uuid'
 import './Wishlist.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Wishlist = () => {
     const { state, dispatch } = useContext(AppContext)
+    const navigate = useNavigate()
 
     const getWishlistData = async () => {
         try {
@@ -20,6 +21,7 @@ export const Wishlist = () => {
                 type: 'UPDATE_WISHLIST',
                 payload: jsonResponse.wishlist,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -39,6 +41,7 @@ export const Wishlist = () => {
             const jsonResponse = await response.json()
 
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -57,6 +60,7 @@ export const Wishlist = () => {
                 type: 'UPDATE_WISHLIST',
                 payload: jsonResponse.wishlist,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -93,17 +97,31 @@ export const Wishlist = () => {
                                             <Link
                                                 to={`/books/${wishListItem._id}`}
                                                 className="book-thumbnail-wishlist"
+                                                onClick={() =>
+                                                    dispatch({
+                                                        type: 'UPDATE_LOADER',
+                                                        payload: true,
+                                                    })
+                                                }
                                             >
                                                 <img
                                                     src={img}
                                                     alt="book-thumbnail"
                                                 />
                                             </Link>
-                                            <Link
-                                                to={`/books/${_id}`}
+                                            <div
                                                 className="book-details-wishlist"
+                                                onClick={() =>
+                                                    dispatch({
+                                                        type: 'UPDATE_LOADER',
+                                                        payload: true,
+                                                    })
+                                                }
                                             >
-                                                <div className="book-subdetails-wishlist">
+                                                <Link
+                                                    to={`/books/${wishListItem._id}`}
+                                                    className="book-subdetails-wishlist"
+                                                >
                                                     <p className="book-name-wishlist">
                                                         {name}
                                                     </p>
@@ -130,14 +148,22 @@ export const Wishlist = () => {
                                                             % OFF)
                                                         </p>
                                                     </div>
-                                                </div>
+                                                </Link>
                                                 {state.cartList?.some(
                                                     (cartItem) =>
                                                         cartItem._id ===
                                                         wishListItem._id
                                                 ) ? (
                                                     <Link to={'/cart'}>
-                                                        <button className="btn-cart">
+                                                        <button
+                                                            className="btn-cart"
+                                                            onClick={() =>
+                                                                dispatch({
+                                                                    type: 'UPDATE_LOADER',
+                                                                    payload: true,
+                                                                })
+                                                            }
+                                                        >
                                                             <i className="fa-solid fa-cart-shopping"></i>
                                                             Already in Cart
                                                         </button>
@@ -152,17 +178,28 @@ export const Wishlist = () => {
                                                             deleteFromWishlist(
                                                                 _id
                                                             )
+                                                            dispatch({
+                                                                type: 'UPDATE_LOADER',
+                                                                payload: true,
+                                                            })
+                                                            navigate(
+                                                                '/wishlist'
+                                                            )
                                                         }}
                                                     >
                                                         Move to Cart
                                                     </button>
                                                 )}
-                                            </Link>
+                                            </div>
                                             <div
                                                 className="btn-delete-from-wishlist"
-                                                onClick={() =>
+                                                onClick={() => {
                                                     deleteFromWishlist(_id)
-                                                }
+                                                    dispatch({
+                                                        type: 'UPDATE_LOADER',
+                                                        payload: true,
+                                                    })
+                                                }}
                                             >
                                                 <i className="fa-solid fa-trash"></i>
                                             </div>
@@ -176,7 +213,13 @@ export const Wishlist = () => {
             ) : (
                 <div className="empty-wishlist">
                     <h1>Your Wishlist Is Empty ! ☹️</h1>
-                    <Link to="/books" className="btn-cart">
+                    <Link
+                        to="/books"
+                        className="btn-cart"
+                        onClick={() =>
+                            dispatch({ type: 'UPDATE_LOADER', payload: true })
+                        }
+                    >
                         Let's Do Some Shopping
                     </Link>
                 </div>

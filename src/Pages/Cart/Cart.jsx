@@ -20,6 +20,7 @@ export const Cart = () => {
             })
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -35,6 +36,7 @@ export const Cart = () => {
             })
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -53,9 +55,10 @@ export const Cart = () => {
                     },
                 }),
             })
-            console.log(response, 'it is response')
+
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -74,9 +77,9 @@ export const Cart = () => {
                     },
                 }),
             })
-            console.log(response, 'it is response')
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -98,6 +101,7 @@ export const Cart = () => {
                 type: 'UPDATE_WISHLIST',
                 payload: jsonResponse.wishlist,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -163,6 +167,12 @@ export const Cart = () => {
                                                     <Link
                                                         to={`/books/${_id}`}
                                                         className="book-thumbnail-cart"
+                                                        onClick={() =>
+                                                            dispatch({
+                                                                type: 'UPDATE_LOADER',
+                                                                payload: true,
+                                                            })
+                                                        }
                                                     >
                                                         <img
                                                             src={img}
@@ -201,11 +211,16 @@ export const Cart = () => {
                                                         <div className="quantity-section-cart">
                                                             <button
                                                                 className="decrease-quantity"
-                                                                onClick={() =>
+                                                                onClick={() => {
                                                                     decrementQuant(
                                                                         _id
                                                                     )
-                                                                }
+
+                                                                    dispatch({
+                                                                        type: 'UPDATE_LOADER',
+                                                                        payload: true,
+                                                                    })
+                                                                }}
                                                                 disabled={
                                                                     cartItem.qty <
                                                                     2
@@ -220,11 +235,15 @@ export const Cart = () => {
                                                             </p>
                                                             <button
                                                                 className="increase-quantity"
-                                                                onClick={() =>
+                                                                onClick={() => {
                                                                     incrementQuant(
                                                                         _id
                                                                     )
-                                                                }
+                                                                    dispatch({
+                                                                        type: 'UPDATE_LOADER',
+                                                                        payload: true,
+                                                                    })
+                                                                }}
                                                             >
                                                                 +
                                                             </button>
@@ -234,9 +253,13 @@ export const Cart = () => {
                                                 <section className="btn-section-cart">
                                                     <button
                                                         className="btn-remove-cart"
-                                                        onClick={() =>
+                                                        onClick={() => {
                                                             deleteFromCart(_id)
-                                                        }
+                                                            dispatch({
+                                                                type: 'UPDATE_LOADER',
+                                                                payload: true,
+                                                            })
+                                                        }}
                                                     >
                                                         REMOVE
                                                     </button>
@@ -245,7 +268,15 @@ export const Cart = () => {
                                                             wishListItem._id ===
                                                             cartItem._id
                                                     ) ? (
-                                                        <Link to={'/wishlist'}>
+                                                        <Link
+                                                            to={'/wishlist'}
+                                                            onClick={() =>
+                                                                dispatch({
+                                                                    type: 'UPDATE_LOADER',
+                                                                    payload: true,
+                                                                })
+                                                            }
+                                                        >
                                                             <button className="btn-wishlist-cart">
                                                                 ALREADY IN
                                                                 WISHLIST
@@ -261,6 +292,10 @@ export const Cart = () => {
                                                                 deleteFromCart(
                                                                     _id
                                                                 )
+                                                                dispatch({
+                                                                    type: 'UPDATE_LOADER',
+                                                                    payload: true,
+                                                                })
                                                             }}
                                                         >
                                                             MOVE TO WISHLIST
@@ -372,7 +407,16 @@ export const Cart = () => {
                 ) : (
                     <div className="empty-cart">
                         <h1>Your Cart Is Empty ! ☹️</h1>
-                        <Link to="/books" className="btn-cart">
+                        <Link
+                            to="/books"
+                            className="btn-cart"
+                            onClick={() =>
+                                dispatch({
+                                    type: 'UPDATE_LOADER',
+                                    payload: true,
+                                })
+                            }
+                        >
                             Let's Do Some Shopping
                         </Link>
                     </div>
@@ -387,6 +431,18 @@ export const Cart = () => {
                                 onClick={() => {
                                     setShowCoupon(false)
                                     setCouponDiscount(0)
+                                    dispatch({
+                                        type: 'UPDATE_LOADER',
+                                        payload: true,
+                                    })
+                                    setTimeout(
+                                        () =>
+                                            dispatch({
+                                                type: 'UPDATE_LOADER',
+                                                payload: false,
+                                            }),
+                                        1000
+                                    )
                                 }}
                                 className="cancel-apply-coupon"
                             >
@@ -422,6 +478,18 @@ export const Cart = () => {
                             onClick={() => {
                                 setShowCouponDetails(true)
                                 setShowCoupon(false)
+                                dispatch({
+                                    type: 'UPDATE_LOADER',
+                                    payload: true,
+                                })
+                                setTimeout(
+                                    () =>
+                                        dispatch({
+                                            type: 'UPDATE_LOADER',
+                                            payload: false,
+                                        }),
+                                    1000
+                                )
                             }}
                         >
                             Apply

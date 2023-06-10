@@ -15,6 +15,7 @@ export const Products = () => {
                 type: 'UPDATE_BOOKSLIST',
                 payload: jsonResponse.products,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -34,6 +35,7 @@ export const Products = () => {
             const jsonResponse = await response.json()
 
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -58,6 +60,7 @@ export const Products = () => {
                 type: 'UPDATE_WISHLIST',
                 payload: jsonResponse.wishlist,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -79,6 +82,7 @@ export const Products = () => {
                 type: 'UPDATE_WISHLIST',
                 payload: jsonResponse.wishlist,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -297,7 +301,15 @@ export const Products = () => {
                             <div className="book-card" key={_id}>
                                 <div>
                                     <div className="book-thumbnail">
-                                        <Link to={`/books/${_id}`}>
+                                        <Link
+                                            to={`/books/${_id}`}
+                                            onClick={() =>
+                                                dispatch({
+                                                    type: 'UPDATE_LOADER',
+                                                    payload: true,
+                                                })
+                                            }
+                                        >
                                             <img src={img} alt="books-image" />
                                             {isBestSeller ? (
                                                 <p className="best-seller-tag-products">
@@ -309,9 +321,13 @@ export const Products = () => {
                                         </Link>
                                         <div
                                             className="wishlist-tag"
-                                            onClick={() =>
+                                            onClick={() => {
                                                 handleWishlistTag(book)
-                                            }
+                                                dispatch({
+                                                    type: 'UPDATE_LOADER',
+                                                    payload: true,
+                                                })
+                                            }}
                                             style={{
                                                 color: state.wishList?.some(
                                                     (wishListItem) =>
@@ -328,6 +344,12 @@ export const Products = () => {
                                     <Link
                                         to={`/books/${_id}`}
                                         className="name-rating-section"
+                                        onClick={() =>
+                                            dispatch({
+                                                type: 'UPDATE_LOADER',
+                                                payload: true,
+                                            })
+                                        }
                                     >
                                         <div className="name-author-section">
                                             <h2 className="book-name-products">
@@ -346,6 +368,12 @@ export const Products = () => {
                                     <Link
                                         to={`/books/${_id}`}
                                         className="price-section-products"
+                                        onClick={() =>
+                                            dispatch({
+                                                type: 'UPDATE_LOADER',
+                                                payload: true,
+                                            })
+                                        }
                                     >
                                         <p className="book-price">
                                             <i className="fa-solid fa-indian-rupee-sign"></i>
@@ -370,7 +398,15 @@ export const Products = () => {
                                     (cartItem) => cartItem._id === book._id
                                 ) ? (
                                     <Link to={'/cart'}>
-                                        <button className="btn-cart-products">
+                                        <button
+                                            className="btn-cart-products"
+                                            onClick={() =>
+                                                dispatch({
+                                                    type: 'UPDATE_LOADER',
+                                                    payload: true,
+                                                })
+                                            }
+                                        >
                                             <i className="fa-solid fa-cart-shopping"></i>
                                             Go to Cart
                                         </button>
@@ -382,6 +418,10 @@ export const Products = () => {
                                             state.userLoggedIn
                                                 ? addToCart(book)
                                                 : navigate('/login')
+                                            dispatch({
+                                                type: 'UPDATE_LOADER',
+                                                payload: true,
+                                            })
                                         }}
                                     >
                                         <i className="fa-solid fa-cart-shopping"></i>

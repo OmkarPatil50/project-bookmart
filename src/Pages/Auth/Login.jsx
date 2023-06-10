@@ -14,6 +14,7 @@ export function Login() {
     const navigate = useNavigate()
     const location = useLocation()
     const getLoginDetails = async () => {
+        dispatch({ type: 'UPDATE_LOADER', payload: true })
         try {
             const response = await fetch('/api/auth/login', {
                 method: 'POST',
@@ -33,6 +34,7 @@ export function Login() {
                     payload: jsonResponse.foundUser,
                 })
                 navigate(location?.state?.from?.pathname)
+                dispatch({ type: 'UPDATE_LOADER', payload: false })
             }
         } catch (err) {
             console.error(err)
@@ -43,6 +45,15 @@ export function Login() {
         setEmail('omkarp5429@gmail.com')
         setPassword('Omkar@123')
     }
+
+    setTimeout(
+        () =>
+            dispatch({
+                type: 'UPDATE_LOADER',
+                payload: false,
+            }),
+        1000
+    )
 
     return (
         <div className="login-page">

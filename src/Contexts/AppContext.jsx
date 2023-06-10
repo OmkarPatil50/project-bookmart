@@ -106,6 +106,10 @@ export function AppContextProvider({ children }) {
                 }
             }
 
+            case 'UPDATE_LOADER': {
+                return { ...state, isLoader: action.payload }
+            }
+
             case 'LOG_OUT': {
                 return { ...state, userLoggedIn: false }
             }
@@ -131,6 +135,7 @@ export function AppContextProvider({ children }) {
         filterSortType: 'none',
         filterByName: '',
         isFiltersOpen: false,
+        isLoader: true,
     }
 
     const [state, dispatch] = useReducer(landingReducerFunction, initialValue)

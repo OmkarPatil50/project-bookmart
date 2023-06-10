@@ -13,6 +13,7 @@ import Signup from "./Pages/Auth/Signup";
 import { Wishlist } from "./Pages/Wishlist/Wishlist";
 import RequireAuth from "./Pages/Auth/RequireAuth";
 import { AppContext } from ".";
+import Loader from "./Pages/Loaders/Loader";
 
 
 function App() {
@@ -25,8 +26,9 @@ function App() {
 
   return (
     <div className="App">
-
-
+      {
+        state.isLoader ? <Loader /> : ''
+      }
 
       <nav>
 
@@ -46,9 +48,9 @@ function App() {
           }} /></label>
           <div className="link-items">
 
-            <NavLink className='nav-items' to='/wishlist'><i className="fa-solid fa-heart"></i></NavLink>
-            <NavLink className='nav-items' to='/cart'><i className="fa-solid fa-cart-shopping"></i></NavLink>
-            <NavLink className='nav-items' to='/login'><i className="fa-solid fa-user"></i></NavLink>
+            <NavLink className='nav-items' to='/wishlist' ><i className="fa-solid fa-heart"></i></NavLink>
+            <NavLink className='nav-items' to='/cart' ><i className="fa-solid fa-cart-shopping"></i></NavLink>
+            <NavLink className='nav-items' to='/login' ><i className="fa-solid fa-user"></i></NavLink>
           </div>
         </div>
 

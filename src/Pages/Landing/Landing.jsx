@@ -14,6 +14,7 @@ export function Landing() {
                 type: 'UPDATE_CATEGORIES',
                 payload: jsonResponse.categories,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (error) {
             console.error(error)
         }
@@ -30,7 +31,14 @@ export function Landing() {
                 <h1>
                     For All Your <span>Reading </span>Needs
                 </h1>
-                <Link to="/books" className="shop-now-btn">
+
+                <Link
+                    to="/books"
+                    className="shop-now-btn"
+                    onClick={() =>
+                        dispatch({ type: 'UPDATE_LOADER', payload: true })
+                    }
+                >
                     Shop Now
                 </Link>
             </div>

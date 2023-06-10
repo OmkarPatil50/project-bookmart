@@ -11,6 +11,7 @@ export const ProductDetails = () => {
         const response = await fetch(`/api/products/${bookID}`)
         const jsonResponse = await response.json()
         dispatch({ type: 'OPEN_BOOK', payload: jsonResponse.product })
+        dispatch({ type: 'UPDATE_LOADER', payload: false })
     }
 
     const addToCart = async (book) => {
@@ -26,6 +27,7 @@ export const ProductDetails = () => {
             })
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -47,6 +49,7 @@ export const ProductDetails = () => {
                 type: 'UPDATE_WISHLIST',
                 payload: jsonResponse.wishlist,
             })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
             console.error(err)
         }
@@ -154,7 +157,15 @@ export const ProductDetails = () => {
                         {state.cartList?.some(
                             (cartItem) => cartItem._id === bookDetails._id
                         ) ? (
-                            <Link to={'/cart'}>
+                            <Link
+                                to={'/cart'}
+                                onClick={() =>
+                                    dispatch({
+                                        type: 'UPDATE_LOADER',
+                                        payload: true,
+                                    })
+                                }
+                            >
                                 <button className="btn-cart">
                                     <i className="fa-solid fa-cart-shopping"></i>
                                     Go to Cart
@@ -167,6 +178,11 @@ export const ProductDetails = () => {
                                     state.userLoggedIn
                                         ? addToCart(bookDetails)
                                         : navigate('/login')
+
+                                    dispatch({
+                                        type: 'UPDATE_LOADER',
+                                        payload: true,
+                                    })
                                 }}
                             >
                                 <i className="fa-solid fa-cart-shopping"></i>
@@ -177,7 +193,15 @@ export const ProductDetails = () => {
                             (wishListItem) =>
                                 wishListItem._id === bookDetails._id
                         ) ? (
-                            <Link to={'/wishlist'}>
+                            <Link
+                                to={'/wishlist'}
+                                onClick={() =>
+                                    dispatch({
+                                        type: 'UPDATE_LOADER',
+                                        payload: true,
+                                    })
+                                }
+                            >
                                 <button className="btn-wishlist">
                                     <i className="fa-regular fa-heart"></i>
                                     Go to Wishlist
@@ -190,6 +214,10 @@ export const ProductDetails = () => {
                                     state.userLoggedIn
                                         ? addToWishlist(bookDetails)
                                         : navigate('/login')
+                                    dispatch({
+                                        type: 'UPDATE_LOADER',
+                                        payload: true,
+                                    })
                                 }}
                             >
                                 <i className="fa-regular fa-heart"></i>Add to
