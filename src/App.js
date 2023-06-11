@@ -55,8 +55,8 @@ function App() {
           }} /></label>
           <div className="link-items">
 
-            <NavLink className='nav-items' to='/wishlist' ><i className="fa-solid fa-heart"></i></NavLink>
-            <NavLink className='nav-items' to='/cart' ><i className="fa-solid fa-cart-shopping"></i></NavLink>
+            <NavLink className='nav-items' to='/wishlist' ><i className="fa-solid fa-heart"></i>{state.wishList?.length > 0 ? <p className="list-count-nav">{state.wishList?.length}</p> : ''}</NavLink>
+            <NavLink className='nav-items' to='/cart' ><i className="fa-solid fa-cart-shopping"></i>{state.cartList?.length > 0 ? <p className="list-count-nav">{state.cartList?.length}</p> : ''}</NavLink>
             <NavLink className='nav-items' to='/login' ><i className="fa-solid fa-user"></i></NavLink>
           </div>
         </div>

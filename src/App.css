@@ -63,11 +63,23 @@ nav {
     padding-left: 25px;
     color: var(---secondary-color);
     font-size: 22.5px;
+    position: relative;
 }
 
 .nav-items:hover {
     opacity: 0.5;
     transition-duration: 0.5s;
+}
+
+.list-count-nav,
+.list-count-nav {
+    background-color: #0e9aeb;
+    font-size: 10px;
+    border-radius: 50%;
+    padding: 2px 7px;
+    position: absolute;
+    top: 0;
+    right: -10px;
 }
 
 .mobile-nav {
