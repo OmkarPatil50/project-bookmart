@@ -35,7 +35,7 @@ export function Login() {
                     type: 'UPDATE_USERDATA',
                     payload: jsonResponse.foundUser,
                 })
-                navigate(location?.state?.from?.pathname)
+                navigate(location?.state?.from?.pathname)   
                 dispatch({ type: 'UPDATE_LOADER', payload: false })
                 toast.success('Logged in Successfully!', {
                     position: 'top-right',
