@@ -111,7 +111,12 @@ export function AppContextProvider({ children }) {
             }
 
             case 'LOG_OUT': {
-                return { ...state, userLoggedIn: false }
+                return {
+                    ...state,
+                    userLoggedIn: false,
+                    cartList: [],
+                    wishList: [],
+                }
             }
 
             default:
