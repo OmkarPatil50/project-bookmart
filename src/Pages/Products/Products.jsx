@@ -382,7 +382,9 @@ export const Products = () => {
                                         <div
                                             className="wishlist-tag"
                                             onClick={() => {
-                                                handleWishlistTag(book)
+                                                state.userLoggedIn
+                                                    ? handleWishlistTag(book)
+                                                    : navigate('/login')
                                                 dispatch({
                                                     type: 'UPDATE_LOADER',
                                                     payload: true,
