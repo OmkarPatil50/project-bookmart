@@ -12,15 +12,6 @@ export function Login() {
     const [showProfile, setShowProfile] = useState(true)
     const [showAddressAdditionPage, setShowAddressAdditionPage] =
         useState(false)
-    const [newAddress, setNewAddress] = useState({
-        name: '',
-        colony: '',
-        city: '',
-        state: '',
-        country: '',
-        postalCode: '',
-        mobileNumber: '',
-    })
 
     const { state, dispatch } = useContext(AppContext)
 
@@ -164,20 +155,20 @@ export function Login() {
                         )}
                         {showAddressAdditionPage ? (
                             <div className="address-profile-page">
-                                <form className="address-profile-container">
+                                <div className="address-profile-container">
                                     <h2 className="login-profile-container-heading">
                                         ADD NEW ADDRESS
                                     </h2>
                                     <label htmlFor="name">
                                         <input
                                             type="text"
-                                            value={newAddress.name}
+                                            value={state.newAddress.name}
                                             placeholder="Enter Name"
                                             required
                                             onChange={(event) =>
-                                                setNewAddress({
-                                                    ...newAddress,
-                                                    name: event.target.value,
+                                                dispatch({
+                                                    type: 'UPDATE_NAME',
+                                                    payload: event.target.value,
                                                 })
                                             }
                                         />
@@ -185,13 +176,13 @@ export function Login() {
                                     <label htmlFor="colony">
                                         <input
                                             type="text"
-                                            value={newAddress.colony}
+                                            value={state.newAddress.colony}
                                             required
                                             placeholder="Enter House No., Road, Colony Name"
                                             onChange={(event) =>
-                                                setNewAddress({
-                                                    ...newAddress,
-                                                    colony: event.target.value,
+                                                dispatch({
+                                                    type: 'UPDATE_COLONY',
+                                                    payload: event.target.value,
                                                 })
                                             }
                                         />
@@ -200,12 +191,12 @@ export function Login() {
                                         <input
                                             type="text"
                                             required
-                                            value={newAddress.city}
+                                            value={state.newAddress.city}
                                             placeholder="Enter City"
                                             onChange={(event) =>
-                                                setNewAddress({
-                                                    ...newAddress,
-                                                    city: event.target.value,
+                                                dispatch({
+                                                    type: 'UPDATE_CITY',
+                                                    payload: event.target.value,
                                                 })
                                             }
                                         />
@@ -214,12 +205,12 @@ export function Login() {
                                         <input
                                             type="text"
                                             required
-                                            value={newAddress.state}
+                                            value={state.newAddress.state}
                                             placeholder="Enter State"
                                             onChange={(event) =>
-                                                setNewAddress({
-                                                    ...newAddress,
-                                                    state: event.target.value,
+                                                dispatch({
+                                                    type: 'UPDATE_STATE',
+                                                    payload: event.target.value,
                                                 })
                                             }
                                         />
@@ -228,12 +219,12 @@ export function Login() {
                                         <input
                                             type="text"
                                             required
-                                            value={newAddress.country}
+                                            value={state.newAddress.country}
                                             placeholder="Enter Country"
                                             onChange={(event) =>
-                                                setNewAddress({
-                                                    ...newAddress,
-                                                    country: event.target.value,
+                                                dispatch({
+                                                    type: 'UPDATE_COUNTRY',
+                                                    payload: event.target.value,
                                                 })
                                             }
                                         />
@@ -242,13 +233,12 @@ export function Login() {
                                         <input
                                             type="number"
                                             required
-                                            value={newAddress.postalCode}
+                                            value={state.newAddress.postalCode}
                                             placeholder="Enter Postal Code"
                                             onChange={(event) =>
-                                                setNewAddress({
-                                                    ...newAddress,
-                                                    postalCode:
-                                                        event.target.value,
+                                                dispatch({
+                                                    type: 'UPDATE_POSTAL_CODE',
+                                                    payload: event.target.value,
                                                 })
                                             }
                                         />
@@ -257,13 +247,14 @@ export function Login() {
                                         <input
                                             type="number"
                                             required
-                                            value={newAddress.mobileNumber}
+                                            value={
+                                                state.newAddress.mobileNumber
+                                            }
                                             placeholder="Enter Mobile Number"
                                             onChange={(event) =>
-                                                setNewAddress({
-                                                    ...newAddress,
-                                                    mobileNumber:
-                                                        event.target.value,
+                                                dispatch({
+                                                    type: 'UPDATE_MOB_NO',
+                                                    payload: event.target.value,
                                                 })
                                             }
                                         />
@@ -273,18 +264,20 @@ export function Login() {
                                             type="submit"
                                             onClick={() => {
                                                 if (
-                                                    newAddress.name &&
-                                                    newAddress.colony &&
-                                                    newAddress.state &&
-                                                    newAddress.country &&
-                                                    newAddress.postalCode &&
-                                                    newAddress.mobileNumber
+                                                    (state.newAddress.name,
+                                                    state.newAddress.colony,
+                                                    state.newAddress.city,
+                                                    state.newAddress.state,
+                                                    state.newAddress.country,
+                                                    state.newAddress.postalCode,
+                                                    state.newAddress
+                                                        .mobileNumber)
                                                 ) {
                                                     dispatch({
                                                         type: 'ADD_NEW_ADDRESS',
-                                                        payload: newAddress,
+                                                        payload:
+                                                            state.newAddress,
                                                     })
-
                                                     setShowAddressAdditionPage(
                                                         false
                                                     )
@@ -296,15 +289,19 @@ export function Login() {
                                         </button>
                                         <button
                                             onClick={() => {
-                                                setNewAddress({
-                                                    name: '',
-                                                    colony: '',
-                                                    city: '',
-                                                    state: '',
-                                                    country: '',
-                                                    postalCode: '',
-                                                    mobileNumber: '',
+                                                dispatch({
+                                                    type: 'UPDATE_NEW_ADDRESS',
+                                                    payload: {
+                                                        name: '',
+                                                        colony: '',
+                                                        city: '',
+                                                        state: '',
+                                                        country: '',
+                                                        postalCode: '',
+                                                        mobileNumber: '',
+                                                    },
                                                 })
+
                                                 setShowAddressAdditionPage(
                                                     false
                                                 )
@@ -315,14 +312,18 @@ export function Login() {
                                         </button>
                                         <button
                                             onClick={() =>
-                                                setNewAddress({
-                                                    name: 'Admin',
-                                                    colony: '123 , Candolim beach road',
-                                                    city: 'Panjim',
-                                                    state: 'Goa',
-                                                    country: 'India',
-                                                    postalCode: '566987',
-                                                    mobileNumber: '4567891230',
+                                                dispatch({
+                                                    type: 'UPDATE_NEW_ADDRESS',
+                                                    payload: {
+                                                        name: 'Admin',
+                                                        colony: '123 , Candolim beach road',
+                                                        city: 'Panjim',
+                                                        state: 'Goa',
+                                                        country: 'India',
+                                                        postalCode: '566987',
+                                                        mobileNumber:
+                                                            '4567891230',
+                                                    },
                                                 })
                                             }
                                             className="btn-dummy-address"
@@ -330,7 +331,7 @@ export function Login() {
                                             Fill with Dummy Address
                                         </button>
                                     </section>
-                                </form>
+                                </div>
                             </div>
                         ) : (
                             ''
@@ -369,15 +370,19 @@ export function Login() {
                                                         <button
                                                             className="btn-edit"
                                                             onClick={() => {
-                                                                setNewAddress({
-                                                                    name,
-                                                                    colony,
-                                                                    city,
-                                                                    state,
-                                                                    country,
-                                                                    postalCode,
-                                                                    mobileNumber,
+                                                                dispatch({
+                                                                    type: 'UPDATE_ADDRESS_DATA',
+                                                                    payload: {
+                                                                        name,
+                                                                        colony,
+                                                                        city,
+                                                                        state,
+                                                                        country,
+                                                                        postalCode,
+                                                                        mobileNumber,
+                                                                    },
                                                                 })
+
                                                                 setShowAddressAdditionPage(
                                                                     true
                                                                 )

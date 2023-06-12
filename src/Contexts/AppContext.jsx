@@ -121,12 +121,77 @@ export function AppContextProvider({ children }) {
                 }
             }
 
+            case 'UPDATE_NEW_ADDRESS': {
+                return {
+                    ...state,
+                    newAddress: action.payload,
+                }
+            }
+
             case 'DELETE_ADDRESS': {
                 return {
                     ...state,
                     userAddressData: state.userAddressData.filter(
                         (item) => item !== action.payload
                     ),
+                }
+            }
+
+            case 'UPDATE_NAME': {
+                return {
+                    ...state,
+                    newAddress: { ...state.newAddress, name: action.payload },
+                }
+            }
+
+            case 'UPDATE_COLONY': {
+                return {
+                    ...state,
+                    newAddress: { ...state.newAddress, colony: action.payload },
+                }
+            }
+
+            case 'UPDATE_CITY': {
+                return {
+                    ...state,
+                    newAddress: { ...state.newAddress, city: action.payload },
+                }
+            }
+
+            case 'UPDATE_STATE': {
+                return {
+                    ...state,
+                    newAddress: { ...state.newAddress, state: action.payload },
+                }
+            }
+
+            case 'UPDATE_COUNTRY': {
+                return {
+                    ...state,
+                    newAddress: {
+                        ...state.newAddress,
+                        country: action.payload,
+                    },
+                }
+            }
+
+            case 'UPDATE_POSTAL_CODE': {
+                return {
+                    ...state,
+                    newAddress: {
+                        ...state.newAddress,
+                        postalCode: action.payload,
+                    },
+                }
+            }
+
+            case 'UPDATE_MOB_NO': {
+                return {
+                    ...state,
+                    newAddress: {
+                        ...state.newAddress,
+                        mobileNumber: action.payload,
+                    },
                 }
             }
 
@@ -160,6 +225,15 @@ export function AppContextProvider({ children }) {
                 mobileNumber: 1234567890,
             },
         ],
+        newAddress: {
+            name: '',
+            colony: '',
+            city: '',
+            state: '',
+            country: '',
+            postalCode: '',
+            mobileNumber: '',
+        },
         bookDetails: {},
         filteredList: [],
         filterCategories: [],
