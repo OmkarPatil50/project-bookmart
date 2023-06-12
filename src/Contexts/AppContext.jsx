@@ -195,6 +195,10 @@ export function AppContextProvider({ children }) {
                 }
             }
 
+            case 'UPDATE_ADDRESS_DATA': {
+                return { ...state, newAddress: action.payload }
+            }
+
             case 'LOG_OUT': {
                 return {
                     ...state,
