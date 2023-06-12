@@ -21,7 +21,11 @@ export function AppContextProvider({ children }) {
             }
 
             case 'UPDATE_SIGN_UP_DATA': {
-                return { ...state, userSignUpData: action.payload }
+                return {
+                    ...state,
+                    userSignUpData: action.payload,
+                    userLoggedIn: true,
+                }
             }
 
             case 'UPDATE_CART': {
@@ -129,6 +133,7 @@ export function AppContextProvider({ children }) {
         categoriesList: [],
         cartList: [],
         wishList: [],
+        userAddressData: [],
         bookDetails: {},
         filteredList: [],
         filterCategories: [],

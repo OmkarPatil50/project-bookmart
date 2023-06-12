@@ -26,11 +26,19 @@ const Signup = () => {
 
             const jsonResponse = await response.json()
             localStorage.setItem('encodedToken', jsonResponse.encodedToken)
-            console.log(jsonResponse, 'signup')
+            dispatch({ type: 'UPDATE_USER_LOGIN', payload: true })
             dispatch({
-                type: 'UPDATE_SIGN_UP_DATA',
-                payload: jsonResponse.createdUser,
+                type: 'UPDATE_USERDATA',
+                payload: {
+                    ...jsonResponse.createdUser,
+                    email: jsonResponse.createdUser.userEmail,
+                    firstName: jsonResponse.createdUser.userFirstName,
+                    lastName: jsonResponse.createdUser.userLastName,
+                },
             })
+
+            navigate('/')
+          
         } catch (err) {
             console.error(err)
         }
@@ -55,6 +63,8 @@ const Signup = () => {
                     type: 'UPDATE_USERDATA',
                     payload: jsonResponse.foundUser,
                 })
+                console.log(jsonResponse, 'login')
+
                 navigate('/')
             }
         } catch (err) {
