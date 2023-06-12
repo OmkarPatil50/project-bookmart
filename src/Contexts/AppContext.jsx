@@ -114,6 +114,22 @@ export function AppContextProvider({ children }) {
                 return { ...state, isLoader: action.payload }
             }
 
+            case 'ADD_NEW_ADDRESS': {
+                return {
+                    ...state,
+                    userAddressData: [...state.userAddressData, action.payload],
+                }
+            }
+
+            case 'DELETE_ADDRESS': {
+                return {
+                    ...state,
+                    userAddressData: state.userAddressData.filter(
+                        (item) => item !== action.payload
+                    ),
+                }
+            }
+
             case 'LOG_OUT': {
                 return {
                     ...state,
@@ -133,7 +149,17 @@ export function AppContextProvider({ children }) {
         categoriesList: [],
         cartList: [],
         wishList: [],
-        userAddressData: [],
+        userAddressData: [
+            {
+                name: 'Raju Rastogi',
+                colony: '448',
+                city: 'Chauth mata mandir',
+                state: 'mandir ke samne aate hi phone laga lena',
+                country: 'mein aa jaunga, Shivpura',
+                postalCode: 418698,
+                mobileNumber: 1234567890,
+            },
+        ],
         bookDetails: {},
         filteredList: [],
         filterCategories: [],

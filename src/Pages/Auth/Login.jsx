@@ -10,6 +10,17 @@ export function Login() {
     const [password, setPassword] = useState('')
     const [showAddress, setShowAddress] = useState(false)
     const [showProfile, setShowProfile] = useState(true)
+    const [showAddressAdditionPage, setShowAddressAdditionPage] =
+        useState(false)
+    const [newAddress, setNewAddress] = useState({
+        name: '',
+        colony: '',
+        city: '',
+        state: '',
+        country: '',
+        postalCode: '',
+        mobileNumber: '',
+    })
 
     const { state, dispatch } = useContext(AppContext)
 
@@ -80,7 +91,7 @@ export function Login() {
                                 style={{
                                     backgroundColor: showProfile
                                         ? '#007bb5'
-                                        : 'white',
+                                        : '#f8f8f8',
                                     color: showProfile ? 'white' : 'black',
                                 }}
                                 onClick={() => {
@@ -118,19 +129,10 @@ export function Login() {
                                     </div>
                                     <div className="profile-value">
                                         <p>
-                                            {state.userData.firstName
-                                                ? state.userData.firstName
-                                                : state.userData
-                                                      .userFirstName}{' '}
-                                            {state.userData.lastName
-                                                ? state.userData.lastName
-                                                : state.userData.userLastName}
+                                            {state.userData.firstName}
+                                            {state.userData.lastName}
                                         </p>
-                                        <p>
-                                            {state.userData.email
-                                                ? state.userData.email
-                                                : state.userData.userEmail}
-                                        </p>
+                                        <p>{state.userData.email}</p>
                                     </div>
                                 </div>
                                 <h2 className="login-profile-container-heading">
@@ -155,6 +157,260 @@ export function Login() {
                                     }}
                                 >
                                     Log Out
+                                </button>
+                            </div>
+                        ) : (
+                            ''
+                        )}
+                        {showAddressAdditionPage ? (
+                            <div className="address-profile-page">
+                                <form className="address-profile-container">
+                                    <h2 className="login-profile-container-heading">
+                                        ADD NEW ADDRESS
+                                    </h2>
+                                    <label htmlFor="name">
+                                        <input
+                                            type="text"
+                                            value={newAddress.name}
+                                            placeholder="Enter Name"
+                                            required
+                                            onChange={(event) =>
+                                                setNewAddress({
+                                                    ...newAddress,
+                                                    name: event.target.value,
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                    <label htmlFor="colony">
+                                        <input
+                                            type="text"
+                                            value={newAddress.colony}
+                                            required
+                                            placeholder="Enter House No., Road, Colony Name"
+                                            onChange={(event) =>
+                                                setNewAddress({
+                                                    ...newAddress,
+                                                    colony: event.target.value,
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                    <label htmlFor="city">
+                                        <input
+                                            type="text"
+                                            required
+                                            value={newAddress.city}
+                                            placeholder="Enter City"
+                                            onChange={(event) =>
+                                                setNewAddress({
+                                                    ...newAddress,
+                                                    city: event.target.value,
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                    <label htmlFor="state">
+                                        <input
+                                            type="text"
+                                            required
+                                            value={newAddress.state}
+                                            placeholder="Enter State"
+                                            onChange={(event) =>
+                                                setNewAddress({
+                                                    ...newAddress,
+                                                    state: event.target.value,
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                    <label htmlFor="country">
+                                        <input
+                                            type="text"
+                                            required
+                                            value={newAddress.country}
+                                            placeholder="Enter Country"
+                                            onChange={(event) =>
+                                                setNewAddress({
+                                                    ...newAddress,
+                                                    country: event.target.value,
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                    <label htmlFor="postal-code">
+                                        <input
+                                            type="number"
+                                            required
+                                            value={newAddress.postalCode}
+                                            placeholder="Enter Postal Code"
+                                            onChange={(event) =>
+                                                setNewAddress({
+                                                    ...newAddress,
+                                                    postalCode:
+                                                        event.target.value,
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                    <label htmlFor="mobile-number">
+                                        <input
+                                            type="number"
+                                            required
+                                            value={newAddress.mobileNumber}
+                                            placeholder="Enter Mobile Number"
+                                            onChange={(event) =>
+                                                setNewAddress({
+                                                    ...newAddress,
+                                                    mobileNumber:
+                                                        event.target.value,
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                    <section className="btn-section-address">
+                                        <button
+                                            type="submit"
+                                            onClick={() => {
+                                                if (
+                                                    newAddress.name &&
+                                                    newAddress.colony &&
+                                                    newAddress.state &&
+                                                    newAddress.country &&
+                                                    newAddress.postalCode &&
+                                                    newAddress.mobileNumber
+                                                ) {
+                                                    dispatch({
+                                                        type: 'ADD_NEW_ADDRESS',
+                                                        payload: newAddress,
+                                                    })
+
+                                                    setShowAddressAdditionPage(
+                                                        false
+                                                    )
+                                                }
+                                            }}
+                                            className="btn-save"
+                                        >
+                                            Save
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                setNewAddress({
+                                                    name: '',
+                                                    colony: '',
+                                                    city: '',
+                                                    state: '',
+                                                    country: '',
+                                                    postalCode: '',
+                                                    mobileNumber: '',
+                                                })
+                                                setShowAddressAdditionPage(
+                                                    false
+                                                )
+                                            }}
+                                            className="btn-cancel"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            onClick={() =>
+                                                setNewAddress({
+                                                    name: 'Admin',
+                                                    colony: '123 , Candolim beach road',
+                                                    city: 'Panjim',
+                                                    state: 'Goa',
+                                                    country: 'India',
+                                                    postalCode: '566987',
+                                                    mobileNumber: '4567891230',
+                                                })
+                                            }
+                                            className="btn-dummy-address"
+                                        >
+                                            Fill with Dummy Address
+                                        </button>
+                                    </section>
+                                </form>
+                            </div>
+                        ) : (
+                            ''
+                        )}
+                        {showAddress ? (
+                            <div className="profile-container">
+                                <h2 className="login-profile-container-heading">
+                                    My Addresses
+                                </h2>
+                                <div className="profile-details">
+                                    <ul className="address-list">
+                                        {state.userAddressData?.map(
+                                            (address) => {
+                                                const {
+                                                    name,
+                                                    colony,
+                                                    city,
+                                                    state,
+                                                    country,
+                                                    postalCode,
+                                                    mobileNumber,
+                                                } = address
+
+                                                return (
+                                                    <li className="address-list-item">
+                                                        <h2 className="address-user-name">
+                                                            {name}
+                                                        </h2>
+                                                        <p className="user-address">
+                                                            {`${colony} , ${city} , ${state} , ${country} - ${postalCode}`}
+                                                        </p>
+                                                        <p className="address-user-mob">
+                                                            Phone No.{' '}
+                                                            {mobileNumber}
+                                                        </p>
+                                                        <button
+                                                            className="btn-edit"
+                                                            onClick={() => {
+                                                                setNewAddress({
+                                                                    name,
+                                                                    colony,
+                                                                    city,
+                                                                    state,
+                                                                    country,
+                                                                    postalCode,
+                                                                    mobileNumber,
+                                                                })
+                                                                setShowAddressAdditionPage(
+                                                                    true
+                                                                )
+                                                            }}
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                        <button
+                                                            className="btn-remove"
+                                                            onClick={() =>
+                                                                dispatch({
+                                                                    type: 'DELETE_ADDRESS',
+                                                                    payload:
+                                                                        address,
+                                                                })
+                                                            }
+                                                        >
+                                                            Remove
+                                                        </button>
+                                                    </li>
+                                                )
+                                            }
+                                        )}
+                                    </ul>
+                                </div>
+                                <button
+                                    className="btn-add-new-address"
+                                    onClick={() =>
+                                        setShowAddressAdditionPage(true)
+                                    }
+                                >
+                                    {' '}
+                                    + Add New Address
                                 </button>
                             </div>
                         ) : (
