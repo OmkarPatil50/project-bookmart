@@ -73,7 +73,7 @@ export const Wishlist = () => {
                 payload: jsonResponse.wishlist,
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
-            toast.warn('Deleted From Wishlist!', {
+            toast.error('Deleted From Wishlist!', {
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,

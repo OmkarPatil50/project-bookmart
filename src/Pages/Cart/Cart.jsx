@@ -39,7 +39,7 @@ export const Cart = () => {
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
-            toast.warn('Deleted From Cart!', {
+            toast.error('Deleted From Cart!', {
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,

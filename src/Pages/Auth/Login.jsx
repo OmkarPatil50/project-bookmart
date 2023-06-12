@@ -135,16 +135,19 @@ export function Login() {
                                         dispatch({ type: 'LOG_OUT' })
 
                                         navigate('/')
-                                        toast.warn('Logged Out Successfully!', {
-                                            position: 'top-right',
-                                            autoClose: 5000,
-                                            hideProgressBar: false,
-                                            closeOnClick: true,
-                                            pauseOnHover: true,
-                                            draggable: true,
-                                            progress: undefined,
-                                            theme: 'light',
-                                        })
+                                        toast.error(
+                                            'Logged Out Successfully!',
+                                            {
+                                                position: 'top-right',
+                                                autoClose: 5000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: true,
+                                                progress: undefined,
+                                                theme: 'light',
+                                            }
+                                        )
                                     }}
                                 >
                                     Log Out
@@ -278,6 +281,32 @@ export function Login() {
                                                         payload:
                                                             state.newAddress,
                                                     })
+                                                    dispatch({
+                                                        type: 'UPDATE_NEW_ADDRESS',
+                                                        payload: {
+                                                            name: '',
+                                                            colony: '',
+                                                            city: '',
+                                                            state: '',
+                                                            country: '',
+                                                            postalCode: '',
+                                                            mobileNumber: '',
+                                                        },
+                                                    })
+                                                    toast.success(
+                                                        'Address Added Successfully!',
+                                                        {
+                                                            position:
+                                                                'top-right',
+                                                            autoClose: 5000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            draggable: true,
+                                                            progress: undefined,
+                                                            theme: 'light',
+                                                        }
+                                                    )
                                                     setShowAddressAdditionPage(
                                                         false
                                                     )
@@ -392,13 +421,28 @@ export function Login() {
                                                         </button>
                                                         <button
                                                             className="btn-remove"
-                                                            onClick={() =>
+                                                            onClick={() => {
                                                                 dispatch({
                                                                     type: 'DELETE_ADDRESS',
                                                                     payload:
                                                                         address,
                                                                 })
-                                                            }
+                                                                toast.error(
+                                                                    'Deleted Address!',
+                                                                    {
+                                                                        position:
+                                                                            'top-right',
+                                                                        autoClose: 5000,
+                                                                        hideProgressBar: false,
+                                                                        closeOnClick: true,
+                                                                        pauseOnHover: true,
+                                                                        draggable: true,
+                                                                        progress:
+                                                                            undefined,
+                                                                        theme: 'light',
+                                                                    }
+                                                                )
+                                                            }}
                                                         >
                                                             Remove
                                                         </button>
