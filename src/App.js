@@ -15,6 +15,7 @@ import RequireAuth from "./Pages/Auth/RequireAuth";
 import { AppContext } from ".";
 import Loader from "./Pages/Loaders/Loader";
 import Checkout from "./Pages/Checkout/Checkout";
+import Error from "./Pages/Error/Error";
 
 
 
@@ -87,7 +88,11 @@ function App() {
             <Checkout />
           </RequireAuth>
         } />
-
+        <Route path='/error' element={
+          <RequireAuth>
+            <Error />
+          </RequireAuth>
+        } />
 
 
 

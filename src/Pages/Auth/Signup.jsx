@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, Navigate, json, redirect, useNavigate } from 'react-router-dom'
 import './Signup.css'
 import { AppContext } from '../..'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const Signup = () => {
     const [userFirstName, setUserFirstName] = useState('')
     const [userLastName, setUserLastName] = useState('')
@@ -26,46 +29,42 @@ const Signup = () => {
 
             const jsonResponse = await response.json()
             localStorage.setItem('encodedToken', jsonResponse.encodedToken)
-            dispatch({ type: 'UPDATE_USER_LOGIN', payload: true })
-            dispatch({
-                type: 'UPDATE_USERDATA',
-                payload: {
-                    ...jsonResponse.createdUser,
-                    email: jsonResponse.createdUser.userEmail,
-                    firstName: jsonResponse.createdUser.userFirstName,
-                    lastName: jsonResponse.createdUser.userLastName,
-                },
-            })
 
-            navigate('/')
-          
-        } catch (err) {
-            console.error(err)
-        }
-    }
-
-    const getLoginDetails = async () => {
-        try {
-            const response = await fetch('/api/auth/login', {
-                method: 'POST',
-                body: JSON.stringify({
-                    email: state.userSignUpData.userEmail,
-                    password: state.userSignUpData.userPassword,
-                }),
-            })
-
-            const jsonResponse = await response.json()
-            localStorage.setItem('encodedToken', jsonResponse.encodedToken)
-            console.log(jsonResponse, 'login')
             if (jsonResponse.encodedToken) {
-                dispatch({ type: 'UPDATE_USER_LOGIN', payload: true })
+                dispatch({ type: 'UPDATE_LOADER', payload: true })
                 dispatch({
                     type: 'UPDATE_USERDATA',
-                    payload: jsonResponse.foundUser,
+                    payload: {
+                        ...jsonResponse.createdUser,
+                        email: jsonResponse.createdUser.userEmail,
+                        firstName: jsonResponse.createdUser.userFirstName,
+                        lastName: jsonResponse.createdUser.userLastName,
+                    },
                 })
-                console.log(jsonResponse, 'login')
-
-                navigate('/')
+                toast.success('Logged in Successfully!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000)
+            } else {
+                toast.error('Email Already Exists!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
             }
         } catch (err) {
             console.error(err)
@@ -79,7 +78,11 @@ const Signup = () => {
         setUserLastName('Test surname')
     }
 
-    getLoginDetails()
+    useEffect(() => {
+        {
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
+        }
+    }, [])
 
     return (
         <div className="signup-page">
@@ -137,6 +140,7 @@ const Signup = () => {
                     <i className="fa-solid fa-angle-right"></i>
                 </Link>
             </div>
+            <ToastContainer />
         </div>
     )
 }

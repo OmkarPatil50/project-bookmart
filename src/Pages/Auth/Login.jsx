@@ -37,10 +37,20 @@ export function Login() {
                     type: 'UPDATE_USERDATA',
                     payload: jsonResponse.foundUser,
                 })
-                console.log(jsonResponse)
                 navigate(location?.state?.from?.pathname)
                 dispatch({ type: 'UPDATE_LOADER', payload: false })
                 toast.success('Logged in Successfully!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
+            } else {
+                toast.error('Invalid Login Credentials!', {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -115,7 +125,7 @@ export function Login() {
                                 </h2>
                                 <div className="profile-details">
                                     <div className="profile-keys">
-                                        <p>Full Name :</p>
+                                        <p>Name :</p>
                                         <p>Email :</p>
                                     </div>
                                     <div className="profile-value">

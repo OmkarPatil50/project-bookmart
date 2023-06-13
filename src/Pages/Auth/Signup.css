@@ -77,7 +77,7 @@
     align-self: center;
     width: 200px;
     background-color: var(---primary-color);
-    margin: 20px;
+    margin: 20px 0 0 0;
     font-size: 16px;
     color: var(---secondary-color);
     font-weight: 600;

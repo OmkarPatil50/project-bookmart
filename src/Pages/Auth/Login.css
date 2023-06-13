@@ -120,17 +120,24 @@
 }
 
 .profile-details {
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
 .profile-keys p {
+    width: 100%;
     margin: 10px 0;
     font-weight: 600;
+    display: flex;
+    justify-self: flex-start;
 }
 
 .profile-value p {
     margin: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-self: flex-end;
 }
 
 /* ----------------------------------------Address------------------------------------ */
