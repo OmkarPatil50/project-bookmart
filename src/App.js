@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 
-import Mockman from 'mockman-js'
+
 import { NavLink } from "react-router-dom";
 import "./App.css";
 import { Landing } from "./Pages/Landing/Landing";
@@ -66,7 +66,7 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path='/mockman' element={<Mockman />} />
+
         <Route path='/' element={
           <Landing />} />
         <Route path='/login' element={<Login />} />

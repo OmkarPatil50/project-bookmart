@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react'
 import { AppContext } from '../..'
-import { v4 as uuid } from 'uuid'
 import './Wishlist.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
@@ -105,13 +104,10 @@ export const Wishlist = () => {
                                 {state.wishList.map((wishListItem) => {
                                     const {
                                         author,
-                                        category,
                                         img,
-                                        isBestSeller,
                                         name,
                                         originalPrice,
                                         price,
-                                        rating,
                                         _id,
                                     } = wishListItem
                                     return (

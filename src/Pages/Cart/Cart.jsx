@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { AppContext } from '../..'
-import { v4 as uuid } from 'uuid'
 import './Cart.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
@@ -176,13 +175,10 @@ export const Cart = () => {
                                     {state.cartList.map((cartItem) => {
                                         const {
                                             author,
-                                            category,
                                             img,
-                                            isBestSeller,
                                             name,
                                             originalPrice,
                                             price,
-                                            rating,
                                             _id,
                                         } = cartItem
                                         return (
