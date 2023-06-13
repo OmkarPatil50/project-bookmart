@@ -89,9 +89,7 @@ function App() {
           </RequireAuth>
         } />
         <Route path='/error' element={
-          <RequireAuth>
-            <Error />
-          </RequireAuth>
+          <Error />
         } />
 
 

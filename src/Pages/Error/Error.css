@@ -1,0 +1,15 @@
+.error-page {
+    margin-top: 80px;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-page h1 {
+    color: #007bb5;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
