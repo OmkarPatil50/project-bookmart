@@ -219,6 +219,7 @@
     text-align: center;
     color: var(---secondary-color);
     font-weight: 500;
+    display: block;
 }
 
 .empty-cart {
@@ -301,12 +302,17 @@
     .cart-page {
         width: 100vw;
         font-family: 'Rubik', sans-serif;
+        display: flex;
+        justify-content: center;
     }
     .cart-sub-page {
         width: 100%;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         flex-wrap: wrap;
+        margin-right: 10px;
     }
     .cart-page-heading {
         font-size: 18px;
