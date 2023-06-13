@@ -217,6 +217,7 @@
     align-items: center;
     box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
+    z-index: 1;
 }
 
 .address-list-item {
@@ -264,7 +265,7 @@
 /* -----------------mobileView----------------------------- */
 
 .login-container {
-    margin: 20px;
+    margin: 20px 10px 0 0;
 }
 
 .login-container-heading {
@@ -278,12 +279,12 @@
 }
 
 .account-container {
-    width: 500px;
+    width: 300px;
     height: 325px;
 }
 
 .account-header-nav {
-    font-size: 16px;
+    font-size: 14px;
     padding: 5px 8px;
 }
 .profile-container {
@@ -291,19 +292,48 @@
 }
 
 .login-profile-container-heading {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .profile-keys p {
-    width: 175px;
-    font-size: 16px;
+    width: 100%;
+    font-size: 14px;
     display: flex;
     justify-content: flex-end;
 }
 
 .profile-value p {
-    width: 275px;
-    font-size: 16px;
+    width: 100%;
+    font-size: 14px;
     display: flex;
     justify-content: flex-start;
+}
+
+.address-user-name {
+    font-size: 14px;
+}
+
+.user-address {
+    font-size: 12px;
+}
+
+.btn-edit,
+.btn-remove {
+    padding: 2.5px 5px;
+    border-radius: 5px;
+    margin: 5px 5px 0 0;
+    font-weight: 600;
+    transition-duration: 0.3s;
+}
+
+.btn-add-new-address {
+    font-size: 14px;
+}
+
+.address-profile-page {
+    margin-top: 35px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
