@@ -11,7 +11,7 @@ function Error() {
     return (
         <div className="error-page">
             <h1>It's not you, It's us..!</h1>
-            <img src="./error.png" alt="error" />
+            <div className="error-img"></div>
         </div>
     )
 }

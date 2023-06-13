@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../..'
 import { v4 as uuid } from 'uuid'
 import './Cart.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const Cart = () => {
     const { state, dispatch } = useContext(AppContext)
+    const navigate = useNavigate()
+
     const getCartData = async () => {
         try {
             const response = await fetch('/api/user/cart', {
@@ -20,7 +22,7 @@ export const Cart = () => {
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -46,7 +48,7 @@ export const Cart = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -68,7 +70,7 @@ export const Cart = () => {
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -89,7 +91,7 @@ export const Cart = () => {
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -121,7 +123,7 @@ export const Cart = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 

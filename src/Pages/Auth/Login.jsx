@@ -62,7 +62,7 @@ export function Login() {
                 })
             }
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 

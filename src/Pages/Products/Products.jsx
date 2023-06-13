@@ -19,7 +19,7 @@ export const Products = () => {
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (error) {
-            console.error(error)
+            navigate('/error')
         }
     }
 
@@ -37,7 +37,7 @@ export const Products = () => {
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -67,7 +67,7 @@ export const Products = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -102,7 +102,7 @@ export const Products = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -134,7 +134,7 @@ export const Products = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 

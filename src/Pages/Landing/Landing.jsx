@@ -1,10 +1,12 @@
 import { useContext, useEffect } from 'react'
 import { AppContext } from '../..'
 import './Landing.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function Landing() {
     const { state, dispatch } = useContext(AppContext)
+
+    const navigate = useNavigate()
 
     const getLandingData = async () => {
         try {
@@ -16,7 +18,7 @@ export function Landing() {
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (error) {
-            console.error(error)
+            navigate('/error')
         }
     }
 

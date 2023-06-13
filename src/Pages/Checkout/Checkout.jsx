@@ -54,7 +54,7 @@ function Checkout() {
                 dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
                 dispatch({ type: 'UPDATE_LOADER', payload: false })
             } catch (err) {
-                console.error(err)
+                navigate('/error')
             }
         }
     }

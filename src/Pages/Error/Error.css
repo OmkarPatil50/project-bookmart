@@ -13,3 +13,11 @@
     font-size: 30px;
     margin-bottom: 20px;
 }
+
+.error-img {
+    width: 500px;
+    height: 350px;
+    background: url('./error.svg');
+    background-position: center;
+    background-size: cover;
+}

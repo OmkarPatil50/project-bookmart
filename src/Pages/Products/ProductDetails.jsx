@@ -42,7 +42,7 @@ export const ProductDetails = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -74,7 +74,7 @@ export const ProductDetails = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
     useEffect(() => {

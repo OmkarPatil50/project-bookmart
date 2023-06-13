@@ -25,7 +25,7 @@ export const Wishlist = () => {
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -55,7 +55,7 @@ export const Wishlist = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
@@ -84,7 +84,7 @@ export const Wishlist = () => {
                 theme: 'light',
             })
         } catch (err) {
-            console.error(err)
+            navigate('/error')
         }
     }
 
