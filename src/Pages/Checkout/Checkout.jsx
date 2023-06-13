@@ -3,10 +3,11 @@ import './Checkout.css'
 import { AppContext } from '../..'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 function Checkout() {
     const { state, dispatch } = useContext(AppContext)
+    const navigate = useNavigate()
 
     const calculatePrice = (list) => {
         return list.length
@@ -38,6 +39,45 @@ function Checkout() {
               ).toFixed(2)
             : 0
     }
+
+    const emptyCart = async (list) => {
+        for (let index = 0; index < list.length; index++) {
+            const bookId = list[index]._id
+            try {
+                const response = await fetch(`/api/user/cart/${bookId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        authorization: localStorage.getItem('encodedToken'),
+                    },
+                })
+                const jsonResponse = await response.json()
+                dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+                dispatch({ type: 'UPDATE_LOADER', payload: false })
+            } catch (err) {
+                console.error(err)
+            }
+        }
+    }
+
+    const placeOrderBtnHandler = () => {
+        if (state.deliveryAddress === null) {
+            toast.error('Please select an address for checking out!')
+        } else if (state.cartList?.length === 0) {
+            toast.error('Please add something to cart for checking out!')
+            navigate('/cart')
+        } else {
+            dispatch({
+                type: 'UPDATE_LOADER',
+                payload: true,
+            })
+            toast.success('Order successfully placed!')
+            setTimeout(() => {
+                navigate('/')
+            }, 2000)
+            emptyCart(state.cartList)
+        }
+    }
+
     return (
         <div className="checkout-page">
             <div className="checkout-sub-page">
@@ -191,35 +231,28 @@ function Checkout() {
                                     DELIVER TO
                                 </h2>
                                 <h3 className="user-name-checkout">
-                                    {state.deliveryAddress.name}
+                                    {state.deliveryAddress?.name}
                                 </h3>
-                                <p className="user-address-checkout">{`${state.deliveryAddress.colony} , ${state.deliveryAddress.city} ,${state.deliveryAddress.state} ,${state.deliveryAddress.country} - ${state.deliveryAddress.postalCode}`}</p>
-                                <p className="user-address-checkout">
-                                    Mobile No.:{' '}
-                                    {state.deliveryAddress.mobileNumber}
-                                </p>
+                                {state.deliveryAddress === null ? (
+                                    ''
+                                ) : (
+                                    <p className="user-address-checkout">{`${state.deliveryAddress?.colony} , ${state.deliveryAddress?.city} ,${state.deliveryAddress?.state} ,${state.deliveryAddress?.country} - ${state.deliveryAddress?.postalCode}`}</p>
+                                )}
+                                {state.deliveryAddress === null ? (
+                                    ''
+                                ) : (
+                                    <p className="user-address-checkout">
+                                        Mobile No.:{' '}
+                                        {state.deliveryAddress?.mobileNumber}
+                                    </p>
+                                )}
                             </section>
-                            <Link
-                                to={'/'}
+                            <button
                                 className="btn-place-order"
-                                onClick={() => {
-                                    toast.success(
-                                        'Order Placed Successfully!',
-                                        {
-                                            position: 'top-right',
-                                            autoClose: 5000,
-                                            hideProgressBar: false,
-                                            closeOnClick: true,
-                                            pauseOnHover: true,
-                                            draggable: true,
-                                            progress: undefined,
-                                            theme: 'light',
-                                        }
-                                    )
-                                }}
+                                onClick={placeOrderBtnHandler}
                             >
                                 Place Order
-                            </Link>
+                            </button>
                         </section>
                     </section>
                 </div>
