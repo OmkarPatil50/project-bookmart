@@ -198,6 +198,52 @@ export function AppContextProvider({ children }) {
             case 'UPDATE_ADDRESS_DATA': {
                 return { ...state, newAddress: action.payload }
             }
+            case 'UPDATE_SHOW_COUPON': {
+                return {
+                    ...state,
+                    couponData: {
+                        ...state.couponData,
+                        showCoupon: action.payload,
+                    },
+                }
+            }
+
+            case 'UPDATE_SHOW_COUPON_DETAILS': {
+                return {
+                    ...state,
+                    couponData: {
+                        ...state.couponData,
+                        showCouponDetails: action.payload,
+                    },
+                }
+            }
+
+            case 'UPDATE_COUPON_DISCOUNT_NAME': {
+                return {
+                    ...state,
+                    couponData: {
+                        ...state.couponData,
+                        couponDiscountName: action.payload,
+                    },
+                }
+            }
+
+            case 'UPDATE_COUPON_DISCOUNT': {
+                return {
+                    ...state,
+                    couponData: {
+                        ...state.couponData,
+                        couponDiscount: action.payload,
+                    },
+                }
+            }
+
+            case 'UPDATE_DELIVERY_ADDRESS': {
+                return {
+                    ...state,
+                    deliveryAddress: action.payload,
+                }
+            }
 
             case 'LOG_OUT': {
                 return {
@@ -237,6 +283,21 @@ export function AppContextProvider({ children }) {
             country: '',
             postalCode: '',
             mobileNumber: '',
+        },
+        couponData: {
+            showCoupon: false,
+            couponDiscountName: '',
+            showCouponDetails: false,
+            couponDiscount: 0,
+        },
+        deliveryAddress: {
+            name: 'Raju Rastogi',
+            colony: '448',
+            city: 'Chauth mata mandir',
+            state: 'mandir ke samne aate hi phone laga lena',
+            country: 'mein aa jaunga, Shivpura',
+            postalCode: 418698,
+            mobileNumber: 1234567890,
         },
         bookDetails: {},
         filteredList: [],

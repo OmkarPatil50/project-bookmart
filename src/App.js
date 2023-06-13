@@ -14,6 +14,7 @@ import { Wishlist } from "./Pages/Wishlist/Wishlist";
 import RequireAuth from "./Pages/Auth/RequireAuth";
 import { AppContext } from ".";
 import Loader from "./Pages/Loaders/Loader";
+import Checkout from "./Pages/Checkout/Checkout";
 
 
 
@@ -79,6 +80,11 @@ function App() {
         <Route path='/wishlist' element={
           <RequireAuth>
             <Wishlist />
+          </RequireAuth>
+        } />
+        <Route path='/checkout' element={
+          <RequireAuth>
+            <Checkout />
           </RequireAuth>
         } />
 

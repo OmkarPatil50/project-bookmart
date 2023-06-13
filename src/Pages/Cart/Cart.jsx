@@ -8,10 +8,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export const Cart = () => {
     const { state, dispatch } = useContext(AppContext)
-    const [showCoupon, setShowCoupon] = useState(false)
-    const [couponDiscountName, setCouponDiscountName] = useState('')
-    const [showCouponDetails, setShowCouponDetails] = useState(false)
-    const [couponDiscount, setCouponDiscount] = useState(0)
     const getCartData = async () => {
         try {
             const response = await fetch('/api/user/cart', {
@@ -151,8 +147,12 @@ export const Cart = () => {
     }
 
     const calculateCouponDiscount = (list) => {
-        return couponDiscount > 0
-            ? (couponDiscount * 0.01 * calculateTotalAmount(list)).toFixed(2)
+        return state.couponData.couponDiscount > 0
+            ? (
+                  state.couponData.couponDiscount *
+                  0.01 *
+                  calculateTotalAmount(list)
+              ).toFixed(2)
             : 0
     }
 
@@ -337,7 +337,12 @@ export const Cart = () => {
                                     </p>
                                     <button
                                         className="apply-coupon"
-                                        onClick={() => setShowCoupon(true)}
+                                        onClick={() =>
+                                            dispatch({
+                                                type: 'UPDATE_SHOW_COUPON',
+                                                payload: true,
+                                            })
+                                        }
                                     >
                                         Apply
                                     </button>
@@ -356,12 +361,17 @@ export const Cart = () => {
                                             <p>Discount</p>
                                             <p>Delivery Charges *</p>
                                             <p>Coupon Discount</p>
-                                            {couponDiscountName.length > 1 &&
-                                            showCouponDetails === true ? (
+                                            {state.couponData.couponDiscountName
+                                                .length > 1 &&
+                                            state.couponData
+                                                .showCouponDetails === true ? (
                                                 <p>
                                                     {' '}
                                                     <i className="fa-duotone fa-badge-check"></i>{' '}
-                                                    {couponDiscountName}
+                                                    {
+                                                        state.couponData
+                                                            .couponDiscountName
+                                                    }
                                                 </p>
                                             ) : (
                                                 ''
@@ -388,16 +398,21 @@ export const Cart = () => {
                                             {calculateCouponDiscount(
                                                 state.cartList
                                             ) > 0 &&
-                                            showCouponDetails === true ? (
+                                            state.couponData
+                                                .showCouponDetails === true ? (
                                                 <p>
                                                     {' '}
                                                     <i
                                                         className="fa-solid fa-xmark discard-coupon"
                                                         onClick={() => {
-                                                            setCouponDiscount(0)
-                                                            setCouponDiscountName(
-                                                                ''
-                                                            )
+                                                            dispatch({
+                                                                type: 'UPDATE_COUPON_DISCOUNT',
+                                                                payload: 0,
+                                                            })
+                                                            dispatch({
+                                                                type: 'UPDATE_COUPON_DISCOUNT_NAME',
+                                                                payload: '',
+                                                            })
                                                         }}
                                                     ></i>
                                                 </p>
@@ -422,7 +437,9 @@ export const Cart = () => {
                                         state.cartList
                                     )} on this order`}
                                 </p>
-                                <div className="btn-checkout">Checkout</div>
+                                <Link to={'/checkout'} className="btn-checkout">
+                                    Checkout
+                                </Link>
                             </section>
                         </div>
                     </div>
@@ -444,15 +461,22 @@ export const Cart = () => {
                     </div>
                 )}
             </div>
-            {showCoupon ? (
+            {state.couponData.showCoupon ? (
                 <div className="apply-coupon-page">
                     <div className="coupon-container">
                         <div className="coupon-container-header">
                             <h2>Apply Coupon</h2>
                             <p
                                 onClick={() => {
-                                    setShowCoupon(false)
-                                    setCouponDiscount(0)
+                                    dispatch({
+                                        type: 'UPDATE_SHOW_COUPON',
+                                        payload: false,
+                                    })
+                                    dispatch({
+                                        type: 'UPDATE_COUPON_DISCOUNT',
+                                        payload: 0,
+                                    })
+
                                     dispatch({
                                         type: 'UPDATE_LOADER',
                                         payload: true,
@@ -477,8 +501,15 @@ export const Cart = () => {
                                     type="radio"
                                     name="coupon"
                                     onClick={() => {
-                                        setCouponDiscount(50)
-                                        setCouponDiscountName('Diwali Dhamaka')
+                                        dispatch({
+                                            type: 'UPDATE_COUPON_DISCOUNT',
+                                            payload: 50,
+                                        })
+
+                                        dispatch({
+                                            type: 'UPDATE_COUPON_DISCOUNT_NAME',
+                                            payload: 'Diwali Dhamaka',
+                                        })
                                     }}
                                 />
                                 50% OFF : Diwali Dhamaka
@@ -488,8 +519,15 @@ export const Cart = () => {
                                     type="radio"
                                     name="coupon"
                                     onClick={() => {
-                                        setCouponDiscount(10)
-                                        setCouponDiscountName('New User')
+                                        dispatch({
+                                            type: 'UPDATE_COUPON_DISCOUNT',
+                                            payload: 10,
+                                        })
+
+                                        dispatch({
+                                            type: 'UPDATE_COUPON_DISCOUNT_NAME',
+                                            payload: 'New User',
+                                        })
                                     }}
                                 />
                                 10% OFF : New User
@@ -498,8 +536,14 @@ export const Cart = () => {
                         <button
                             className="apply-btn"
                             onClick={() => {
-                                setShowCouponDetails(true)
-                                setShowCoupon(false)
+                                dispatch({
+                                    type: 'UPDATE_SHOW_COUPON_DETAILS',
+                                    payload: true,
+                                })
+                                dispatch({
+                                    type: 'UPDATE_SHOW_COUPON',
+                                    payload: false,
+                                })
                                 dispatch({
                                     type: 'UPDATE_LOADER',
                                     payload: true,
