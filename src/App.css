@@ -149,4 +149,10 @@ nav {
         font-size: 14px;
         padding: 0 20px 0 0;
     }
+
+    .list-count-nav,
+    .list-count-nav {
+        font-size: 8px;
+        right: 10px;
+    }
 }
