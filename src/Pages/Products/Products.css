@@ -250,7 +250,7 @@
     }
 
     .book-card {
-        width: 175px;
+        width: 160px;
         height: 250px;
         margin: 5px;
         display: flex;
@@ -259,7 +259,7 @@
     }
 
     .book-thumbnail {
-        width: 175px;
+        width: 160px;
         display: flex;
         justify-content: center;
         height: 8rem;
