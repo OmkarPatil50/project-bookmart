@@ -250,16 +250,16 @@
     }
 
     .book-card {
-        width: 150px;
+        width: 175px;
         height: 250px;
-        margin: 10px;
+        margin: 5px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
     }
 
     .book-thumbnail {
-        width: 150px;
+        width: 175px;
         display: flex;
         justify-content: center;
         height: 8rem;
@@ -284,7 +284,7 @@
         padding: 10px 5px;
     }
     .book-name-products {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .rating-tag {
@@ -293,7 +293,7 @@
     }
 
     .price-section-products {
-        font-size: 14px;
+        font-size: 12px;
         margin-left: 5px;
     }
 
