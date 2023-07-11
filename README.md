@@ -5,6 +5,7 @@ The Bookmart is a user-friendly and feature-rich platform designed to cater to b
 </p>
 
 <h3>Live: https://bookishmart.vercel.app/</h3>
+<h3>Demo Video :https://www.loom.com/share/575dc9b0369049dda33b1c45c33250f0?sid=dd877079-25ca-4924-b951-50b94e900a0c</h3>
 
 <h3>
 Home Page:
