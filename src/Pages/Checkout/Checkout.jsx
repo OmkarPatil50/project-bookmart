@@ -41,7 +41,7 @@ function Checkout() {
     }
 
     const emptyCart = async (list) => {
-        for (let index = 0; index < list.length; index++) {
+        for (let index = 0; index < list?.length; index++) {
             const bookId = list[index]._id
             try {
                 const response = await fetch(`/api/user/cart/${bookId}`, {
@@ -59,6 +59,10 @@ function Checkout() {
         }
     }
 
+    const totalAmount = (list) => {
+        return calculateTotalAmount(list) - calculateCouponDiscount(list)
+    }
+
     const placeOrderBtnHandler = () => {
         if (state.deliveryAddress === null) {
             toast.error('Please select an address for checking out!')
@@ -66,15 +70,50 @@ function Checkout() {
             toast.error('Please add something to cart for checking out!')
             navigate('/cart')
         } else {
-            dispatch({
-                type: 'UPDATE_LOADER',
-                payload: true,
-            })
-            toast.success('Order successfully placed!')
-            setTimeout(() => {
-                navigate('/')
-            }, 2000)
-            emptyCart(state.cartList)
+            var option = {
+                key: 'rzp_test_lThdUBMK5r4gWQ',
+                key_secret: 'gL1PvwFheT0DzO50YjvIbUG1',
+                amount: Number(totalAmount(state.cartList)) * 100,
+                currency: 'INR',
+                name: 'Bookmart',
+                description: 'Checkout for Merch',
+                handler: function (response) {
+                    toast.success('Payment successful', {
+                        position: 'top-right',
+                        autoClose: 1000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'colored',
+                    })
+                    dispatch({
+                        type: 'UPDATE_LOADER',
+                        payload: true,
+                    })
+                    toast.success('Order successfully placed!')
+                    setTimeout(() => {
+                        navigate('/')
+                    }, 2000)
+                    emptyCart(state.cartList)
+                },
+
+                prefill: {
+                    name: `${state.userData.firstName} ${state.userData.lastName}`,
+                    email: state.userData.email,
+                    // contact: '9320003121',
+                },
+                notes: {
+                    address: 'Razorpay Corporate Office',
+                },
+                theme: {
+                    color: '#3399cc',
+                },
+            }
+
+            var pay = new window.Razorpay(option)
+            pay.open()
         }
     }
 
@@ -222,8 +261,7 @@ function Checkout() {
                                 <p>Total Amount</p>
                                 <p>
                                     <i className="fa-solid fa-indian-rupee-sign"></i>{' '}
-                                    {calculateTotalAmount(state.cartList) -
-                                        calculateCouponDiscount(state.cartList)}
+                                    {totalAmount(state.cartList)}
                                 </p>
                             </section>
                             <section className="delivery-address">
