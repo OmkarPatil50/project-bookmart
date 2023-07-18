@@ -78,21 +78,24 @@ function Checkout() {
                 name: 'Bookmart',
                 description: 'Checkout for Merch',
                 handler: function (response) {
-                    toast.success('Payment successful', {
-                        position: 'top-right',
-                        autoClose: 1000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'colored',
-                    })
+                    toast.success(
+                        'Payment successful and Order successfully placed!',
+                        {
+                            position: 'top-right',
+                            autoClose: 1000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: 'colored',
+                        }
+                    )
                     dispatch({
                         type: 'UPDATE_LOADER',
                         payload: true,
                     })
-                    toast.success('Order successfully placed!')
+                    toast.success('')
                     setTimeout(() => {
                         navigate('/')
                     }, 2000)
