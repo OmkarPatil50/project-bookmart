@@ -50,7 +50,7 @@ function App() {
           }
 
 
-          <Link to='/' className="main-heading">Bookmart</Link>
+          <Link to='/books' className="main-heading">Bookmart</Link>
           <label htmlFor="search-book" className="search-input"><i className="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for Book" onChange={(event) => {
             event.target.length < 1 ? navigate(location?.state?.from?.pathname) : navigate('/books')
             dispatch({ type: 'UPDATE_FILTER_BY_NAME', payload: event.target.value })

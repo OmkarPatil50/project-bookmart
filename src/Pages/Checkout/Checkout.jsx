@@ -95,17 +95,24 @@ function Checkout() {
                         type: 'UPDATE_LOADER',
                         payload: true,
                     })
-                    toast.success('')
                     setTimeout(() => {
                         navigate('/')
-                    }, 2000)
+                    }, 3000)
                     emptyCart(state.cartList)
+                    dispatch({
+                        type: 'UPDATE_COUPON_DATA',
+                        payload: {
+                            showCoupon: false,
+                            couponDiscountName: '',
+                            showCouponDetails: false,
+                            couponDiscount: 0,
+                        },
+                    })
                 },
 
                 prefill: {
                     name: `${state.userData.firstName} ${state.userData.lastName}`,
                     email: state.userData.email,
-                    // contact: '9320003121',
                 },
                 notes: {
                     address: 'Razorpay Corporate Office',
@@ -149,6 +156,7 @@ function Checkout() {
                                                     payload: address,
                                                 })
                                             }
+                                            className="address-input"
                                         />
                                         <div className="user-details">
                                             <h3>{name}</h3>

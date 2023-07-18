@@ -198,6 +198,11 @@ export function AppContextProvider({ children }) {
             case 'UPDATE_ADDRESS_DATA': {
                 return { ...state, newAddress: action.payload }
             }
+
+            case 'UPDATE_COUPON_DATA': {
+                return { ...state, couponData: action.payload }
+            }
+
             case 'UPDATE_SHOW_COUPON': {
                 return {
                     ...state,
