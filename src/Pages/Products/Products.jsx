@@ -9,24 +9,6 @@ export const Products = () => {
     const { state, dispatch } = useContext(AppContext)
     const [priceRangeDefaultValue, setPriceRangeDefaultValue] = useState(50)
 
-    const getLandingData = async () => {
-        try {
-            const response = await fetch('/api/categories')
-            const jsonResponse = await response.json()
-            dispatch({
-                type: 'UPDATE_CATEGORIES',
-                payload: jsonResponse.categories,
-            })
-            dispatch({ type: 'UPDATE_LOADER', payload: false })
-        } catch (error) {
-            navigate('/error')
-        }
-    }
-
-    useEffect(() => {
-        getLandingData()
-    }, [])
-
     const getBooksList = async () => {
         try {
             const response = await fetch('/api/products')
