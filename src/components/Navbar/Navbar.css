@@ -129,8 +129,9 @@ nav {
 
     .nav-items {
         color: var(---secondary-color);
-        font-size: 14px;
+        font-size: 16px;
         padding: 0 20px 0 0;
+        margin: 0px 10px;
     }
 
     .list-count-nav,
