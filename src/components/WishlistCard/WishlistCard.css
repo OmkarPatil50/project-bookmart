@@ -7,6 +7,7 @@
     box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     background-color: #f8f8f8;
+    position: relative;
 }
 
 .book-details-wishlist {
@@ -68,7 +69,10 @@
 }
 
 .btn-delete-from-wishlist {
-    margin: 40px 20px 0 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
     cursor: pointer;
 }
 
@@ -111,14 +115,12 @@
         font-weight: 600;
     }
     .btn-cart-in-wishlist {
-        width: 70%;
         padding: 5px 8px;
         margin: 10px 0;
         border-radius: 10px;
-        font-size: 16px;
+        font-size: 12px;
     }
     .btn-delete-from-wishlist {
-        margin: 10px 20px 0 0;
-        cursor: pointer;
+        padding: 10px;
     }
 }

@@ -146,7 +146,7 @@ const WishlistCard = ({ wishListItem }) => {
                 ) ? (
                     <Link to={'/cart'}>
                         <button
-                            className="btn-cart"
+                            className="btn-cart-in-wishlist"
                             onClick={() =>
                                 dispatch({
                                     type: 'UPDATE_LOADER',
@@ -171,7 +171,8 @@ const WishlistCard = ({ wishListItem }) => {
                             navigate('/wishlist')
                         }}
                     >
-                        Move to Cart
+                        <i className="fa-solid fa-cart-shopping"></i> Move to
+                        Cart
                     </button>
                 )}
             </div>
