@@ -10,7 +10,9 @@ export function Landing() {
 
     const getLandingData = async () => {
         try {
-            const response = await fetch('/api/categories')
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/categories'
+            )
             const jsonResponse = await response.json()
             dispatch({
                 type: 'UPDATE_CATEGORIES',
@@ -22,8 +24,54 @@ export function Landing() {
         }
     }
 
+    const getCartData = async () => {
+        try {
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/user/cart',
+                {
+                    method: 'GET',
+                    headers: {
+                        authorization: sessionStorage.getItem('encodedToken'),
+                        'Content-type': 'application/json',
+                    },
+                }
+            )
+            const jsonResponse = await response.json()
+            dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
+        } catch (error) {
+            navigate('/error')
+        }
+    }
+
+    const getWishList = async () => {
+        try {
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/user/wishlist',
+                {
+                    method: 'GET',
+                    headers: {
+                        authorization: sessionStorage.getItem('encodedToken'),
+                        'Content-type': 'application/json',
+                    },
+                }
+            )
+            const jsonResponse = await response.json()
+
+            dispatch({
+                type: 'UPDATE_WISHLIST',
+                payload: jsonResponse.wishlist,
+            })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
+        } catch (error) {
+            navigate('/error')
+        }
+    }
+
     useEffect(() => {
         getLandingData()
+        getWishList()
+        getCartData()
     }, [])
 
     return (
@@ -57,7 +105,7 @@ export function Landing() {
                     {state.categoriesList.map(
                         ({ categoryName, description, _id }) => {
                             return (
-                                <li>
+                                <li key={_id}>
                                     {' '}
                                     <Link
                                         className="category-block"

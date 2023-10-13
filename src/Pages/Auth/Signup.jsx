@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, Navigate, json, redirect, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Signup.css'
 import { AppContext } from '../..'
 import { ToastContainer, toast } from 'react-toastify'
@@ -10,25 +10,33 @@ const Signup = () => {
     const [userLastName, setUserLastName] = useState('')
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
+    const [username, setUsername] = useState('')
 
-    const { state, dispatch } = useContext(AppContext)
+    const { dispatch } = useContext(AppContext)
 
     const navigate = useNavigate()
 
     const signUpFunction = async () => {
         try {
-            const response = await fetch('/api/auth/signup', {
-                method: 'POST',
-                body: JSON.stringify({
-                    userEmail,
-                    userPassword,
-                    userFirstName,
-                    userLastName,
-                }),
-            })
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/auth/signup',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: userEmail,
+                        password: userPassword,
+                        firstName: userFirstName,
+                        lastName: userLastName,
+                        username,
+                    }),
+                }
+            )
 
             const jsonResponse = await response.json()
-            localStorage.setItem('encodedToken', jsonResponse.encodedToken)
+            sessionStorage.setItem('encodedToken', jsonResponse.encodedToken)
 
             if (jsonResponse.encodedToken) {
                 dispatch({ type: 'UPDATE_LOADER', payload: true })
@@ -41,7 +49,7 @@ const Signup = () => {
                         lastName: jsonResponse.createdUser.userLastName,
                     },
                 })
-                toast.success('Logged in Successfully!', {
+                toast.success('Signed up Successfully!', {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -55,23 +63,38 @@ const Signup = () => {
                     navigate('/')
                 }, 2000)
             } else {
-                toast.error('Email Already Exists!', {
-                    position: 'top-right',
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                })
+                if (jsonResponse.error.includes('username')) {
+                    toast.error('Username Already Exists!', {
+                        position: 'top-right',
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    })
+                } else {
+                    toast.error('Email Already Exists!', {
+                        position: 'top-right',
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    })
+                }
             }
         } catch (err) {
+            console.log(err)
             navigate('/error')
         }
     }
 
     const updateTestCred = () => {
+        setUsername(`testusername${Date.now()}`)
         setUserEmail(`test${Date.now()}@gmail.com`)
         setUserPassword(`test${Date.now()}`)
         setUserFirstName('Test Name')
@@ -113,6 +136,14 @@ const Signup = () => {
                     </div>
                 </div>
                 <div className="email-password-container">
+                    <label htmlFor="username">Username</label>
+                    <input
+                        onChange={(event) => setUsername(event.target.value)}
+                        type="text"
+                        className="email-password-box"
+                        placeholder="@johndoe"
+                        value={username}
+                    />
                     <label htmlFor="Email">Email</label>
                     <input
                         onChange={(event) => setUserEmail(event.target.value)}

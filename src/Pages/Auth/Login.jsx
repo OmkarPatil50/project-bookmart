@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './Login.css'
 import { AppContext } from '../..'
 import { ToastContainer, toast } from 'react-toastify'
@@ -20,22 +20,28 @@ export function Login() {
     const getLoginDetails = async () => {
         dispatch({ type: 'UPDATE_LOADER', payload: true })
         try {
-            const response = await fetch('/api/auth/login', {
-                method: 'POST',
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-            })
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/auth/login',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                    }),
+                }
+            )
 
             const jsonResponse = await response.json()
-            localStorage.setItem('encodedToken', jsonResponse.encodedToken)
+            sessionStorage.setItem('encodedToken', jsonResponse.encodedToken)
 
             if (jsonResponse.encodedToken) {
                 dispatch({ type: 'UPDATE_USER_LOGIN', payload: true })
                 dispatch({
                     type: 'UPDATE_USERDATA',
-                    payload: jsonResponse.foundUser,
+                    payload: jsonResponse.user,
                 })
                 navigate(location?.state?.from?.pathname)
                 dispatch({ type: 'UPDATE_LOADER', payload: false })

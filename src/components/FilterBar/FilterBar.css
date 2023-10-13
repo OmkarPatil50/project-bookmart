@@ -1,0 +1,73 @@
+/* ----------------------------------filters-------------------------------------------- */
+
+.section-filters {
+    border-right: 1px solid gray;
+    margin: 20px 20px 0 40px;
+    padding-right: 20px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.filter-keys {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.filter-keys h3:nth-child(2) {
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filter-by-price,
+.filter-by-category,
+.filter-by-rating,
+.sort {
+    display: flex;
+    flex-direction: column;
+    margin: 22px 0 0px;
+    font-size: 14px;
+}
+
+.filter-by-price label,
+.filter-by-category h3,
+.sort h3,
+.filter-by-rating h3 {
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.filter-by-price label span {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.filter-by-price input {
+    color: var(---primary-color);
+}
+
+.range {
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.filter-by-category label,
+.filter-by-rating label,
+.sort label {
+    margin-bottom: 10px;
+}
+
+/* ---------------------------mobileview-------------------------- */
+@media screen and (max-width: 768px) {
+    .section-filters {
+        padding: 20px;
+        margin: 10px 0 0 0;
+        width: 200px;
+        transform: translateX(-240px);
+        transition: 0.5s ease-out;
+        z-index: 1;
+        background-color: #f8f8f8;
+    }
+}

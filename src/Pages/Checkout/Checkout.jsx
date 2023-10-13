@@ -11,7 +11,10 @@ function Checkout() {
 
     const calculatePrice = (list) => {
         return list.length
-            ? list.reduce((acc, curr) => acc + curr.originalPrice * curr.qty, 0)
+            ? list.reduce(
+                  (acc, curr) => acc + curr.book.originalPrice * curr.quantity,
+                  0
+              )
             : '0'
     }
 
@@ -19,7 +22,9 @@ function Checkout() {
         return list.length
             ? list.reduce(
                   (acc, curr) =>
-                      acc + (curr.originalPrice - curr.price) * curr.qty,
+                      acc +
+                      (curr.book.originalPrice - curr.book.price) *
+                          curr.quantity,
                   0
               )
             : '0'
@@ -42,14 +47,18 @@ function Checkout() {
 
     const emptyCart = async (list) => {
         for (let index = 0; index < list?.length; index++) {
-            const bookId = list[index]._id
+            const bookId = list[index].book._id
             try {
-                const response = await fetch(`/api/user/cart/${bookId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        authorization: localStorage.getItem('encodedToken'),
-                    },
-                })
+                const response = await fetch(
+                    `https://bookmart.omkarpatil20.repl.co/user/cart/${bookId}`,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            authorization: sessionStorage.getItem('encodedToken'),
+                            'Content-type': 'application/json',
+                        },
+                    }
+                )
                 const jsonResponse = await response.json()
                 dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
                 dispatch({ type: 'UPDATE_LOADER', payload: false })
@@ -174,22 +183,24 @@ function Checkout() {
                                 <div className="price-details-keys">
                                     <h3>Item</h3>
                                     <ul>
-                                        {state.cartList.map(({ name }) => {
-                                            return (
-                                                <li className="book-data-checkout">
-                                                    {name}
-                                                </li>
-                                            )
-                                        })}
+                                        {state.cartList.map(
+                                            ({ book: { name } }) => {
+                                                return (
+                                                    <li className="book-data-checkout">
+                                                        {name}
+                                                    </li>
+                                                )
+                                            }
+                                        )}
                                     </ul>
                                 </div>
                                 <div className="price-details-values">
-                                    <h3>Qty</h3>
+                                    <h3>quantity</h3>
                                     <ul>
-                                        {state.cartList.map(({ qty }) => {
+                                        {state.cartList.map(({ quantity }) => {
                                             return (
                                                 <li className="book-data-checkout">
-                                                    {qty}
+                                                    {quantity}
                                                 </li>
                                             )
                                         })}

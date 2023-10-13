@@ -2,8 +2,9 @@ import { useContext, useEffect } from 'react'
 import { AppContext } from '../..'
 import './Cart.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import CartCard from '../../components/CartCard/CartCard'
 
 export const Cart = () => {
     const { state, dispatch } = useContext(AppContext)
@@ -11,124 +12,54 @@ export const Cart = () => {
 
     const getCartData = async () => {
         try {
-            const response = await fetch('/api/user/cart', {
-                method: 'GET',
-                headers: {
-                    authorization: localStorage.getItem('encodedToken'),
-                },
-            })
-            const jsonResponse = await response.json()
-            dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
-            dispatch({ type: 'UPDATE_LOADER', payload: false })
-        } catch (err) {
-            navigate('/error')
-        }
-    }
-
-    const deleteFromCart = async (bookId) => {
-        try {
-            const response = await fetch(`/api/user/cart/${bookId}`, {
-                method: 'DELETE',
-                headers: {
-                    authorization: localStorage.getItem('encodedToken'),
-                },
-            })
-            const jsonResponse = await response.json()
-            dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
-            dispatch({ type: 'UPDATE_LOADER', payload: false })
-            toast.error('Deleted From Cart!', {
-                position: 'top-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'light',
-            })
-        } catch (err) {
-            navigate('/error')
-        }
-    }
-
-    const incrementQuant = async (bookId) => {
-        try {
-            const response = await fetch(`api/user/cart/${bookId}`, {
-                method: 'POST',
-                headers: {
-                    authorization: localStorage.getItem('encodedToken'),
-                },
-                body: JSON.stringify({
-                    action: {
-                        type: 'increment',
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/user/cart',
+                {
+                    method: 'GET',
+                    headers: {
+                        authorization: sessionStorage.getItem('encodedToken'),
+                        'Content-type': 'application/json',
                     },
-                }),
-            })
-
+                }
+            )
             const jsonResponse = await response.json()
             dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
-        } catch (err) {
+        } catch (error) {
             navigate('/error')
         }
     }
 
-    const decrementQuant = async (bookId) => {
+    const getWishList = async () => {
         try {
-            const response = await fetch(`api/user/cart/${bookId}`, {
-                method: 'POST',
-                headers: {
-                    authorization: localStorage.getItem('encodedToken'),
-                },
-                body: JSON.stringify({
-                    action: {
-                        type: 'decrement',
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/user/wishlist',
+                {
+                    method: 'GET',
+                    headers: {
+                        authorization: sessionStorage.getItem('encodedToken'),
+                        'Content-type': 'application/json',
                     },
-                }),
-            })
+                }
+            )
             const jsonResponse = await response.json()
-            dispatch({ type: 'UPDATE_CART', payload: jsonResponse.cart })
-            dispatch({ type: 'UPDATE_LOADER', payload: false })
-        } catch (err) {
-            navigate('/error')
-        }
-    }
 
-    const addToWishlist = async (book) => {
-        try {
-            const response = await fetch('/api/user/wishlist', {
-                method: 'POST',
-                headers: {
-                    authorization: localStorage.getItem('encodedToken'),
-                },
-                body: JSON.stringify({
-                    product: book,
-                }),
-            })
-            const jsonResponse = await response.json()
             dispatch({
                 type: 'UPDATE_WISHLIST',
                 payload: jsonResponse.wishlist,
             })
             dispatch({ type: 'UPDATE_LOADER', payload: false })
-            toast.success('Moved to Wishlist!', {
-                position: 'top-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'light',
-            })
-        } catch (err) {
+        } catch (error) {
             navigate('/error')
         }
     }
 
     const calculatePrice = (list) => {
         return list.length
-            ? list.reduce((acc, curr) => acc + curr.originalPrice * curr.qty, 0)
+            ? list.reduce(
+                  (acc, curr) => acc + curr.book.originalPrice * curr.quantity,
+                  0
+              )
             : '0'
     }
 
@@ -136,7 +67,9 @@ export const Cart = () => {
         return list.length
             ? list.reduce(
                   (acc, curr) =>
-                      acc + (curr.originalPrice - curr.price) * curr.qty,
+                      acc +
+                      (curr.book.originalPrice - curr.book.price) *
+                          curr.quantity,
                   0
               )
             : '0'
@@ -158,8 +91,9 @@ export const Cart = () => {
     }
 
     useEffect(() => {
+        getWishList()
         getCartData()
-    }, [])
+    }, [state.isLoader])
 
     return (
         <div className="cart-page">
@@ -173,157 +107,7 @@ export const Cart = () => {
                             <section className="cart-items-list">
                                 <ul>
                                     {state.cartList.map((cartItem) => {
-                                        const {
-                                            author,
-                                            img,
-                                            name,
-                                            originalPrice,
-                                            price,
-                                            _id,
-                                        } = cartItem
-                                        return (
-                                            <li className="cart-card" key={_id}>
-                                                <section className="details-section-cart">
-                                                    <Link
-                                                        to={`/books/${_id}`}
-                                                        className="book-thumbnail-cart"
-                                                        onClick={() =>
-                                                            dispatch({
-                                                                type: 'UPDATE_LOADER',
-                                                                payload: true,
-                                                            })
-                                                        }
-                                                    >
-                                                        <img
-                                                            src={img}
-                                                            alt="book-thumbnail"
-                                                        />
-                                                    </Link>
-                                                    <div className="book-details-cart">
-                                                        <h2 className="book-name-cart">
-                                                            {name}{' '}
-                                                        </h2>
-                                                        <p className="author-tag-cart">
-                                                            {author}
-                                                        </p>
-                                                        <div className="price-section-cart">
-                                                            <p className="book-price">
-                                                                <i className="fa-solid fa-indian-rupee-sign"></i>
-                                                                {price}
-                                                            </p>
-                                                            <p className="book-original-price">
-                                                                <i className="fa-solid fa-indian-rupee-sign"></i>
-                                                                {originalPrice}
-                                                            </p>
-                                                            <p className="book-discount">
-                                                                (
-                                                                {(
-                                                                    ((originalPrice -
-                                                                        price) /
-                                                                        originalPrice) *
-                                                                    100
-                                                                ).toFixed(
-                                                                    0
-                                                                )}{' '}
-                                                                % OFF)
-                                                            </p>
-                                                        </div>
-                                                        <div className="quantity-section-cart">
-                                                            <button
-                                                                className="decrease-quantity"
-                                                                onClick={() => {
-                                                                    decrementQuant(
-                                                                        _id
-                                                                    )
-
-                                                                    dispatch({
-                                                                        type: 'UPDATE_LOADER',
-                                                                        payload: true,
-                                                                    })
-                                                                }}
-                                                                disabled={
-                                                                    cartItem.qty <
-                                                                    2
-                                                                }
-                                                            >
-                                                                -
-                                                            </button>
-                                                            <p className="quantity">
-                                                                {cartItem.qty
-                                                                    ? cartItem.qty
-                                                                    : 1}
-                                                            </p>
-                                                            <button
-                                                                className="increase-quantity"
-                                                                onClick={() => {
-                                                                    incrementQuant(
-                                                                        _id
-                                                                    )
-                                                                    dispatch({
-                                                                        type: 'UPDATE_LOADER',
-                                                                        payload: true,
-                                                                    })
-                                                                }}
-                                                            >
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                                <section className="btn-section-cart">
-                                                    <button
-                                                        className="btn-remove-cart"
-                                                        onClick={() => {
-                                                            deleteFromCart(_id)
-                                                            dispatch({
-                                                                type: 'UPDATE_LOADER',
-                                                                payload: true,
-                                                            })
-                                                        }}
-                                                    >
-                                                        REMOVE
-                                                    </button>
-                                                    {state.wishList?.some(
-                                                        (wishListItem) =>
-                                                            wishListItem._id ===
-                                                            cartItem._id
-                                                    ) ? (
-                                                        <Link
-                                                            to={'/wishlist'}
-                                                            onClick={() =>
-                                                                dispatch({
-                                                                    type: 'UPDATE_LOADER',
-                                                                    payload: true,
-                                                                })
-                                                            }
-                                                        >
-                                                            <button className="btn-wishlist-cart">
-                                                                ALREADY IN
-                                                                WISHLIST
-                                                            </button>
-                                                        </Link>
-                                                    ) : (
-                                                        <button
-                                                            className="btn-wishlist-cart"
-                                                            onClick={() => {
-                                                                addToWishlist(
-                                                                    cartItem
-                                                                )
-                                                                deleteFromCart(
-                                                                    _id
-                                                                )
-                                                                dispatch({
-                                                                    type: 'UPDATE_LOADER',
-                                                                    payload: true,
-                                                                })
-                                                            }}
-                                                        >
-                                                            MOVE TO WISHLIST
-                                                        </button>
-                                                    )}
-                                                </section>
-                                            </li>
-                                        )
+                                        return <CartCard cartItem={cartItem} />
                                     })}
                                 </ul>
                             </section>
