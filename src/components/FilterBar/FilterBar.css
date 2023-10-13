@@ -72,7 +72,6 @@
 @media screen and (max-width: 768px) {
     .section-filters {
         padding: 20px;
-        margin: 82.5px 0 0 0;
         width: 50%;
         transform: translateX(-240px);
         transition: 0.5s ease-out;
