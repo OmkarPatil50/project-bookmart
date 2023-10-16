@@ -38,6 +38,14 @@
     font-size: 14px;
 }
 
+.filter-by-price input,
+.filter-by-category input,
+.filter-by-rating input,
+.sort input {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
 .filter-by-price label,
 .filter-by-category h3,
 .sort h3,
@@ -60,6 +68,7 @@
     font-size: 14px;
     justify-content: space-between;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .filter-by-category label,
@@ -78,5 +87,12 @@
         z-index: 1;
         background-color: #f8f8f8;
         overflow-y: scroll;
+    }
+
+    .filter-by-price input,
+    .filter-by-category input,
+    .filter-by-rating input,
+    .sort input {
+        margin-right: 5px;
     }
 }

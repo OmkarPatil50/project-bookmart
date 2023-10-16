@@ -1,10 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../..'
 import './FilterBar.css'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router'
 
 const FilterBar = () => {
     const { state, dispatch } = useContext(AppContext)
+    const navigate = useNavigate()
+
+    const getLandingData = async () => {
+        try {
+            const response = await fetch(
+                'https://bookmart.omkarpatil20.repl.co/categories'
+            )
+            const jsonResponse = await response.json()
+            dispatch({
+                type: 'UPDATE_CATEGORIES',
+                payload: jsonResponse.categories,
+            })
+            dispatch({ type: 'UPDATE_LOADER', payload: false })
+        } catch (error) {
+            navigate('/error')
+        }
+    }
+
+    useEffect(() => {
+        getLandingData()
+    }, [])
 
     return (
         <div
@@ -104,7 +126,7 @@ const FilterBar = () => {
                                 payload: event.target.value,
                             })
                         }
-                        checked={state.filterMinRating === 1}
+                        checked={state.filterMinRating === '1'}
                     />
                     1 Stars & above
                 </label>
@@ -120,7 +142,7 @@ const FilterBar = () => {
                                 payload: event.target.value,
                             })
                         }
-                        checked={state.filterMinRating === 2}
+                        checked={state.filterMinRating === '2'}
                     />
                     2 Stars & above
                 </label>
@@ -136,7 +158,7 @@ const FilterBar = () => {
                                 payload: event.target.value,
                             })
                         }
-                        checked={state.filterMinRating === 3}
+                        checked={state.filterMinRating === '3'}
                     />
                     3 Stars & above
                 </label>
@@ -152,7 +174,7 @@ const FilterBar = () => {
                                 payload: event.target.value,
                             })
                         }
-                        checked={state.filterMinRating === 4}
+                        checked={state.filterMinRating === '4'}
                     />
                     4 Stars & above
                 </label>
