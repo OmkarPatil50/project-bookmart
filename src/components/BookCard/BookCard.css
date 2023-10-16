@@ -15,11 +15,17 @@
     justify-content: center;
     height: 15rem;
     position: relative;
+    overflow: hidden;
 }
 
 .book-thumbnail img {
     width: 160px;
     height: 15rem;
+    transition-duration: 0.3s;
+}
+
+.book-thumbnail img:hover {
+    transform: scale(1.2);
 }
 
 .wishlist-tag {
