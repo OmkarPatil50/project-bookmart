@@ -290,11 +290,11 @@ export const Cart = () => {
 
                                         dispatch({
                                             type: 'UPDATE_COUPON_DISCOUNT_NAME',
-                                            payload: 'Diwali Dhamaka',
+                                            payload: 'Sankrant Special',
                                         })
                                     }}
                                 />
-                                50% OFF : Diwali Dhamaka
+                                50% OFF : Sankrant Special
                             </label>
                             <label htmlFor="coupon">
                                 <input
