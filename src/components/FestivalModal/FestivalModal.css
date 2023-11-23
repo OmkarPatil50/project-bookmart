@@ -1,0 +1,84 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    width: fit-content;
+    background-color: white;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease-in-out;
+}
+
+.modal-img {
+    width: 100%;
+}
+
+.btn-close-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+
+.modal-info {
+    position: absolute;
+    background: transparent;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-tag {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(---primary-color);
+    font-size: 32px;
+}
+
+.btn-modal {
+    margin: 10px 0 20px 0;
+}
+
+.btn-modal:hover {
+    background-color: transparent;
+}
+
+.wish-you-tag {
+    background-color: transparent;
+    position: absolute;
+    top: 150px;
+    left: 40px;
+}
+
+/* ----------------------------mobileView------------------------------- */
+
+@media screen and (max-width: 768px) {
+    .modal-tag {
+        font-size: 16px;
+    }
+
+    .wish-you-tag {
+        top: 75px;
+    }
+
+    .modal-info {
+        padding: 7.5px 0;
+    }
+    .btn-modal {
+        padding: 5px 10px;
+        font-size: 14px;
+        margin: 5px 0 10px;
+    }
+}

@@ -14,6 +14,7 @@ import Loader from "./Pages/Loaders/Loader";
 import Checkout from "./Pages/Checkout/Checkout";
 import Error from "./Pages/Error/Error";
 import { Navbar } from "./components/Navbar/Navbar";
+import FestivalModal from "./components/FestivalModal/FestivalModal.jsx";
 
 
 
@@ -28,9 +29,11 @@ function App() {
       {
         state.isLoader ? <Loader /> : ''
       }
+      {
+        state.showFestivalModal ? <FestivalModal /> : ''
+      }
 
       <Navbar />
-
       <Routes>
         <Route path='/' element={
           <Landing />} />

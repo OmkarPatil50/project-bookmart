@@ -259,6 +259,13 @@ export function AppContextProvider({ children }) {
                 }
             }
 
+            case 'TOGGLE_SHOW_FESTIVAL_MODAL': {
+                return {
+                    ...state,
+                    showFestivalModal: !state.showFestivalModal,
+                }
+            }
+
             default:
                 return state
         }
@@ -308,6 +315,7 @@ export function AppContextProvider({ children }) {
         filterByName: '',
         isFiltersOpen: false,
         isLoader: true,
+        showFestivalModal: true,
     }
 
     const [state, dispatch] = useReducer(landingReducerFunction, initialValue)
