@@ -24,6 +24,7 @@ nav {
     color: var(---secondary-color);
     font-family: 'Ubuntu';
     font-size: 30px;
+    font-weight: 700;
 }
 
 .search-input {
@@ -74,6 +75,31 @@ nav {
 
 .mobile-nav {
     display: none;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    20% {
+        transform: translateY(-10px) rotate(10deg);
+    }
+    40% {
+        transform: translateY(-20px) rotate(-10deg);
+    }
+    60% {
+        transform: translateY(-30px) rotate(15deg);
+    }
+    80% {
+        transform: translateY(-20px) rotate(-5deg);
+    }
+}
+
+.kite-emoji {
+    display: inline-block;
+    animation: float 3s infinite;
+    -webkit-animation: float 3s infinite;
 }
 
 /* ----------------------------mobileview----------------------- */
