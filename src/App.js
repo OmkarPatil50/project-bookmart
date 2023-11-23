@@ -30,15 +30,21 @@ function App() {
         state.isLoader ? <Loader /> : ''
       }
       {
-        state.showFestivalModal ? <FestivalModal /> : ''
-      }
-      <div className="kite">
-        <div className="tail"></div>
-      </div>
+        state.showFestivalModal ?
+          <>
+            <FestivalModal />
+            <div className="kite">
+              <div className="tail"></div>
+            </div>
 
-      <div className="kite kite-left">
-        <div className="tail"></div>
-      </div>
+            <div className="kite kite-left">
+              <div className="tail"></div>
+            </div>
+          </> : ''
+
+      }
+
+
 
       <Navbar />
       <Routes>

@@ -5,10 +5,10 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: 11;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 22;
 }
 
 .modal-box {
@@ -17,6 +17,7 @@
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s ease-in-out;
+    z-index: 21;
 }
 
 .modal-img {
@@ -31,12 +32,13 @@
     background: none;
     border: none;
     font-size: 20px;
+    display: none;
 }
 
 .modal-info {
     position: absolute;
     background: transparent;
-    bottom: 0;
+    bottom: 25px;
     width: 100%;
     text-align: center;
 }
@@ -46,9 +48,20 @@
     color: var(---primary-color);
     font-size: 32px;
 }
+.modal-btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .btn-modal {
     margin: 10px 0 20px 0;
+    position: absolute;
+    bottom: 0;
+    z-index: 45;
+    margin: 125px 0;
+    background-color: orange;
+    align-self: center;
 }
 
 .btn-modal:hover {
@@ -69,6 +82,10 @@
         font-size: 16px;
     }
 
+    .btn-close-modal {
+        display: block;
+    }
+
     .wish-you-tag {
         top: 75px;
     }
@@ -77,8 +94,15 @@
         padding: 7.5px 0;
     }
     .btn-modal {
-        padding: 5px 10px;
+        padding: 7.5px 15px;
         font-size: 14px;
         margin: 5px 0 10px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-btn-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

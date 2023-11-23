@@ -91,11 +91,11 @@ body {
         left: 0%;
     }
     25% {
-        top: 10%;
+        top: 5%;
         left: 5%;
     }
     50% {
-        top: 50%;
+        top: 10%;
         left: 20%;
     }
     75% {
@@ -111,11 +111,11 @@ body {
         right: 0%;
     }
     25% {
-        top: 50%;
-        right: 20%;
+        top: 5%;
+        right: 5%;
     }
     50% {
-        top: 0%;
+        top: 10%;
         right: 20%;
     }
     75% {
