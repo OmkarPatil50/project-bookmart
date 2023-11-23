@@ -9,12 +9,14 @@ nav {
     top: 0;
     width: 100%;
     z-index: 10;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 .nav-sub-sections {
     padding: 0px 200px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -26,12 +28,13 @@ nav {
 
 .search-input {
     background-color: var(---secondary-color);
-    width: 350px;
-    height: 30px;
+    width: 375px;
+    height: 40px;
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 15px;
     border-radius: 50px;
+    margin: 0;
 }
 
 .search-input input {
@@ -40,18 +43,22 @@ nav {
     height: 20px;
     border: none;
     padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
 }
 
 .nav-items {
+    position: relative;
     padding-left: 25px;
     color: var(---secondary-color);
     font-size: 22.5px;
-    position: relative;
+    transition-duration: 0.3s;
 }
 
 .nav-items:hover {
     opacity: 0.5;
-    transition-duration: 0.5s;
 }
 
 .list-count-nav,

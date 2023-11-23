@@ -33,7 +33,10 @@ export const Navbar = () => {
                 )}
 
                 <Link to="/" className="main-heading">
-                    Bookmart
+                    <p>
+                        <i className="fa-solid fa-book-open-reader"></i>{' '}
+                        Bookmart
+                    </p>
                 </Link>
                 <label htmlFor="search-book" className="search-input">
                     <i className="fa-solid fa-magnifying-glass"></i>

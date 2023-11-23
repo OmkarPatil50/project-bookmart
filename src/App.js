@@ -32,6 +32,13 @@ function App() {
       {
         state.showFestivalModal ? <FestivalModal /> : ''
       }
+      <div className="kite">
+        <div className="tail"></div>
+      </div>
+
+      <div className="kite kite-left">
+        <div className="tail"></div>
+      </div>
 
       <Navbar />
       <Routes>
