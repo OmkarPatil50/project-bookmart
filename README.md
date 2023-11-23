@@ -4,7 +4,10 @@
 The Bookmart is a user-friendly and feature-rich platform designed to cater to book enthusiasts. With a wide range of functionalities, this app aims to provide a seamless shopping experience for users. Here are the key features of the app:
 </p>
 
+<p>Stacks Used: ReactJS for Frontend, MongoDB as the database, ExpressJS for the server framework, NodeJS as the runtime environment, JWT and bcrypt for authentication</p>
+
 <h3>Live: https://bookishmart.vercel.app/</h3>
+<h3>Backend Code: https://replit.com/@OmkarPatil20/Bookmart </h3>
 <h3>Demo Video :https://www.loom.com/share/575dc9b0369049dda33b1c45c33250f0?sid=dd877079-25ca-4924-b951-50b94e900a0c</h3>
 
 <h3>
