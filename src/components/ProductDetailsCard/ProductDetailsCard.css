@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 525px;
+    width: 640px;
     height: 450px;
     border-radius: 5px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
@@ -51,6 +51,7 @@
 }
 
 .price-info-section {
+    width: 100%;
     border-bottom: 1px solid lightgray;
 }
 

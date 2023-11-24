@@ -15,6 +15,10 @@ body {
     ---secondary-color: white;
 }
 
+input {
+    cursor: pointer;
+}
+
 .link {
     color: var(---primary-color);
 }

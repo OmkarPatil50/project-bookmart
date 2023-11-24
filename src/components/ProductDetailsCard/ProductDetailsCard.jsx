@@ -196,8 +196,8 @@ const ProductDetailsCard = ({ bookID }) => {
                             }
                         >
                             <button className="btn-cart">
-                                <i className="fa-solid fa-cart-shopping"></i>
-                                Go to Cart
+                                <i className="fa-solid fa-cart-shopping"></i> Go
+                                to Cart
                             </button>
                         </Link>
                     ) : (
@@ -214,8 +214,8 @@ const ProductDetailsCard = ({ bookID }) => {
                                 })
                             }}
                         >
-                            <i className="fa-solid fa-cart-shopping"></i>
-                            Add to Cart
+                            <i className="fa-solid fa-cart-shopping"></i> Add to
+                            Cart
                         </button>
                     )}
                     {state.wishList?.some(
@@ -231,8 +231,8 @@ const ProductDetailsCard = ({ bookID }) => {
                             }
                         >
                             <button className="btn-wishlist">
-                                <i className="fa-regular fa-heart"></i>
-                                Go to Wishlist
+                                <i className="fa-regular fa-heart"></i> Go to
+                                Wishlist
                             </button>
                         </Link>
                     ) : (
@@ -248,7 +248,7 @@ const ProductDetailsCard = ({ bookID }) => {
                                 })
                             }}
                         >
-                            <i className="fa-regular fa-heart"></i>Add to
+                            <i className="fa-regular fa-heart"></i> Add to
                             Wishlist
                         </button>
                     )}

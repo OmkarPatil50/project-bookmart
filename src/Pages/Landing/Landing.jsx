@@ -78,6 +78,7 @@ export function Landing() {
         <div className="landing-page">
             <section className="shop-now-section">
                 <div className="show-now-section-info">
+                    {/* Hidden due to Makar sankranti update */}
                     {/* <h3>Welcome to Bookmart,</h3>
                     <h1>
                         For All Your <span>Reading </span>Needs
