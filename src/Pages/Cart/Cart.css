@@ -22,7 +22,7 @@
     border-radius: 10px;
     padding: 30px;
     width: 350px;
-    height: 450px;
+    height: fit-content;
     position: fixed;
     top: 10;
     right: 0;
