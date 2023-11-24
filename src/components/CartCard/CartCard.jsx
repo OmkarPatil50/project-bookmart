@@ -237,19 +237,20 @@ const CartCard = ({ cartItem }) => {
                 {state.wishList?.some(
                     (wishListItem) => wishListItem._id === cartItem.book._id
                 ) ? (
-                    <Link
-                        to={'/wishlist'}
-                        onClick={() =>
-                            dispatch({
-                                type: 'UPDATE_LOADER',
-                                payload: true,
-                            })
-                        }
-                    >
-                        <button className="btn-wishlist-cart" disabled>
+                    <button className="btn-wishlist-cart" disabled>
+                        <Link
+                            to={'/wishlist'}
+                            onClick={() =>
+                                dispatch({
+                                    type: 'UPDATE_LOADER',
+                                    payload: true,
+                                })
+                            }
+                            className="link"
+                        >
                             ALREADY IN WISHLIST
-                        </button>
-                    </Link>
+                        </Link>
+                    </button>
                 ) : (
                     <button
                         className="btn-wishlist-cart"
