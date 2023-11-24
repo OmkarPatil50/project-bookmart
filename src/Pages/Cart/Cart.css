@@ -112,6 +112,16 @@
     align-items: center;
     justify-content: center;
 }
+.small {
+    font-size: 12px;
+    color: red;
+    text-align: center;
+}
+
+.small::before,
+.small::after {
+    content: '*';
+}
 
 .btn-checkout {
     width: 100%;

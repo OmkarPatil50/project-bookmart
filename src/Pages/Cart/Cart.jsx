@@ -112,6 +112,10 @@ export const Cart = () => {
                                 </ul>
                             </section>
                             <section className="cart-pricing">
+                                <p className="save-tag-cart small">
+                                    Apply Sankrant Special Coupan to get 50%
+                                    Discount
+                                </p>
                                 <div className="coupon-section">
                                     <p className="coupon-tag-cart">
                                         <i className="fa-solid fa-tag"></i> Have
