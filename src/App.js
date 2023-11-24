@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import "./App.css";
 import { Landing } from "./Pages/Landing/Landing";
 import { Login } from "./Pages/Auth/Login";
@@ -22,7 +22,7 @@ function App() {
 
 
   const { state } = useContext(AppContext)
-
+  const location = useLocation()
 
   return (
     <div className="App">
@@ -30,7 +30,7 @@ function App() {
         state.isLoader ? <Loader /> : ''
       }
       {
-        state.showFestivalModal ?
+        state.showFestivalModal && location.pathname !== '/error' ?
           <>
             <FestivalModal />
             <div className="kite">

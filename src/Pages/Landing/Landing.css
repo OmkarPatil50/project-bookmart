@@ -5,11 +5,19 @@
 .shop-now-section {
     margin: 50px 100px;
     height: 500px;
-    background-image: url(/src/Pages/Landing/book.jpg);
+    /* background-image: url(/src/Pages/Landing/book.jpg); */
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/989/948/original/happy-makar-sankranti-banner-background-design-with-colorful-kites-vector.jpg');
     background-position: center;
     background-size: cover;
     color: var(---secondary-color);
     padding: 200px 100px;
+    position: relative;
+}
+
+.show-now-section-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .shop-now-section h3 {
@@ -39,8 +47,15 @@
     font-weight: bold;
 }
 
+.show-now-section-info > .shop-now-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 85px 170px;
+}
+
 .shop-now-btn:hover {
-    background-color: var(---secondary-color);
+    background-color: transparent;
     color: var(---primary-color);
     transition-duration: 0.5s;
 }
@@ -165,6 +180,7 @@
         margin: 20px;
         height: 300px;
         padding: 150px 10px;
+        background-image: url('https://d1csarkz8obe9u.cloudfront.net/posterpreviews/makar-sankranti-design-template-92d1fe5ffbc520213697713d453e3761_screen.jpg?ts=1640523739');
     }
     .shop-now-section h3 {
         font-size: 12px;
@@ -181,11 +197,19 @@
     }
 
     .shop-now-btn {
-        display: inline-block;
         margin-top: 10px;
         padding: 10px 15px;
         font-size: 15px;
         font-weight: 600;
+        width: max-content;
+    }
+
+    .show-now-section-info > .shop-now-btn {
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
     }
 
     .categories-section-header {

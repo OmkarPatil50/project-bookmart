@@ -76,22 +76,24 @@ export function Landing() {
 
     return (
         <div className="landing-page">
-            <div className="shop-now-section">
-                <h3>Welcome to Bookmart,</h3>
-                <h1>
-                    For All Your <span>Reading </span>Needs
-                </h1>
+            <section className="shop-now-section">
+                <div className="show-now-section-info">
+                    {/* <h3>Welcome to Bookmart,</h3>
+                    <h1>
+                        For All Your <span>Reading </span>Needs
+                    </h1> */}
 
-                <Link
-                    to="/books"
-                    className="shop-now-btn"
-                    onClick={() =>
-                        dispatch({ type: 'UPDATE_LOADER', payload: true })
-                    }
-                >
-                    Shop Now
-                </Link>
-            </div>
+                    <Link
+                        to="/books"
+                        className="shop-now-btn"
+                        onClick={() =>
+                            dispatch({ type: 'UPDATE_LOADER', payload: true })
+                        }
+                    >
+                        Shop Now
+                    </Link>
+                </div>
+            </section>
 
             <div className="categories-section">
                 <h2 className="categories-section-header">

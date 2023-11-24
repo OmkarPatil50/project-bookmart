@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../..'
 import './Error.css'
+import { Link } from 'react-router-dom'
 
 function Error() {
     const { dispatch } = useContext(AppContext)
@@ -11,6 +12,12 @@ function Error() {
     return (
         <div className="error-page">
             <h1>It's not you, It's us..!</h1>
+            <h3>
+                Click to{' '}
+                <Link to="/" className="link">
+                    Try Again
+                </Link>
+            </h3>
             <h3>
                 If Problem Persists Start Server{' '}
                 <a
