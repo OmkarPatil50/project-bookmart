@@ -13,7 +13,7 @@ export const Wishlist = () => {
     const getWishList = async () => {
         try {
             const response = await fetch(
-                'https://bookmart.omkarpatil20.repl.co/user/wishlist',
+                'https://d72bcbda-3fcd-4a58-97db-df57aa22ebf2-00-16xr05kv9803e.janeway.replit.dev/user/wishlist',
                 {
                     method: 'GET',
                     headers: {
@@ -37,7 +37,7 @@ export const Wishlist = () => {
     const getCartData = async () => {
         try {
             const response = await fetch(
-                'https://bookmart.omkarpatil20.repl.co/user/cart',
+                'https://d72bcbda-3fcd-4a58-97db-df57aa22ebf2-00-16xr05kv9803e.janeway.replit.dev/user/cart',
                 {
                     method: 'GET',
                     headers: {

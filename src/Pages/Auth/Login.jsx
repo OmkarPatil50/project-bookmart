@@ -21,7 +21,7 @@ export function Login() {
         dispatch({ type: 'UPDATE_LOADER', payload: true })
         try {
             const response = await fetch(
-                'https://bookmart.omkarpatil20.repl.co/auth/login',
+                'https://d72bcbda-3fcd-4a58-97db-df57aa22ebf2-00-16xr05kv9803e.janeway.replit.dev/auth/login',
                 {
                     method: 'POST',
                     headers: {

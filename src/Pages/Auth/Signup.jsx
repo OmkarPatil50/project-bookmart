@@ -19,7 +19,7 @@ const Signup = () => {
     const signUpFunction = async () => {
         try {
             const response = await fetch(
-                'https://bookmart.omkarpatil20.repl.co/auth/signup',
+                'https://d72bcbda-3fcd-4a58-97db-df57aa22ebf2-00-16xr05kv9803e.janeway.replit.dev/auth/signup',
                 {
                     method: 'POST',
                     headers: {

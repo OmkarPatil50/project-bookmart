@@ -13,7 +13,7 @@ const WishlistCard = ({ wishListItem }) => {
     const moveToCart = async (book) => {
         try {
             const cartResponse = await fetch(
-                'https://bookmart.omkarpatil20.repl.co/user/cart',
+                'https://d72bcbda-3fcd-4a58-97db-df57aa22ebf2-00-16xr05kv9803e.janeway.replit.dev/user/cart',
                 {
                     method: 'POST',
                     headers: {
@@ -27,7 +27,7 @@ const WishlistCard = ({ wishListItem }) => {
             )
             const cartJsonResponse = await cartResponse.json()
             const wishlistResponse = await fetch(
-                `https://bookmart.omkarpatil20.repl.co/user/wishlist/${book._id}`,
+                `https://d72bcbda-3fcd-4a58-97db-df57aa22ebf2-00-16xr05kv9803e.janeway.replit.dev/user/wishlist/${book._id}`,
                 {
                     method: 'DELETE',
                     headers: {
@@ -62,7 +62,7 @@ const WishlistCard = ({ wishListItem }) => {
     const deleteFromWishlist = async (bookId) => {
         try {
             const response = await fetch(
-                `https://bookmart.omkarpatil20.repl.co/user/wishlist/${bookId}`,
+                `https://d72bcbda-3fcd-4a58-97db-df57aa22ebf2-00-16xr05kv9803e.janeway.replit.dev/user/wishlist/${bookId}`,
                 {
                     method: 'DELETE',
                     headers: {
